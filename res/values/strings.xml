@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, LoginActivity!</string>
     <string name="app_name">AndroidLoginAndRegistration</string>
+    <string name="_17">17</string>
 </resources>
