@@ -8,6 +8,7 @@ import redstone.xmlrpc.XmlRpcFault;
 import net.bican.wordpress.User;
 import net.bican.wordpress.Wordpress;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,15 +33,16 @@ public class LoginActivity extends Activity {
 				
 				// Switching to Register screen
 				Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
-				String password = findViewById(R.id.login_username).toString();//"ncsuspr2013";
-				String username = findViewById(R.id.login_password).toString();//"spinningwellness";
+				String username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
+				String password = "ncsuspr2013";//findViewById(R.id.login_password).toString(); //;
 			    String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
 			    try {
 			    	System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
-					Wordpress wp = new Wordpress(username, password, xmlRpcUrl);
+			    	Wordpress wp = new Wordpress(username, password, xmlRpcUrl);
 					User u = wp.getUserInfo();
 					System.out.println(u.getFirstname());
 					i.putExtra("username",username);
+					i.putExtra("password",password);
 					//i.putExtra("wordpress",wp);
 					startActivity(i);
 				} catch (MalformedURLException e) {
