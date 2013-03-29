@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, LoginActivity!</string>
-    <string name="app_name">AndroidLoginAndRegistration</string>
+    <string name="app_name">Spinning Wellness</string>
     <string name="_17">17</string>
     <string name="title_activity_join">JoinActivity</string>
     <string name="action_settings">Settings</string>
