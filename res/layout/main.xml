@@ -16,7 +16,7 @@
  
   <TextView android:id="@+id/textView1" android:layout_width="wrap_content"
    android:layout_height="wrap_content" android:padding="5dp"
-   android:text="Some Random Text at the Bottom"
+   android:text="Get A Ride!"
    android:textAppearance="?android:attr/textAppearanceMedium" />
  </RelativeLayout>
  
