@@ -17,7 +17,7 @@
         android:label="@string/app_name" >
         <activity
             android:name="com.example.spinningwellness.LoginActivity"
-            android:label="Spinning wellness" >
+            android:label="Spinning wellness " >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
