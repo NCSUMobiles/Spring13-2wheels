@@ -3,7 +3,7 @@ package com.ncsu.edu.spinningwellness.entities;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class User {
+public class User extends BaseEntity {
 	
 	String name;
 	
