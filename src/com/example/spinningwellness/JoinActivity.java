@@ -28,33 +28,33 @@ public class JoinActivity extends Activity {
   
  private void displayListView() {
  
-  //Array list of countries
-  List<String> countryList = new ArrayList<String>();
-  countryList.add("Aruba");
-  countryList.add("Anguilla");
-  countryList.add("Netherlands Antilles");
-  countryList.add("Antigua and Barbuda");
-  countryList.add("Bahamas");
-  countryList.add("Belize");
-  countryList.add("Bermuda");
-  countryList.add("Barbados");
-  countryList.add("Canada");
-  countryList.add("Costa Rica");
-  countryList.add("Cuba");
-  countryList.add("Cayman Islands");
-  countryList.add("Dominica");
-  countryList.add("Dominican Republic");
-  countryList.add("Guadeloupe");
-  countryList.add("Grenada");
-  countryList.add("Greenland");
-  countryList.add("Guatemala");
-  countryList.add("Honduras");
-  countryList.add("Haiti");
-  countryList.add("Jamaica");
+  //Array list of Rides
+  List<String> rideList = new ArrayList<String>();
+  rideList.add("RtoDurham");
+  rideList.add("RtoCary");
+  rideList.add("RtoGreensboro");
+  rideList.add("RtoLakeRaleigh");
+  rideList.add("RtoRTP");
+//  countryList.add("Belize");
+//  countryList.add("Bermuda");
+//  countryList.add("Barbados");
+//  countryList.add("Canada");
+//  countryList.add("Costa Rica");
+//  countryList.add("Cuba");
+//  countryList.add("Cayman Islands");
+//  countryList.add("Dominica");
+//  countryList.add("Dominican Republic");
+//  countryList.add("Guadeloupe");
+//  countryList.add("Grenada");
+//  countryList.add("Greenland");
+//  countryList.add("Guatemala");
+//  countryList.add("Honduras");
+//  countryList.add("Haiti");
+//  countryList.add("Jamaica");
    
   //create an ArrayAdaptar from the String Array
   ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-    R.layout.join_list, countryList);
+    R.layout.join_list, rideList);
   ListView listView = (ListView) findViewById(R.id.listView1);
   // Assign adapter to ListView
   listView.setAdapter(dataAdapter);
