@@ -30,33 +30,34 @@ public class LoginActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				
+				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				startActivity(i);
 				// Switching to Register screen
-				Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
-				String username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
-				String password = "ncsuspr2013";//findViewById(R.id.login_password).toString(); //;
-			    String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
-			    try {
-			    	System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
-			    	Wordpress wp = new Wordpress(username, password, xmlRpcUrl);
-					User u = wp.getUserInfo();
-					System.out.println(u.getFirstname());
-					i.putExtra("username",username);
-					i.putExtra("password",password);
-					//i.putExtra("wordpress",wp);
-					startActivity(i);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} catch (XmlRpcFault e) {
-					//android.util.Log.v("WPJAVA", "Exception ["+e.getMessage()+"]", e);
-					TextView myText = new TextView(getBaseContext());
-					myText.setTextColor(Color.RED);
-					myText.setGravity(Gravity.CENTER_VERTICAL);//.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
-					myText.setText("Login Failed.");
-
-					LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
-					l.addView(myText);
-				}	
+//				Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+//				String username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
+//				String password = "ncsuspr2013";//findViewById(R.id.login_password).toString(); //;
+//			    String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
+//			    try {
+//			    	System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
+//			    	Wordpress wp = new Wordpress(username, password, xmlRpcUrl);
+//					User u = wp.getUserInfo();
+//					System.out.println(u.getFirstname());
+//					i.putExtra("username",username);
+//					i.putExtra("password",password);
+//					//i.putExtra("wordpress",wp);
+//					startActivity(i);
+//				} catch (MalformedURLException e) {
+//					e.printStackTrace();
+//				} catch (XmlRpcFault e) {
+//					//android.util.Log.v("WPJAVA", "Exception ["+e.getMessage()+"]", e);
+//					TextView myText = new TextView(getBaseContext());
+//					myText.setTextColor(Color.RED);
+//					myText.setGravity(Gravity.CENTER_VERTICAL);//.setTextAlignment(TextView.TEXT_ALIGNMENT_CENTER);
+//					myText.setText("Login Failed.");
+//
+//					LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
+//					l.addView(myText);
+//				}	
 			}
 		});
     }
