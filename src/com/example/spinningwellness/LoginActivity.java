@@ -34,7 +34,6 @@ public class LoginActivity extends Activity {
 		button.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				
 				// Switching to Register screen
 				username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
 				password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
