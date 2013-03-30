@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		Button button  = (Button) findViewById(R.id.btnLogin);
+		ImageButton button  = (ImageButton) findViewById(R.id.btnLogin);
 
 		// Listening to login button
 		button.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +80,7 @@ public class LoginActivity extends Activity {
 				LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
 				l.addView(myText);
 			} else{
-				Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+				Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
 				i.putExtra("username",username);
 				i.putExtra("password",password);
 				startActivity(i);
