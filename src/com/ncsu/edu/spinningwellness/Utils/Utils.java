@@ -13,14 +13,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 public class Utils {
-	
-	public static long convertDateToLong(Date date) {
+
+	public static long convertDateToString(Date date) {
 
 		SimpleDateFormat df = new SimpleDateFormat("yyMMddHHmmss");
 		return Long.parseLong(df.format(date));
 	}
 
-	public static Date convertLongToDate(Long date) {
+	public static Date convertStringToDate(Long date) {
 		SimpleDateFormat df = new SimpleDateFormat("yyMMddHHmmss");
 		try {
 			return df.parse(date.toString());
@@ -29,25 +29,60 @@ public class Utils {
 		}
 		return null;
 	}
-	
+
 	public static Object JSONToObject(String JSON, Class objectType) {
 		Gson gson = new Gson();
 		return gson.fromJson(JSON, objectType);
 	}
-	
+
 	public static List<Object> JSONToObjectList(String JSON, Class objectType) {
 
 		List<Object> list = new ArrayList<Object>();
-		
-		JsonElement json = new JsonParser().parse(JSON); 
-		JsonArray array= json.getAsJsonArray();
-	 
-		Iterator iterator = array.iterator();
-		while(iterator.hasNext()){
-			JsonElement json2 = (JsonElement)iterator.next();
-			Gson gson = new Gson();
-			list.add(gson.fromJson(json2, objectType));
-		}		
+
+		StringBuilder str = new StringBuilder(JSON);
+
+		if(str.indexOf("[") != -1) {
+			int startIndex = str.indexOf("[");
+			JSON = str.substring(startIndex, JSON.length()-1);
+
+			System.out.println(JSON);
+
+			JsonElement json = new JsonParser().parse(JSON); 
+			JsonArray array= json.getAsJsonArray();
+
+			Iterator iterator = array.iterator();
+			while(iterator.hasNext()){
+				JsonElement json2 = (JsonElement)iterator.next();
+				Gson gson = new Gson();
+				list.add(gson.fromJson(json2, objectType));
+			}
+		} else {
+			int startIndex = str.indexOf(":");
+
+			JSON = str.substring(startIndex+1, JSON.length()-1);
+
+			System.out.println(JSON);			
+
+			list.add(JSONToObject(JSON, objectType));
+		}
 		return list;
 	}
+
+//	This works while working on local host
+//	public static List<Object> JSONToObjectList(String JSON, Class objectType) {
+//
+//		List<Object> list = new ArrayList<Object>();
+//		
+//		JsonElement json = new JsonParser().parse(JSON); 
+//		JsonArray array= json.getAsJsonArray();
+//
+//		Iterator iterator = array.iterator();
+//		while(iterator.hasNext()){
+//			JsonElement json2 = (JsonElement)iterator.next();
+//			Gson gson = new Gson();
+//			list.add(gson.fromJson(json2, objectType));
+//		}
+//
+//		return list;
+//	}
 }

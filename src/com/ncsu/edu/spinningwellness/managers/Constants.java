@@ -6,9 +6,9 @@ public interface Constants {
 	//BASE
 	///////////////////////////
 
-//	public String BASE_URL = "http://spinningwellness2013.appspot.com";
+	public String BASE_URL = "http://spinningwellness2013.appspot.com";
 
-	public String BASE_URL = "http://localhost:8888";
+//	public String BASE_URL = "http://localhost:8888";
 
 	///////////////////////////
 	//RIDE RELATED
