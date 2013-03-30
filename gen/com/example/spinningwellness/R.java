@@ -42,9 +42,9 @@ public final class R {
         public static final int login_username=0x7f080003;
         public static final int menu_about=0x7f080017;
         public static final int menu_activity=0x7f080015;
-        public static final int menu_help=0x7f080016;
         public static final int menu_join=0x7f080012;
         public static final int menu_past=0x7f080013;
+        public static final int menu_post_blog=0x7f080016;
         public static final int menu_upcoming=0x7f080014;
         public static final int post_blog=0x7f080009;
         public static final int reg_email=0x7f08000b;

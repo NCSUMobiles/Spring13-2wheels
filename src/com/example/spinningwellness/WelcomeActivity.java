@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -35,6 +36,7 @@ public class WelcomeActivity extends Activity {
     private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
     
     private TextView welcome_user, disttext;
+    String username,password;
     
 
     /*** Welcome Screen  *****/
@@ -43,7 +45,11 @@ public class WelcomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
-	
+		
+		username = getIntent().getStringExtra("username");
+		password = getIntent().getStringExtra("password");
+	    TextView welcome_user = (TextView) findViewById(R.id.welcome_user);
+	    welcome_user.setText("Welcome " + username + "!");
 		final Location loc1 = getLocation();
 		
 		start_lat = loc1.getLatitude();
@@ -174,13 +180,15 @@ public class WelcomeActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
- 
+    	Intent i;
         switch (item.getItemId())
         {
         case R.id.menu_join:
             // Single menu item is selected do something
             // Ex: launching new activity/screen or show alert message
             Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
+            i = new Intent(getApplicationContext(), JoinActivity.class);
+			startActivity(i);
             return true;
  
         case R.id.menu_past:
@@ -195,12 +203,16 @@ public class WelcomeActivity extends Activity {
             Toast.makeText(WelcomeActivity.this, "Activity is Selected", Toast.LENGTH_SHORT).show();
             return true;
  
-        case R.id.menu_help:
-            Toast.makeText(WelcomeActivity.this, "Help is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
         case R.id.menu_about:
             Toast.makeText(WelcomeActivity.this, "About is Selected", Toast.LENGTH_SHORT).show();
+            return true;
+            
+        case R.id.menu_post_blog:
+        	Toast.makeText(WelcomeActivity.this, "Post Blog is Selected", Toast.LENGTH_SHORT).show();
+        	i = new Intent(getApplicationContext(), JoinActivity.class);
+			i.putExtra("username",username);
+			i.putExtra("password",password);
+			startActivity(i);
             return true;
  
         default:

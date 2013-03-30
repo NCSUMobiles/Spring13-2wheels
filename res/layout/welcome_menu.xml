@@ -19,9 +19,9 @@
           android:icon="@drawable/icon"
           android:title="Log Activity" />
  
-    <item android:id="@+id/menu_help"
+    <item android:id="@+id/menu_post_blog"
           android:icon="@drawable/icon"
-          android:title="Help" /> 
+          android:title="Post to Blog" /> 
  
     <item android:id="@+id/menu_about"
           android:icon="@drawable/icon"
