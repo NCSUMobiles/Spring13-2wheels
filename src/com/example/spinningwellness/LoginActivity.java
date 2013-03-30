@@ -79,7 +79,7 @@ public class LoginActivity extends Activity {
 				LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
 				l.addView(myText);
 			} else{
-				Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+				Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
 				i.putExtra("username",username);
 				i.putExtra("password",password);
 				startActivity(i);

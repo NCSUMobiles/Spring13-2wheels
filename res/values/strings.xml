@@ -5,10 +5,10 @@
     <string name="app_name">Spinning Wellness</string>
     <string name="_17">17</string>
     <string name="title_activity_join">JoinRides</string>
+    <string name="title_activity_welcome">Welcome Screen</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="some_text">
-     Join Rides
-  </string>
+    <string name="welcome_user">Welcome User!</string>
+    <string name="some_text">Join Rides</string>
 
 </resources>
