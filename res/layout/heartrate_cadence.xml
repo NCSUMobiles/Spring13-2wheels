@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 	<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="#000"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+  	    <!-- Footer Start -->
+  		<LinearLayout android:id="@+id/footer"
+  				android:layout_width="fill_parent"
+  				android:layout_height="70dip"
+  				android:background="@layout/footer_repeat"
+  				android:layout_alignParentBottom="true">
+  		</LinearLayout>
+  		<!-- Footer Ends -->
+  		
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+ 
+    <TableRow > 
+    <TextView android:background="#000" android:padding="5dp" android:layout_height="15dp"/>
+    </TableRow>
+    
+      <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        
+         <TextView
+            android:text="Just a minute!"
+            android:textSize= "20dp"
+            android:textStyle= "bold"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+         </TableRow>
+         
+      <TableRow 
+          android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+          <TextView 
+            android:text="Please enter your Heart Rate &amp; "  
+            android:textSize= "20sp"
+            android:textStyle= "bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+      </TableRow>
+      
+       <TableRow 
+          android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+          <TextView 
+            android:text="Cadence."  
+            android:textSize= "20sp"
+            android:textStyle= "bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+      </TableRow>
+      
+    <TableRow > 
+    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
+    </TableRow>
+      
+    </TableLayout>
+    
+   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent" >
+          
+    <!-- Cadence -->
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+        
+         <TextView
+            android:id="@+id/textView1"
+            android:text="Cadence:    "
+            android:textStyle= "bold"
+            android:textColor="#ff51660c"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+        <EditText
+            android:id="@+id/cadence"
+            android:layout_width="200dp"
+            android:textColor="#ff51660c"
+            android:layout_height="25dp"
+            android:background="@layout/sq_cell_shape" />
+    </TableRow>
+
+    <TableRow > 
+    <TextView android:background="#000" android:padding="3dp" android:layout_height="15dp"/>
+    </TableRow>
+  
+        <!-- Heart Rate -->
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+        
+         <TextView
+            android:id="@+id/textView1"
+            android:text="Heart Rate: "
+            android:textColor="#ff51660c"
+            android:textStyle= "bold"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+        <EditText
+            android:id="@+id/heartrate"
+            android:layout_width="10dp"
+            android:textColor="#ff51660c"
+            android:layout_height="25dp"
+            android:background="@layout/sq_cell_shape" />
+    </TableRow>
+    
+    <TableRow > 
+    <TextView android:background="#000" android:padding="3dp" android:layout_height="25dp"/>
+    </TableRow>
+       
+    </TableLayout>
+    
+   	<ImageButton
+   	    
+    android:id="@+id/btnCadence"
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:background="@android:color/transparent"
+    android:src="@layout/sub_button" 
+    android:layout_gravity="center_horizontal"/>
+</LinearLayout>    
+   </RelativeLayout>
