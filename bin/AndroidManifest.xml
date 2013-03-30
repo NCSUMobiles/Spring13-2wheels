@@ -40,6 +40,20 @@
             android:screenOrientation="portrait">
             
         </activity>
+        
+         <activity
+            android:name="com.example.spinningwellness.MyPastRidesActivity"
+            android:label="@string/title_activity_my_past_rides" >
+        </activity>
+        <activity
+            android:name="com.example.spinningwellness.UpcomingRidesActivity"
+            android:label="@string/title_activity_upcoming_rides" >
+        </activity>
+        <activity
+            android:name="com.example.spinningwellness.CreateNewRideActivity"
+            android:label="@string/title_activity_create_new_ride" >
+        </activity>
+        
     </application>
     
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

@@ -81,7 +81,7 @@ public class JoinActivity extends Activity {
     Toast toast = Toast.makeText(getApplicationContext(),
       ((TextView) view).getText(), Toast.LENGTH_LONG);
     
-   Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+   Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 //	i.putExtra("username",username);
 //	i.putExtra("password",password);
 	startActivity(i);
