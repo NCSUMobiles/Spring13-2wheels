@@ -1,7 +1,9 @@
 package com.ncsu.edu.spinningwellness.managers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -21,7 +23,7 @@ public class RidesManager {
 		SimpleDateFormat df = new SimpleDateFormat("MMddyyHHmmssSSS");
 		HttpPost post = RestClientUtils.createHttpPostRequest(
 				Constants.CREATE_RIDE_URL, 
-				new Ride(df.format(currentTimestamp), name, source, dest, Utils.convertDateToString(startTime), creator).toJSON()
+				new Ride(df.format(currentTimestamp), name, source, dest, Utils.convertDateToLong(startTime), creator).toJSON()
 				);
 		RestClientUtils.executeRequest(post);
 	}
@@ -34,7 +36,7 @@ public class RidesManager {
 			String creator) {
 		HttpPost post = RestClientUtils.createHttpPostRequest(
 				Constants.UPDATE_RIDE_URL + "/" + id, 
-				new Ride(id, name, source, dest, Utils.convertDateToString(startTime), creator).toJSON()
+				new Ride(id, name, source, dest, Utils.convertDateToLong(startTime), creator).toJSON()
 				);
 		RestClientUtils.executeRequest(post);
 	}
@@ -59,9 +61,23 @@ public class RidesManager {
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 	}	
 
-	public static void viewUpcomingRides() {
+	public static List<Ride> viewUpcomingRides() {
+		
+		List<Ride> rides = new ArrayList<Ride>();
+		
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
+		
+		@SuppressWarnings("unchecked")
+		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+		for(Object r: rs) {
+			Ride ride = (Ride) r;  
+			System.out.println(r.toString());
+			rides.add(ride);
+		}
+		
+		return rides;
+		
 	}		
 	
 	public static void viewUpcomingRidesFromNextWeek() {

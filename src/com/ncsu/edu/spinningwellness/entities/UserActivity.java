@@ -1,7 +1,5 @@
 package com.ncsu.edu.spinningwellness.entities;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -93,5 +91,18 @@ public class UserActivity extends BaseEntity {
 
 	public void setActivityDate(long activityDate) {
 		this.activityDate = activityDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserActivity: Id = " + this.id + ", " + 
+				"Ride Id = " + this.rideId + ", " +
+				"User Name = " + this.userName + ", " +
+				"Distance Covered = " + this.distaceCovered + ", " +
+				"Creator = " + this.caloriesBurned + ", " +
+				"Cadence = " + this.cadence + ", " +
+				"Avg speed = " + this.averageSpeed + ", " +
+				"Date = " + this.activityDate
+				;
 	}
 }

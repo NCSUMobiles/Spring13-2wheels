@@ -46,7 +46,7 @@ public class RestClientUtils {
 	
 	public static String executeRequest(HttpRequestBase request) {
 		BufferedReader rd = null;
-		String serverOutput = null;
+		StringBuffer op = new StringBuffer();
 		try {
 			HttpClient client = new DefaultHttpClient();
 
@@ -56,7 +56,10 @@ public class RestClientUtils {
 			}
 
 			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			
+			String serverOutput = null;
 			while ((serverOutput = rd.readLine()) != null) {
+				op.append(serverOutput);
 				System.out.println(serverOutput);
 			}
 
@@ -74,6 +77,6 @@ public class RestClientUtils {
 			}
 		}
 		
-		return serverOutput;
+		return op.toString();
 	}
 }

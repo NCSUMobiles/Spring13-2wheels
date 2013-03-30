@@ -72,4 +72,15 @@ public class Ride extends BaseEntity {
 	public void setCreator(String creator) {
 		this.creator = creator;
 	}
+	
+	@Override
+	public String toString() {
+		return "Ride: id = " + this.id + ", " + 
+				"name = " + this.name + ", " +
+				"source = " + this.source + ", " +
+				"destination = " + this.dest + ", " +
+				"creator = " + this.creator + ", " +
+				"startTime = " + this.startTime
+				;
+	}
 }

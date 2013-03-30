@@ -41,4 +41,11 @@ public class Participant extends BaseEntity {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
+	@Override
+	public String toString() {
+		return "Participant: Ride Id = " + this.rideId + ", " +
+				"User Name = " + this.userName
+				;
+	}
 }
