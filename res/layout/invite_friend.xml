@@ -32,7 +32,7 @@
      <TableRow>
          <TextView android:background="#000" android:padding="5dp" android:layout_width="15dp"/>
          <EditText
-            android:id="@+id/cadence"
+            android:id="@+id/searchfriend"
             android:layout_width="190dp"
             android:textColor="#000"
             android:layout_height="40dp"
