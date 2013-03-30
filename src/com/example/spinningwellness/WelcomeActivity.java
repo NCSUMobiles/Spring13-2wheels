@@ -197,17 +197,21 @@ public class WelcomeActivity extends Activity implements OnClickListener {
         case R.id.menu_join:
             // Single menu item is selected do something
             // Ex: launching new activity/screen or show alert message
-            Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
             i = new Intent(getApplicationContext(), JoinActivity.class);
 			startActivity(i);
             return true;
  
         case R.id.menu_past:
-            Toast.makeText(WelcomeActivity.this, "Past Rides is Selected", Toast.LENGTH_SHORT).show();
+        	 i = new Intent(getApplicationContext(), MyPastRidesActivity.class);
+ 			startActivity(i);
+//            Toast.makeText(WelcomeActivity.this, "Past Rides is Selected", Toast.LENGTH_SHORT).show();
             return true;
  
         case R.id.menu_upcoming:
-            Toast.makeText(WelcomeActivity.this, "Upcoming is Selected", Toast.LENGTH_SHORT).show();
+        	 i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
+ 			startActivity(i);
+//            Toast.makeText(WelcomeActivity.this, "Upcoming is Selected", Toast.LENGTH_SHORT).show();
             return true;
  
         case R.id.menu_activity:
