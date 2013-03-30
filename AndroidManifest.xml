@@ -34,6 +34,15 @@
             android:name="com.example.spinningwellness.JoinActivity"
             android:label="@string/title_activity_join" >
         </activity>
+        <activity android:name="com.example.spinningwellness.WelcomeActivity" 
+            android:label="@string/title_activity_welcome"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            
+        </activity>
     </application>
-
+    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    
 </manifest>
