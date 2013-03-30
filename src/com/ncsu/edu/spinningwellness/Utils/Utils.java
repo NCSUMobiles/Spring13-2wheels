@@ -68,7 +68,6 @@ public class Utils {
 		return list;
 	}
 
-	//TODO:
 //	This works while working on local host
 //	public static List<Object> JSONToObjectList(String JSON, Class objectType) {
 //
