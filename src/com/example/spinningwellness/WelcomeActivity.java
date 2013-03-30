@@ -9,15 +9,20 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements OnClickListener {
 
 	double lat1, long1, start_lat, start_long, dest_lat, dest_long;
     Location location, loc1, loc2; 
@@ -29,17 +34,17 @@ public class WelcomeActivity extends Activity {
     boolean isNetworkEnabled = false;
     boolean canGetLocation = false;
     protected LocationManager locationManager;
-    // The minimum distance to change Updates in meters
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 3; // 5 meters
- 
-    // The minimum time between updates in milliseconds
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 14; // 14 meters
     private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
     
     private TextView welcome_user, disttext;
     String username,password;
-    
 
-    /*** Welcome Screen  *****/
+    Button start_but, pause_but, reset_but;
+	Chronometer myChronometer;
+    long time = 0;    
+    
+    /***** Welcome Screen  *****/
     
         @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +57,20 @@ public class WelcomeActivity extends Activity {
 	    welcome_user.setText("Welcome " + username + "!");
 		final Location loc1 = getLocation();
 		
+        myChronometer = (Chronometer) findViewById(R.id.chronometer1);
+ 
+        // Watch for button clicks.
+        start_but= (Button) findViewById(R.id.start);
+        start_but.setOnClickListener(this);
+        
+        pause_but = (Button) findViewById(R.id.stop);
+        pause_but.setOnClickListener(this);
+        
+        reset_but = (Button) findViewById(R.id.reset);
+        reset_but.setOnClickListener(this);
+        
 		start_lat = loc1.getLatitude();
 		start_long = loc1.getLongitude();               
-		
-	/*	locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME_BW_UPDATES,
-                MIN_DISTANCE_CHANGE_FOR_UPDATES, (LocationListener) this);
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,MIN_TIME_BW_UPDATES,
-                MIN_DISTANCE_CHANGE_FOR_UPDATES, (LocationListener) this);
-	*/
 	}
     
     public Location getLocation() {
@@ -98,7 +109,7 @@ public class WelcomeActivity extends Activity {
     				 disttext = (TextView) findViewById(R.id.disttext);
     				 
     //				 welcome_user.setText(start_lat + " " + start_long);
-    				 disttext.setText("Distance: " + df.format(results_in_miles) + " mi");
+    				 disttext.setText(" Distance: " + df.format(results_in_miles) + " mi");
     				    
     				 start_lat = loc1.getLatitude();
     				 start_long = loc1.getLongitude();
@@ -166,7 +177,7 @@ public class WelcomeActivity extends Activity {
         return location;
     }
  
-    
+  
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater menuInflater = getMenuInflater();
@@ -218,6 +229,28 @@ public class WelcomeActivity extends Activity {
         default:
             return super.onOptionsItemSelected(item);
         }
-    }   
+    }
+
+	@Override
+	public void onClick(View arg0) 
+	{
+		switch(arg0.getId())
+		{
+		case R.id.start:
+			myChronometer.setBase(SystemClock.elapsedRealtime() + time);
+			myChronometer.start();
+			break;
+			
+		case R.id.stop:
+			time = myChronometer.getBase() - SystemClock.elapsedRealtime();
+			myChronometer.stop();
+			break;
+		
+		case R.id.reset:
+			myChronometer.setBase(SystemClock.elapsedRealtime());
+			break;
+		
+		}
+	}   
     
 }
