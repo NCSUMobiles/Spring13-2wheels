@@ -26,22 +26,23 @@
         </activity>
 
         <!-- Entry for RegisterActivity.class -->
-      <!--   <activity
+        <!--
+        <activity
             android:name="com.example.spinningwellness.RegisterActivity"
             android:label="Register New Account" >
-        </activity> --> 
+        </activity>
+        -->
         <activity
             android:name="com.example.spinningwellness.JoinActivity"
             android:label="@string/title_activity_join" >
         </activity>
-        <activity android:name="com.example.spinningwellness.WelcomeActivity" 
-            android:label="@string/title_activity_welcome"
+        <activity
+            android:name="com.example.spinningwellness.WelcomeActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-            
+            android:label="@string/title_activity_welcome"
+            android:screenOrientation="portrait" >
         </activity>
-        
-         <activity
+        <activity
             android:name="com.example.spinningwellness.MyPastRidesActivity"
             android:label="@string/title_activity_my_past_rides" >
         </activity>
@@ -57,10 +58,13 @@
             android:name="com.example.spinningwellness.ViewRidesActivity"
             android:label="@string/title_activity_view_rides" >
         </activity>
-    
+        <activity
+            android:name="com.example.spinningwellness.PostBlogActivity"
+            android:label="@string/title_activity_post_blog" >
+        </activity>
     </application>
-    
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
 </manifest>

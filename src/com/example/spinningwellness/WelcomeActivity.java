@@ -232,7 +232,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
             
         case R.id.menu_post_blog:
         	Toast.makeText(WelcomeActivity.this, "Post Blog is Selected", Toast.LENGTH_SHORT).show();
-        	i = new Intent(getApplicationContext(), JoinActivity.class);
+        	i = new Intent(getApplicationContext(), PostBlogActivity.class);
 			i.putExtra("username",username);
 			i.putExtra("password",password);
 			startActivity(i);
@@ -274,12 +274,10 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		}
 		
 		protected List<Ride> doInBackground(Void... params) {
-			System.out.println("********bckgrnd");
 			return RidesManager.viewUpcomingRides();
 		}
 
 		protected void onPostExecute(List<Ride> result) {
-			System.out.println("********post");
 			if(error != null){
 				 
 			} else{
