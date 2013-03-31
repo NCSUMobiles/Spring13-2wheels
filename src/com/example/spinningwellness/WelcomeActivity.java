@@ -236,6 +236,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
         case R.id.menu_create_new_ride:
         	 i = new Intent(getApplicationContext(),CreateNewRideActivity.class);
   			startActivity(i);
+  			return true;
         
         case R.id.menu_join:
             // Single menu item is selected do something
