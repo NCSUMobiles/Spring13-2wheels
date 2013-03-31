@@ -3,27 +3,24 @@
     <!-- Single menu item
          Set id, icon and Title for each menu item
     -->
+     <item android:id="@+id/menu_create_new_ride"
+          android:title="Create New Ride" />
+    
     <item android:id="@+id/menu_join"
-          android:icon="@drawable/icon"
-          android:title="Join Rides" />
+        android:title="Join Rides" />
  
     <item android:id="@+id/menu_past"
-          android:icon="@drawable/icon"
-          android:title="My Past Rides" />
+        android:title="My Past Rides" />
  
     <item android:id="@+id/menu_upcoming"
-          android:icon="@drawable/icon"
-          android:title="My Upcoming Rides" />
+        android:title="My Upcoming Rides" />
  
     <item android:id="@+id/menu_activity"
-          android:icon="@drawable/icon"
-          android:title="Log Activity" />
+        android:title="Log Activity" />
  
     <item android:id="@+id/menu_post_blog"
-          android:icon="@drawable/icon"
-          android:title="Post to Blog" /> 
+       android:title="Post to Blog" /> 
  
     <item android:id="@+id/menu_about"
-          android:icon="@drawable/icon"
-          android:title="About the App" />
+       android:title="About the App" />
 </menu>
