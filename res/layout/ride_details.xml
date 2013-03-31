@@ -1,97 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-  	<RelativeLayout
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
+  	<LinearLayout 
+	android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
 	android:background="#000"
 	xmlns:android="http://schemas.android.com/apk/res/android">
-
-  	    <!-- Footer Start -->
-  		<LinearLayout android:id="@+id/footer"
-  				android:layout_width="fill_parent"
-  				android:layout_height="70dp"
-  				android:background="@layout/footer_repeat"
-  				android:layout_alignParentBottom="true">
-  		</LinearLayout>
-  		<!-- Footer Ends -->
-  		
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content">
-
-    <TableLayout android:id="@+id/heading_layout" android:layout_height="fill_parent" android:layout_width="match_parent">
- 	
- 	<TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
-    </TableRow>
-  
-      <TableRow android:id="@+id/ridename" android:background="@layout/heading_shape" android:layout_width="fill_parent" android:layout_height="40dp">
+   
+  	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent"
+           android:layout_height="25dp"/> 
+  	
+  	 <TableLayout android:id="@+id/heading_layout" android:layout_height="wrap_content" android:layout_width="fill_parent">
+  	     
+  	  <TableRow android:id="@+id/ridename" android:background="@layout/heading_shape" android:layout_width="fill_parent" android:layout_height="350dp">
       <TextView android:padding="5dp" android:textColor="#ff333333" 
-          android:textStyle= "bold" android:textSize= "20dp" 
+          android:textStyle= "bold" android:textSize= "27dp" 
           android:id="@+id/textView1" android:layout_width="190dp" 
           android:layout_height="wrap_content" 
           android:textAppearance="?android:attr/textAppearanceMedium" 
-          android:text="Name of Ride"></TextView>
+          android:text="Ride Details"></TextView>
 	  <Button android:id="@+id/btnviewmembers"
     android:layout_width="wrap_content"
     android:layout_height="25dp"
-    android:background="#5C2E00"
-    android:textColor="#ffffffcc"
-    android:text="View Members"
+    android:background="@layout/green_button" 
+    android:textColor="#191919" 
+    android:text="  View Members  "
     android:layout_gravity="center_vertical"/> 
-	      />     
-      </TableRow>
-   <TableRow > 
+	       </TableRow>	
+	       
+  	<TableRow > 
     <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
-  </TableLayout>
-  
-<TableLayout android:id="@+id/table_layout" android:layout_height="fill_parent" android:layout_width="match_parent">
-
+       
+     
+     <LinearLayout android:id="@+id/ridedata"
+        android:layout_height="fill_parent" android:layout_width="fill_parent">
+        <ScrollView android:id="@+id/ScrollView"
+            android:layout_width="fill_parent" android:layout_height="fill_parent"
+            android:fillViewport="true">
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:layout_margin="5dip">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent" android:layout_height="fill_parent"
+                    android:stretchColumns="0,1" android:id="@+id/ride_table">
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
     
+     
     
-    <TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent" android:layout_height="wrap_content">
-
-                    <TextView  android:textColor="#ff87aa14" android:textStyle= "bold" android:padding="5dp" android:id="@+id/textView1" android:layout_width="110dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Name: "></TextView>
-                    <TextView android:textColor="#ff333333" android:padding="5dp" android:background="@layout/cell_shape" android:id="@+id/textView1" android:layout_width="200dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="       TextView12"></TextView>
-                 
-    </TableRow>
-    <TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent" android:layout_height="wrap_content">
-
-                    <TextView  android:textColor="#ff87aa14" android:textStyle= "bold" android:padding="5dp" android:id="@+id/textView1" android:layout_width="110dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Name: "></TextView>
-                    <TextView android:textColor="#ff333333" android:padding="5dp" android:background="@layout/cell_shape" android:id="@+id/textView1" android:layout_width="200dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="       TextView12"></TextView>
-                 
-    </TableRow>
-        <TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent" android:layout_height="wrap_content">
-
-                    <TextView  android:textColor="#ff87aa14" android:textStyle= "bold" android:padding="5dp" android:id="@+id/textView1" android:layout_width="110dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Name: "></TextView>
-                    <TextView android:textColor="#ff333333" android:padding="5dp" android:background="@layout/cell_shape" android:id="@+id/textView1" android:layout_width="200dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="       TextView12"></TextView>
-                 
-    </TableRow>
-        <TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent" android:layout_height="wrap_content">
-
-                    <TextView  android:textColor="#ff87aa14" android:textStyle= "bold" android:padding="5dp" android:id="@+id/textView1" android:layout_width="110dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="Name: "></TextView>
-                    <TextView android:textColor="#ff333333" android:padding="5dp" android:background="@layout/cell_shape" android:id="@+id/textView1" android:layout_width="200dp" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:text="       TextView12"></TextView>
-                 
-    </TableRow>
-        
-         <TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
-    </TableRow>
-  
-    
- </TableLayout>            
-
+  </TableLayout>         
 <ImageButton
    	    
     android:id="@+id/btnjoin"
     android:layout_width="wrap_content"
-    android:layout_height="60dp"
+    android:layout_height="80dp"
     android:background="@android:color/transparent"
     android:src="@drawable/joinnow" 
     android:layout_gravity="left"/>
 
+	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="80dp"></TextView>
 
+ <!-- Footer Start -->
+  		<LinearLayout android:id="@+id/footer"
+  				android:layout_width="fill_parent"
+  				android:layout_height="70dp"
+  				android:background="@layout/footer_repeat"
+  				android:layout_alignParentBottom="true"
+  				android:orientation="horizontal">
+  </LinearLayout>				
+  		<!-- Footer Ends -->    
+ 
 </LinearLayout>
-</RelativeLayout>
+

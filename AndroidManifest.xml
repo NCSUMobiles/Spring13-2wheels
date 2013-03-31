@@ -54,6 +54,14 @@
             android:name="com.example.spinningwellness.CreateNewRideActivity"
             android:label="@string/title_activity_create_new_ride" >
         </activity>
+          <activity
+            android:name="com.example.spinningwellness.ViewMemberActivity"
+            android:label="@string/title_activity_view_member" >
+        </activity>
+          <activity
+            android:name="com.example.spinningwellness.ChallengeFriendActivity"
+            android:label="@string/title_activity_challenge_friend" >
+        </activity>
         <activity
             android:name="com.example.spinningwellness.ViewRidesActivity"
             android:label="@string/title_activity_view_rides" >

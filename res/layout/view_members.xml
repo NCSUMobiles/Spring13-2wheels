@@ -20,58 +20,40 @@
   android:layout_width="fill_parent"
   android:layout_height="wrap_content">
 
-    <TableLayout android:id="@+id/heading_layout" android:layout_height="fill_parent" android:layout_width="match_parent">
- 	
- 	<TableRow > 
+    <TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent"
+           android:layout_height="25dp"/> 
+  	
+  	 <TableLayout android:id="@+id/heading_layout" android:layout_height="wrap_content" android:layout_width="fill_parent">
+
+  	     <TableRow > 
     <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
-  
-      <TableRow android:id="@+id/ridename" android:background="@layout/heading_shape" 
-          android:layout_width="fill_parent" android:layout_height="40dp">
-      <TextView android:padding="5dp" android:textColor="#ff333333" 
-          android:textStyle= "bold" 
-          android:id="@+id/textView1" android:layout_width="190dp" 
-          android:layout_height="wrap_content" 
-          android:textAppearance="?android:attr/textAppearanceLarge" 
-          android:text="Members for Ride"></TextView>
-    </TableRow>
-   <TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
-    </TableRow>
+       
+     
+     <LinearLayout android:id="@+id/memberdata"
+        android:layout_height="fill_parent" android:layout_width="fill_parent">
+        <ScrollView android:id="@+id/ScrollView"
+            android:layout_width="fill_parent" android:layout_height="fill_parent"
+            android:fillViewport="true">
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:layout_margin="5dip">
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent" android:layout_height="fill_parent"
+                    android:stretchColumns="0,1" android:id="@+id/member_table">
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
     
-   <TableRow >
-       <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle= "bold"
-            android:textColor="#ffffffcc" 
-            android:text="Member 1">
-       </TextView>
-   </TableRow>
-      <TableRow >
-       <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle= "bold"
-            android:textColor="#ffffffcc" 
-            android:text="Member 2">
-       </TextView>
-   </TableRow>
-      <TableRow >
-       <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle= "bold"
-            android:textColor="#ffffffcc" 
-            android:text="Member 3">
-       </TextView>
-   </TableRow> 
-   <TableRow > 
+     <TableRow > 
     <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
   </TableLayout>
   
     <Button android:id="@+id/btnchallenge"
-    android:layout_width="150dp"
-    android:layout_height="55dp"
-    android:background="@layout/heading_shape" 
+    android:layout_width="200dp"
+    android:layout_height="45dp"
+    android:background="@layout/green_button" 
         android:textColor="#5C2E00"
     android:textStyle="bold"
     android:text="Challenge a Friend!"

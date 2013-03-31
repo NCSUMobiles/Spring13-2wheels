@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 
 
@@ -28,7 +29,7 @@ public class ChallengeFriendActivity extends Activity {
     	
     	final Context context = this;
         
-        Button search_button  = (Button) findViewById(R.id.btnsearch);
+    	ImageButton search_button  = (ImageButton) findViewById(R.id.btnsearch);
         
         search_button.setOnClickListener(new OnClickListener() {
         	 

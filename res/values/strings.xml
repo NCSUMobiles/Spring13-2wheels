@@ -9,6 +9,8 @@
     <string name="title_activity_upcoming_rides">My Upcoming Rides</string>
     <string name="title_activity_create_new_ride">Create New Ride</string>
     <string name="title_activity_welcome">Welcome Screen</string>
+    <string name="title_activity_view_member">View Members</string>
+    <string name="title_activity_challenge_friend">Challenge Friend</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="welcome_user">Welcome User!</string>

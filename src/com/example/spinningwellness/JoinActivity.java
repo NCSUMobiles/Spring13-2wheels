@@ -101,6 +101,7 @@ public class JoinActivity extends Activity {
     
     Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
     i.putExtra("RideDetails", selectedRide);
+    System.out.println("Ride details passed : " + selectedRide.toString());
 	startActivity(i);
    }
   });
