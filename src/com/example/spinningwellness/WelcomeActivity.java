@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,21 +36,27 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     Location location, loc1, loc2; 
     float results_in_meter = 0;
     float results_in_miles = 0;
+    static float prev_miles = 0;
+    float record_miles = 0;
     DecimalFormat df = new DecimalFormat("#.###");
     float[] dist = new float[3];
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
     boolean canGetLocation = false;
     protected LocationManager locationManager;
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 14; // 14 meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 14 meters
     private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
-    
+    boolean not_first_run = false;
+	
     private TextView welcome_user, disttext;
     String username,password;
 
-    Button start_but, pause_but, reset_but;
-	Chronometer myChronometer;
-    long time = 0;    
+    //Button start_but, stop_but, reset_but;
+	ImageButton play_but, pause_but, stop_but, cancel_but;
+    Chronometer myChronometer;
+    long time = 0; 
+    //long final_time = 0;
+    LocationListener myLocationListener;
     
     /***** Welcome Screen  *****/
     
@@ -62,23 +69,36 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		password = getIntent().getStringExtra("password");
 	    TextView welcome_user = (TextView) findViewById(R.id.welcome_user);
 	    welcome_user.setText("Welcome " + username + "!");
-		final Location loc1 = getLocation();
-		
-        myChronometer = (Chronometer) findViewById(R.id.chronometer1);
- 
-        // Watch for button clicks.
-        start_but= (Button) findViewById(R.id.start);
+        
+	    play_but= (ImageButton) findViewById(R.id.img_play);
+	    play_but.setOnClickListener(this);
+	        
+	    pause_but= (ImageButton) findViewById(R.id.img_pause);
+	    pause_but.setOnClickListener(this);
+	    
+	    stop_but = (ImageButton) findViewById(R.id.img_stop);
+	    stop_but.setOnClickListener(this);
+	    
+	    cancel_but = (ImageButton) findViewById(R.id.img_cancel);
+	    cancel_but.setOnClickListener(this);
+	    
+	  /*  start_but= (Button) findViewById(R.id.start);
         start_but.setOnClickListener(this);
         
-        pause_but = (Button) findViewById(R.id.stop);
-        pause_but.setOnClickListener(this);
+        stop_but = (Button) findViewById(R.id.stop);
+        stop_but.setOnClickListener(this);
         
         reset_but = (Button) findViewById(R.id.reset);
         reset_but.setOnClickListener(this);
-        
-		start_lat = loc1.getLatitude();
+       */
+	    
+        myChronometer = (Chronometer) findViewById(R.id.chronometer1);
+        disttext = (TextView) findViewById(R.id.disttext);
+		
+/*		start_lat = loc1.getLatitude();
 		start_long = loc1.getLongitude();               
-	}
+*/
+        }
     
     public Location getLocation() {
         try {
@@ -91,8 +111,10 @@ public class WelcomeActivity extends Activity implements OnClickListener {
             // getting network status
             isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
  
+            results_in_meter = 0;
+            results_in_miles = 0;
             
-            LocationListener myLocationListener = new LocationListener() 
+            myLocationListener = new LocationListener() 
     		{
     			public void onLocationChanged(Location loc1) 
     		   	{
@@ -105,21 +127,21 @@ public class WelcomeActivity extends Activity implements OnClickListener {
        				     }
     					 catch (IllegalArgumentException e) 
     					 {
-    						 dist[0] = 0;					 
+    						 dist[0] = 0;		
+    						 System.out.println("inside illegal arg");
     					 }
     					 results_in_meter += (float) dist[0];
     					 results_in_miles = (float) ((results_in_meter/1000) * 0.62137);
-    					 
-    					 }
+    				}
 
-    				 welcome_user = (TextView) findViewById(R.id.welcome_user);
-    				 disttext = (TextView) findViewById(R.id.disttext);
+    				 	welcome_user = (TextView) findViewById(R.id.welcome_user);
+    				 	float total_miles = results_in_miles + prev_miles;
+       				 	record_miles = total_miles;
+       				 	disttext.setText(" Distance: " + df.format(total_miles) + " mi");
+    				 	//System.out.println(results_in_miles + "  " + total_miles);
     				 
-    //				 welcome_user.setText(start_lat + " " + start_long);
-    				 disttext.setText(" Distance: " + df.format(results_in_miles) + " mi");
-    				    
-    				 start_lat = loc1.getLatitude();
-    				 start_long = loc1.getLongitude();
+    				 	start_lat = loc1.getLatitude();
+    				 	start_long = loc1.getLongitude();
 
     		   	}
 
@@ -142,16 +164,24 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     		};
     		
             
-            if (!isGPSEnabled && !isNetworkEnabled) {
+            if (!isGPSEnabled && !isNetworkEnabled) 
+            {
                 // no network provider is enabled
-            } else {
+            	Toast.makeText(WelcomeActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
+            } 
+            
+            else 
+            {
                 this.canGetLocation = true;
+                
                 // First get location from Network Provider
                 if (isNetworkEnabled) {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME_BW_UPDATES,
                             MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
                     Log.d("Network", "Network");
-                    if (locationManager != null) {
+                    
+                    if (locationManager != null) 
+                    {
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         if (location != null) {
                             lat1 = location.getLatitude();
@@ -159,14 +189,16 @@ public class WelcomeActivity extends Activity implements OnClickListener {
                         }
                     }
                 }
+                
                 // if GPS Enabled get lat/long using GPS Services
                 if (isGPSEnabled) {
-                    if (location == null) {
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,MIN_TIME_BW_UPDATES,
+                    if (location == null) 
+                    {
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,MIN_TIME_BW_UPDATES,
                                 MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
                         Log.d("GPS Enabled", "GPS Enabled");
-                        if (locationManager != null) {
+                        if (locationManager != null) 
+                        {
                             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                             if (location != null) {
                                 lat1 = location.getLatitude();
@@ -252,21 +284,87 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	{
 		switch(arg0.getId())
 		{
-		case R.id.start:
+		case R.id.img_play:
+			
+			if(!not_first_run)
+			{
+				not_first_run = true;
+			}
+			else
+			{
+				time = 0;
+			}
 			myChronometer.setBase(SystemClock.elapsedRealtime() + time);
 			myChronometer.start();
-			break;
+			play_but.setVisibility(arg0.GONE);
+			pause_but.setVisibility(arg0.VISIBLE);
+				//start_but.setText("Pause");
+				//start_but.setBackgroundColor(Color.GREEN);
+			loc1 = getLocation();
+			start_lat = loc1.getLatitude();
+			start_long = loc1.getLongitude();
+			cancel_but.setVisibility(arg0.GONE);
+			stop_but.setClickable(true);
+				//stop_but.setBackgroundColor(Color.rgb(156,208,0));
+				//reset_but.setBackgroundColor(Color.rgb(156,208,0));
 			
-		case R.id.stop:
+			break;
+		
+			//	else
+		case R.id.img_pause:
+				
+			//start_but.setText("Start");
 			time = myChronometer.getBase() - SystemClock.elapsedRealtime();
 			myChronometer.stop();
+			pause_but.setVisibility(arg0.GONE);
+			play_but.setVisibility(arg0.VISIBLE);
+			cancel_but.setVisibility(arg0.GONE);
+			stop_but.setClickable(true);
+			prev_miles = results_in_miles;
+			locationManager.removeUpdates(myLocationListener);
+			start_lat = 0.0;
+			start_long = 0.0;
+			//start_but.setBackgroundColor(Color.rgb(156,208,0));
+			//stop_but.setBackgroundColor(Color.rgb(156,208,0));
+			//reset_but.setBackgroundColor(Color.rgb(156,208,0));
+			
+			break;
+			
+		case R.id.img_stop:
+			myChronometer.stop();
+			final long final_time = SystemClock.elapsedRealtime() - myChronometer.getBase();
+			Toast.makeText(WelcomeActivity.this, "Time: "+ final_time/1000, Toast.LENGTH_SHORT).show();
+			pause_but.setVisibility(arg0.GONE);
+			play_but.setVisibility(arg0.VISIBLE);
+			cancel_but.setVisibility(arg0.VISIBLE);
+			stop_but.setClickable(false);
+			locationManager.removeUpdates(myLocationListener);
+			start_lat = 0;
+			start_long = 0;
+			prev_miles = 0;
+			//stop_but.setBackgroundColor(Color.GREEN);
+			//start_but.setText("Start");
+			//start_but.setBackgroundColor(Color.rgb(156,208,0));
+			//reset_but.setVisibility(arg0.VISIBLE);
+			//reset_but.setBackgroundColor(Color.rgb(156,208,0));
 			break;
 		
-		case R.id.reset:
+		case R.id.img_cancel:
 			myChronometer.setBase(SystemClock.elapsedRealtime());
+			pause_but.setVisibility(arg0.GONE);
+			play_but.setVisibility(arg0.VISIBLE);
+			disttext.setText(" Distance: 0");
+			locationManager.removeUpdates(myLocationListener);
+			prev_miles = 0;
+			start_lat = 0;
+			start_long = 0;
+			stop_but.setClickable(false);
+			//reset_but.setBackgroundColor(Color.GREEN);
+			//start_but.setBackgroundColor(Color.rgb(156,208,0));
+			//stop_but.setBackgroundColor(Color.rgb(156,208,0));
 			break;
-		
 		}
+	   
 	}   
 	
 	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
