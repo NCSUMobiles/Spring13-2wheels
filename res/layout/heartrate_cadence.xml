@@ -8,7 +8,7 @@
   	    <!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
-  				android:layout_height="70dip"
+  				android:layout_height="130dip"
   				android:background="@layout/footer_repeat"
   				android:layout_alignParentBottom="true">
   		</LinearLayout>
@@ -82,13 +82,13 @@
             android:id="@+id/textView1"
             android:text="Cadence:    "
             android:textStyle= "bold"
-            android:textColor="#ff51660c"
+            android:textColor="#ff87cc1b"
             android:textAppearance="?android:attr/textAppearanceMedium" />
  
         <EditText
             android:id="@+id/cadence"
             android:layout_width="200dp"
-            android:textColor="#ff51660c"
+            android:textColor="#ff87cc1b"
             android:layout_height="25dp"
             android:background="@layout/sq_cell_shape" />
     </TableRow>
@@ -107,14 +107,14 @@
          <TextView
             android:id="@+id/textView1"
             android:text="Heart Rate: "
-            android:textColor="#ff51660c"
+            android:textColor="#ff87cc1b"
             android:textStyle= "bold"
             android:textAppearance="?android:attr/textAppearanceMedium" />
  
         <EditText
             android:id="@+id/heartrate"
             android:layout_width="10dp"
-            android:textColor="#ff51660c"
+            android:textColor="#ff87cc1b"
             android:layout_height="25dp"
             android:background="@layout/sq_cell_shape" />
     </TableRow>

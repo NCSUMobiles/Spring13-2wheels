@@ -6,7 +6,7 @@
   android:fillViewport="true">
   <RelativeLayout 
   		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content" android:background="#ffffff">
+  		android:layout_height="wrap_content" android:background="#000">
   		
   		<!--  Header  Starts-->
  <!--  		<LinearLayout android:id="@+id/header"
@@ -35,7 +35,7 @@
   		<!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
-  				android:layout_height="68dip"
+  				android:layout_height="130dip"
   				android:background="@layout/footer_repeat"
   				android:layout_alignParentBottom="true">
   		</LinearLayout>
@@ -58,7 +58,7 @@
 		  
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24"
+		  		android:textColor="#ffffffcc"
 		  		android:textSize="20dp"
 		  		android:textStyle="bold"
 		  		android:text="Username"/>
@@ -87,7 +87,7 @@
 		  <!--  Password Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24"
+		  		android:textColor="#ffffffcc"
 		  		android:textSize="20dp"
 		  		android:textStyle="bold"
 		  		android:text="Password"/>

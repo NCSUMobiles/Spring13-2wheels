@@ -59,12 +59,12 @@
     android:src="@drawable/joinnow" 
     android:layout_gravity="left"/>
 
-	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="80dp"></TextView>
+	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="30dp"></TextView>
 
  <!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
-  				android:layout_height="70dp"
+  				android:layout_height="130dp"
   				android:background="@layout/footer_repeat"
   				android:layout_alignParentBottom="true"
   				android:orientation="horizontal">
