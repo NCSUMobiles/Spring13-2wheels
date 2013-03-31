@@ -37,8 +37,9 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     float results_in_meter = 0;
     float results_in_miles = 0;
     static float prev_miles = 0;
-    float record_miles = 0;
+    float record_miles = 0, avg_speed = 0;
     DecimalFormat df = new DecimalFormat("#.###");
+	DecimalFormat df2 = new DecimalFormat("#.##");
     float[] dist = new float[3];
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
@@ -46,9 +47,9 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     protected LocationManager locationManager;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 14 meters
     private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
-    boolean not_first_run = false;
+    boolean not_first_run = false, paused = false;
 	
-    private TextView welcome_user, disttext;
+    private TextView welcome_user, disttext, speedtext;
     String username,password;
 
     //Button start_but, stop_but, reset_but;
@@ -94,6 +95,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	    
         myChronometer = (Chronometer) findViewById(R.id.chronometer1);
         disttext = (TextView) findViewById(R.id.disttext);
+        speedtext = (TextView) findViewById(R.id.speedtext);
 		
 /*		start_lat = loc1.getLatitude();
 		start_long = loc1.getLongitude();               
@@ -291,10 +293,16 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 			{
 				not_first_run = true;
 			}
+			else if (paused)
+			{
+				not_first_run = true;
+				paused = false;
+			}
 			else
 			{
 				time = 0;
 			}
+			
 			myChronometer.setBase(SystemClock.elapsedRealtime() + time);
 			myChronometer.start();
 			play_but.setVisibility(arg0.GONE);
@@ -313,8 +321,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		
 			//	else
 		case R.id.img_pause:
-				
 			//start_but.setText("Start");
+			paused = true;
 			time = myChronometer.getBase() - SystemClock.elapsedRealtime();
 			myChronometer.stop();
 			pause_but.setVisibility(arg0.GONE);
@@ -332,12 +340,16 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 			break;
 			
 		case R.id.img_stop:
-			myChronometer.stop();
 			final long final_time = SystemClock.elapsedRealtime() - myChronometer.getBase();
-			Toast.makeText(WelcomeActivity.this, "Time: "+ final_time/1000, Toast.LENGTH_SHORT).show();
+			myChronometer.stop();
+			avg_speed = (results_in_miles)*1000*3600/final_time;
+			//disttext.setText("Distance recorded: " + results_in_miles);
+			speedtext.setText("Avg Speed: " + df.format(avg_speed) +" mi/hr");
+			Toast.makeText(WelcomeActivity.this, "Distance & Avg Speed recorded", Toast.LENGTH_SHORT).show();
 			pause_but.setVisibility(arg0.GONE);
 			play_but.setVisibility(arg0.VISIBLE);
 			cancel_but.setVisibility(arg0.VISIBLE);
+			play_but.setClickable(false);
 			stop_but.setClickable(false);
 			locationManager.removeUpdates(myLocationListener);
 			start_lat = 0;
@@ -354,11 +366,13 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 			myChronometer.setBase(SystemClock.elapsedRealtime());
 			pause_but.setVisibility(arg0.GONE);
 			play_but.setVisibility(arg0.VISIBLE);
-			disttext.setText(" Distance: 0");
+			disttext.setText("Distance: 0");
+			speedtext.setText("Avg Speed: 0");
 			locationManager.removeUpdates(myLocationListener);
 			prev_miles = 0;
 			start_lat = 0;
 			start_long = 0;
+			play_but.setClickable(true);
 			stop_but.setClickable(false);
 			//reset_but.setBackgroundColor(Color.GREEN);
 			//start_but.setBackgroundColor(Color.rgb(156,208,0));

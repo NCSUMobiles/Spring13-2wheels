@@ -39,7 +39,7 @@ public final class R {
     }
     public static final class id {
         public static final int ScrollView=0x7f080025;
-        public static final int action_settings=0x7f080039;
+        public static final int action_settings=0x7f08003a;
         public static final int btnCadence=0x7f080010;
         public static final int btnCreateRide=0x7f080007;
         public static final int btnLogin=0x7f080016;
@@ -68,13 +68,13 @@ public final class R {
         public static final int login_username=0x7f080014;
         public static final int member_table=0x7f080029;
         public static final int memberdata=0x7f080028;
-        public static final int menu_about=0x7f080038;
-        public static final int menu_activity=0x7f080036;
-        public static final int menu_create_new_ride=0x7f080032;
-        public static final int menu_join=0x7f080033;
-        public static final int menu_past=0x7f080034;
-        public static final int menu_post_blog=0x7f080037;
-        public static final int menu_upcoming=0x7f080035;
+        public static final int menu_about=0x7f080039;
+        public static final int menu_activity=0x7f080037;
+        public static final int menu_create_new_ride=0x7f080033;
+        public static final int menu_join=0x7f080034;
+        public static final int menu_past=0x7f080035;
+        public static final int menu_post_blog=0x7f080038;
+        public static final int menu_upcoming=0x7f080036;
         public static final int post_blog=0x7f08001b;
         public static final int reg_date=0x7f080005;
         public static final int reg_destination=0x7f080004;
@@ -87,6 +87,7 @@ public final class R {
         public static final int ridedata=0x7f080024;
         public static final int ridename=0x7f080022;
         public static final int searchfriend=0x7f080011;
+        public static final int speedtext=0x7f080032;
         public static final int tableLayout1=0x7f08000b;
         public static final int tableRow1=0x7f08001a;
         public static final int tableRow2=0x7f08000c;
