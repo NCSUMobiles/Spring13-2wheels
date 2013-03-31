@@ -12,12 +12,13 @@ public class UserActivity extends BaseEntity {
 	double cadence;
 	double averageSpeed;
 	double caloriesBurned;
+	double heartRate;
 	long activityDate;
 	
 	public UserActivity() {}
 
 	public UserActivity(String id, String rideId, String userName, double distaceCovered,
-			double cadence, double averageSpeed, double caloriesBurned, long activityDate) {
+			double cadence, double averageSpeed, double caloriesBurned, double heartRate, long activityDate) {
 		super();
 		this.id = id;
 		this.rideId = rideId;
@@ -26,6 +27,7 @@ public class UserActivity extends BaseEntity {
 		this.cadence = cadence;
 		this.averageSpeed = averageSpeed;
 		this.caloriesBurned = caloriesBurned;
+		this.heartRate = heartRate;
 		this.activityDate = activityDate;
 	}
 
@@ -93,6 +95,14 @@ public class UserActivity extends BaseEntity {
 		this.activityDate = activityDate;
 	}
 	
+	public double getHeartRate() {
+		return heartRate;
+	}
+
+	public void setHeartRate(long heartRate) {
+		this.heartRate = heartRate;
+	}
+
 	@Override
 	public String toString() {
 		return "UserActivity: Id = " + this.id + ", " + 

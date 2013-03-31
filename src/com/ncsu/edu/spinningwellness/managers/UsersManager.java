@@ -28,7 +28,7 @@ public class UsersManager {
 	}
 
 	public static String logActivity(String rideId, String userName, double distaceCovered,
-			double cadence, double averageSpeed, double caloriesBurned, Date activityDate) {
+			double cadence, double averageSpeed, double caloriesBurned, double heartRate, Date activityDate) {
 
 		Date currentTimestamp = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("MMddyyHHmmssSSS");
@@ -39,6 +39,7 @@ public class UsersManager {
 				distaceCovered,cadence, 
 				averageSpeed, 
 				caloriesBurned, 
+				heartRate,
 				Utils.convertDateToString(activityDate)
 				);
 		HttpPost post = RestClientUtils.createHttpPostRequest(Constants.LOG_USER_ACTIVITY_URL, ua.toJSON());

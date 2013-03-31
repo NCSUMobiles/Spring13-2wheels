@@ -156,4 +156,46 @@ public class RidesManager {
 		}
 		return participants;
 	}
+
+	public static List<Ride> viewMyUpcomingRidesFromNextWeek(String userName) {
+
+		List<Ride> rides = new ArrayList<Ride>();
+
+		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_MY_UPCOMING_RIDES_FOR_NEXT_WEEK_URL +
+				Constants.VIEW_MY_UPCOMING_RIDES_URL + 
+				"/" + 
+				userName
+				);
+		String ridesJSON = RestClientUtils.executeRequest(viewRide);
+
+		@SuppressWarnings("unchecked")
+		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+		for(Object r: rs) {
+			Ride ride = (Ride) r;  
+			System.out.println(r.toString());
+			rides.add(ride);
+		}
+		return rides;		
+	}		
+
+	public static List<Ride> viewMyUpcomingRides(String userName) {
+
+		List<Ride> rides = new ArrayList<Ride>();
+
+		HttpGet viewRide = RestClientUtils.createHttpGetRequest(
+				Constants.VIEW_MY_UPCOMING_RIDES_URL + 
+				"/" + 
+				userName
+				);
+		String ridesJSON = RestClientUtils.executeRequest(viewRide);
+
+		@SuppressWarnings("unchecked")
+		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+		for(Object r: rs) {
+			Ride ride = (Ride) r;  
+			System.out.println(r.toString());
+			rides.add(ride);
+		}
+		return rides;		
+	}		
 }
