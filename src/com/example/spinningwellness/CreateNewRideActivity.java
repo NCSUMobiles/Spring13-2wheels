@@ -1,7 +1,11 @@
 package com.example.spinningwellness;
 
 import java.net.MalformedURLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
 import redstone.xmlrpc.XmlRpcFault;
 
@@ -13,7 +17,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateNewRideActivity extends Activity {
 //	Button createButton;
@@ -33,62 +39,40 @@ public class CreateNewRideActivity extends Activity {
         super.onCreate(savedInstanceState);
         // Set View to create new ride.xml
         setContentView(R.layout.activity_create_new_ride);
-//        
-//        View v = findViewById(R.id.btnCreateRide);
-//    	//set event listener
-//            v.setOnClickListener(this);
-//            
-//           createButton = (Button) findViewById(R.id.start);
-//            createButton.setOnClickListener(this);
         
-//        TextView loginScreen = (TextView) findViewById(R.id.link_to_login);
-//        //get the items from the login screen
-//        String username = getIntent().getStringExtra("username");
-//        System.out.println("cr " + username + "!");
-//       
-//        TextView postBlog = (TextView) findViewById(R.id.post_blog);
-        
-        // Listening to Login Screen link
-//        loginScreen.setOnClickListener(new View.OnClickListener() {
-//			
-//			public void onClick(View arg0) {
-//				// Switching to Login Screen/closing register screen
-//				finish();
-//			}
-//		});
-        
-//        postBlog.setOnClickListener(new View.OnClickListener() {
+        Button button  = (Button) findViewById(R.id.btnCreateRide);
+
+		// Listening to login button
+		button.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				 Date startDate;
+
+			        Calendar cal = Calendar.getInstance();
+			        cal.set(2013, 2, 18);
+			        startDate = cal.getTime();
+			        RidesManager.createRide("Ride to SJ", "source", "dest", startDate, "prajakta");
+			        
+			        Toast.makeText(CreateNewRideActivity.this, "New Ride is created!", Toast.LENGTH_SHORT).show();
+			        Button button1 = (Button) findViewById(R.id.btnCreateRide);
+			        button1.setEnabled(false);
+			  
+			}
 			
-//			@Override
-//			public void onClick(View v) {
-//				
-//				
-//				// TODO Auto-generated method stub
-//				String username = getIntent().getStringExtra("username");
-//				String password = getIntent().getStringExtra("password");
-//				String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
-//				try {
-//					Wordpress wp = new Wordpress(username, password, xmlRpcUrl);
-//					List<Page> plist = wp.getPages();
-//					for(Page p:plist){
-//						int i = p.getPage_id();
-//						
-//					}
-//					 Page recentPost = new Page();
-//					 recentPost.setDescription("Test post from java");
-//					 String result = wp.newPost(recentPost, true);
-//					 
-//				} catch (MalformedURLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (XmlRpcFault e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				System.out.println();
-//			}
-//		});
+		
+			
+			
+		});
+		
+		
         
+        
+        
+       
+        
+        
+
+
        
     }
     
