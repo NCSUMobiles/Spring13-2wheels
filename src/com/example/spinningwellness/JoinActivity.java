@@ -2,6 +2,8 @@ package com.example.spinningwellness;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ncsu.edu.spinningwellness.entities.Ride;
  
 import android.app.Activity;
 import android.content.Intent;
@@ -16,12 +18,16 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
 public class JoinActivity extends Activity {
-     
+	List<String> rideNameList = new ArrayList<String>();
+	List<Ride> rideList = new ArrayList<Ride>();
  @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-     
+        rideList = getIntent().getParcelableArrayListExtra("rideList");
+        for(Ride r:rideList){
+        	rideNameList.add(r.getName());
+        }
         //Generate list View from ArrayList
   displayListView();
   
@@ -30,21 +36,20 @@ public class JoinActivity extends Activity {
  private void displayListView() {
  
   //Array list of Rides
-  List<String> rideList = new ArrayList<String>();
-  rideList.add("RtoDurham");
-  rideList.add("RtoCary");
-  rideList.add("RtoGreensboro");
-  rideList.add("RtoLakeRaleigh");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
+//  rideList.add("RtoDurham");
+//  rideList.add("RtoCary");
+//  rideList.add("RtoGreensboro");
+//  rideList.add("RtoLakeRaleigh");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
 //  countryList.add("Belize");
 //  countryList.add("Bermuda");
 //  countryList.add("Barbados");
@@ -63,7 +68,7 @@ public class JoinActivity extends Activity {
 //  countryList.add("Jamaica");
    
   //create an ArrayAdaptar from the String Array
-  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.join_list,rideList);
+  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.join_list,rideNameList);
   ListView listView = (ListView) findViewById(R.id.listView1);
  
   // Assign adapter to ListView
@@ -81,14 +86,22 @@ public class JoinActivity extends Activity {
     Toast toast = Toast.makeText(getApplicationContext(),
       ((TextView) view).getText(), Toast.LENGTH_LONG);
     
-   Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-//	i.putExtra("username",username);
-//	i.putExtra("password",password);
-	startActivity(i);
+   
 	   
 //	   String text = ((TextView) view).getText().toString();
     toast.setGravity(Gravity.TOP, 25, 300); 
     toast.show();
+    Ride selectedRide = null;
+    for(Ride r:rideList){
+    	if(((TextView) view).getText().toString().equalsIgnoreCase(r.getName())){
+    		selectedRide = r;
+    		break;
+    	}
+    }
+    
+    Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+    i.putExtra("RideDetails", selectedRide);
+	startActivity(i);
    }
   });
    

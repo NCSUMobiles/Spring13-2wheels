@@ -13,5 +13,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="welcome_user">Welcome User!</string>
     <string name="some_text">Join Rides</string>
+    <string name="title_activity_view_rides">Ride Details</string>
 
 </resources>

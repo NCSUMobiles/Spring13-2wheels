@@ -1,9 +1,13 @@
 package com.ncsu.edu.spinningwellness.entities;
 
+
 import javax.xml.bind.annotation.XmlRootElement;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 @XmlRootElement
-public class Ride extends BaseEntity {
+public class Ride extends BaseEntity implements Parcelable{
 
 	String id;
 	String name;
@@ -23,6 +27,15 @@ public class Ride extends BaseEntity {
 		this.dest = dest;
 		this.startTime = startTime;
 		this.creator = creator;
+	}
+	
+	public Ride(Parcel in){
+		this.id = in.readString();
+		this.name =  in.readString();
+		this.source =  in.readString();
+		this.dest =  in.readString();
+		this.startTime =  in.readLong();
+		this.creator =  in.readString();
 	}
 
 	public String getId() {
@@ -83,4 +96,34 @@ public class Ride extends BaseEntity {
 				"startTime = " + this.startTime
 				;
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(this.id);
+	    out.writeString(this.name);
+	    out.writeString(this.source);
+	    out.writeString(this.dest);
+	    out.writeLong(this.startTime);
+	    out.writeString(this.creator);
+	}
+	
+	public static final Parcelable.Creator<Ride> CREATOR = new Creator<Ride>() {
+
+	    public Ride createFromParcel(Parcel source) {
+
+	        return new Ride(source);
+	    }
+
+	    public Ride[] newArray(int size) {
+
+	        return new Ride[size];
+	    }
+
+	};
 }

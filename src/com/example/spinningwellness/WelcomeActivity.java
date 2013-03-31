@@ -1,6 +1,11 @@
 package com.example.spinningwellness;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +13,9 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
@@ -198,8 +205,9 @@ public class WelcomeActivity extends Activity implements OnClickListener {
             // Single menu item is selected do something
             // Ex: launching new activity/screen or show alert message
 //            Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
+        	//call asynctask to get the rides
             i = new Intent(getApplicationContext(), JoinActivity.class);
-			startActivity(i);
+            new GetUpcomingRidesTask().execute();
             return true;
  
         case R.id.menu_past:
@@ -256,5 +264,34 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		
 		}
 	}   
+	
+	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+		Intent i;
+		
+		void setIntent(Intent intent){
+			i=intent;
+		}
+		
+		protected List<Ride> doInBackground(Void... params) {
+			System.out.println("********bckgrnd");
+			return RidesManager.viewUpcomingRides();
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			System.out.println("********post");
+			if(error != null){
+				 
+			} else{
+				 List<Ride> rideList = result;
+				 for(Ride r:rideList){
+					 System.out.println(r.getName());
+				 }
+				 Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				 i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
+				 startActivity(i);
+			}
+		}
+	}
     
 }
