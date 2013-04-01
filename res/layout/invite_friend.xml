@@ -2,7 +2,7 @@
  	<RelativeLayout
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="#000"
+	android:background="#ffffff"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
   	    <!-- Footer Start -->
@@ -27,10 +27,10 @@
     android:layout_height="fill_parent" >
  
     <TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="15dp"/>
+    <TextView android:background="#ffffff" android:padding="5dp" android:layout_height="15dp"/>
     </TableRow>
      <TableRow>
-         <TextView android:background="#000" android:padding="5dp" android:layout_width="15dp"/>
+         <TextView android:background="#ffffff" android:padding="5dp" android:layout_width="15dp"/>
          <EditText
             android:id="@+id/searchfriend"
             android:layout_width="190dp"
@@ -38,7 +38,7 @@
             android:layout_height="40dp"
             android:background="@layout/sq_cell_shape"
              />
-          <TextView android:background="#000" android:padding="5dp" android:layout_width="25dp"/>
+          <TextView android:background="#ffffff" android:padding="5dp" android:layout_width="25dp"/>
 	<ImageButton
    	android:id="@+id/btnsearch"
     android:layout_width="wrap_content"

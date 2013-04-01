@@ -2,7 +2,7 @@
   	<RelativeLayout
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="#000"
+	android:background="#ffffff"
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
   	    <!-- Footer Start -->
@@ -20,13 +20,13 @@
   android:layout_width="fill_parent"
   android:layout_height="wrap_content">
 
-    <TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent"
+    <TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent"
            android:layout_height="25dp"/> 
   	
   	 <TableLayout android:id="@+id/heading_layout" android:layout_height="wrap_content" android:layout_width="fill_parent">
 
   	     <TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
+    <TextView android:background="#ffffff" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
        
      
@@ -46,7 +46,7 @@
     </LinearLayout>
     
      <TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
+    <TextView android:background="#ffffff" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
   </TableLayout>
   

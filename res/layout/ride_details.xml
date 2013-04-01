@@ -3,10 +3,10 @@
 	android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-	android:background="#000"
+	android:background="#ffffff"
 	xmlns:android="http://schemas.android.com/apk/res/android">
    
-  	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent"
+  	<TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent"
            android:layout_height="25dp"/> 
   	
   	 <TableLayout android:id="@+id/heading_layout" android:layout_height="wrap_content" android:layout_width="fill_parent">
@@ -28,7 +28,7 @@
 	       </TableRow>	
 	       
   	<TableRow > 
-    <TextView android:background="#000" android:padding="5dp" android:layout_height="25dp"/>
+    <TextView android:background="#ffffff" android:padding="5dp" android:layout_height="25dp"/>
     </TableRow>
        
      
@@ -59,7 +59,7 @@
     android:src="@drawable/joinnow" 
     android:layout_gravity="left"/>
 
-	<TextView android:background="#000" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="30dp"></TextView>
+	<TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="30dp"></TextView>
 
  <!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"

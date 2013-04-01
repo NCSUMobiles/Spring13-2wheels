@@ -6,7 +6,7 @@
   android:fillViewport="true">
   <RelativeLayout 
   		android:layout_width="fill_parent"
-  		android:layout_height="wrap_content" android:background="#000">
+  		android:layout_height="wrap_content" android:background="#ffffff">
   		
   		<!--  Header  Starts-->
  <!--  		<LinearLayout android:id="@+id/header"
@@ -58,7 +58,7 @@
 		  
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#ffffffcc"
+		  		android:textColor="#5C3317"
 		  		android:textSize="20dp"
 		  		android:textStyle="bold"
 		  		android:text="Username"/>
@@ -74,7 +74,7 @@
 			android:background="#ffccff66"
 			android:hint="Enter Wordpress Id"
 			android:textSize="20dp"
-			android:textColor="#ff666666"
+			android:textColor="#5C3317"
 			android:gravity="left"
 			android:layout_centerVertical="true"
 			android:layout_alignParentLeft="true" />
@@ -87,7 +87,7 @@
 		  <!--  Password Label -->
 		  <TextView android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
-		  		android:textColor="#ffffffcc"
+		  		android:textColor="#5C3317"
 		  		android:textSize="20dp"
 		  		android:textStyle="bold"
 		  		android:text="Password"/>
@@ -99,7 +99,7 @@
 		  
 		  <EditText android:layout_width="fill_parent"
 		  	android:layout_height="wrap_content"
-			android:textColor="#ff666666"
+			android:textColor="#5C3317"
 			android:background="#ffccff66"
 			android:textSize="20dp"
 			android:gravity="left"
