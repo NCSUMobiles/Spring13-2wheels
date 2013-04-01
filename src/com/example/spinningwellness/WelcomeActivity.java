@@ -50,7 +50,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     boolean not_first_run = false, paused = false;
 	
     private TextView welcome_user, disttext, speedtext;
-    String username,password;
+     String username,password;
 
     //Button start_but, stop_but, reset_but;
 	ImageButton play_but, pause_but, stop_but, cancel_but;
@@ -257,7 +257,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
  
         case R.id.menu_upcoming:
         	 i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
- 			startActivity(i);
+             new GetActualUpcomingRidesTask().execute();
 //            Toast.makeText(WelcomeActivity.this, "Upcoming is Selected", Toast.LENGTH_SHORT).show();
             return true;
  
@@ -408,5 +408,35 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+	
+	
+	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+		Intent i;
+		
+		void setIntent(Intent intent){
+			i=intent;
+		}
+		
+		protected List<Ride> doInBackground(Void... params) {
+			return RidesManager.viewMyUpcomingRides(username);
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			if(error != null){
+				System.out.println("Error");
+				 
+			} else{
+				 List<Ride> rideList = result;
+				 for(Ride r:rideList){
+					 System.out.println(r.getName());
+				 }
+				 Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
+				 i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
+				 startActivity(i);
+			}
+		}
+	}
+	
     
 }

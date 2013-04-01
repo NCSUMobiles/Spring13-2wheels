@@ -2,8 +2,11 @@ package com.example.spinningwellness;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ncsu.edu.spinningwellness.entities.Ride;
  
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -15,12 +18,16 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
 public class UpcomingRidesActivity extends Activity {
-     
+	List<String> rideNameList = new ArrayList<String>();
+	List<Ride> rideList = new ArrayList<Ride>();
  @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_past_rides);
-     
+        setContentView(R.layout.activity_upcoming_rides);
+        rideList = getIntent().getParcelableArrayListExtra("MyUpcomingRideList");
+        for(Ride r:rideList){
+        	rideNameList.add(r.getName());
+        }
         //Generate list View from ArrayList
   displayListView();
   
@@ -29,21 +36,20 @@ public class UpcomingRidesActivity extends Activity {
  private void displayListView() {
  
   //Array list of Rides
-  List<String> rideList = new ArrayList<String>();
-  rideList.add("RtoDurham");
-  rideList.add("RtoCary");
-  rideList.add("RtoGreensboro");
-  rideList.add("RtoLakeRaleigh");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
-  rideList.add("RtoRTP");
+//  rideList.add("RtoDurham");
+//  rideList.add("RtoCary");
+//  rideList.add("RtoGreensboro");
+//  rideList.add("RtoLakeRaleigh");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
+//  rideList.add("RtoRTP");
 //  countryList.add("Belize");
 //  countryList.add("Bermuda");
 //  countryList.add("Barbados");
@@ -62,8 +68,8 @@ public class UpcomingRidesActivity extends Activity {
 //  countryList.add("Jamaica");
    
   //create an ArrayAdaptar from the String Array
-  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.join_list,rideList);
-  ListView listView = (ListView) findViewById(R.id.listView1);
+  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.upcoming_list,rideNameList);
+  ListView listView = (ListView) findViewById(R.id.listView2);
  
   // Assign adapter to ListView
   listView.setAdapter(dataAdapter);
@@ -79,10 +85,24 @@ public class UpcomingRidesActivity extends Activity {
        // When clicked, show a toast with the TextView text
     Toast toast = Toast.makeText(getApplicationContext(),
       ((TextView) view).getText(), Toast.LENGTH_LONG);
+    
+   
 	   
 //	   String text = ((TextView) view).getText().toString();
     toast.setGravity(Gravity.TOP, 25, 300); 
-    toast.show();
+//    toast.show();
+    Ride selectedRide = null;
+    for(Ride r:rideList){
+    	if(((TextView) view).getText().toString().equalsIgnoreCase(r.getName())){
+    		selectedRide = r;
+    		break;
+    	}
+    }
+    
+    Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+    i.putExtra("RideDetails", selectedRide);
+    System.out.println("Ride details passed : " + selectedRide.toString());
+	startActivity(i);
    }
   });
    
