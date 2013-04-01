@@ -1,10 +1,14 @@
 package com.example.spinningwellness;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.net.MalformedURLException;
 
+import com.example.spinningwellness.ViewMemberActivity.ViewParticipantsTask;
 import com.example.spinningwellness.WelcomeActivity.GetUpcomingRidesTask;
+import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
@@ -20,6 +24,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.renderscript.ProgramFragmentFixedFunction.Builder.Format;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -30,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ViewRidesActivity extends Activity {
@@ -37,6 +43,8 @@ public class ViewRidesActivity extends Activity {
 	 /** Called when the activity is first created. */
     TableLayout	ride_table;
     Ride RideDetails;
+    String RideId;
+	String username;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,7 @@ public class ViewRidesActivity extends Activity {
         ride_table=(TableLayout)findViewById(R.id.ride_table);
      //   Bundle extras = getIntent().getExtras(); 
         RideDetails = getIntent().getParcelableExtra("RideDetails");
+        username = getIntent().getStringExtra("username");
         System.out.println("Ride Name via getName"+RideDetails.getName());
         fillRideDetails(RideDetails);      
     }
@@ -59,9 +68,14 @@ public class ViewRidesActivity extends Activity {
         int dip = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 (float) 1, getResources().getDisplayMetrics());
         
-        String[] item1={"Ride id:","Ride Name:","Start at:","Ends at: ","Time:","Creator:"};
-        String[] item2={RideDetails.getId(),RideDetails.getName(),RideDetails.getSource(),RideDetails.getDest(),String.valueOf(RideDetails.getStartTime()),RideDetails.getCreator()};
-        for (int i = 0; i<6; i++)
+        String[] item1={"Ride Name:","Start at:","Ends at: ","Time:","Creator:"};
+        
+        String time;
+        Date date = new Date(RideDetails.getStartTime());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy MM dd HH:mm");
+        
+        String[] item2={RideDetails.getName(),RideDetails.getSource(),RideDetails.getDest(),format.toString(),RideDetails.getCreator()};
+        for (int i = 0; i<5; i++)
         {
         	row = new TableRow(this);
         	
@@ -121,9 +135,12 @@ public class ViewRidesActivity extends Activity {
        	 
 			@Override
 			public void onClick(View v) {
- 
-			    //Functionality using webservices to add user to ride in db
-                
+				  // When clicked, show a toast with the TextView text
+				   
+				    RideId=RideDetails.getId();
+				    new AddParticipantsTask().execute();				    
+				    Toast.makeText(getApplicationContext(), username+" has been added to ride!", Toast.LENGTH_LONG).show();
+				    //setContentView(R.layout.activity_join);
 			}
  
 		});
@@ -156,6 +173,40 @@ public class ViewRidesActivity extends Activity {
 			}
 		}
 	}
+	
+	public class AddParticipantsTask extends AsyncTask<Void,Void,String> {
+		Exception error;
+		Intent i;
+		
+		public AddParticipantsTask() {
+			// TODO Auto-generated constructor stub
+			
+		}
+
+        
+		
+		void setIntent(Intent intent){
+			i=intent;
+		}
+		
+		protected String doInBackground(Void... params) {
+			
+			System.out.println("Printing in background task "+ RideId+" Username : "+username);
+			return RidesManager.addParticipantToRide(RideId,username);
+			
+		}
+
+		protected void onPostExecute(String result) {
+			if(error != null){
+				 
+			} else{
+				 String participants = result;
+				 System.out.println("Printing in addparticipants async task "+participants);
+				
+			}
+		}
+	}
+
 }
         	 
     

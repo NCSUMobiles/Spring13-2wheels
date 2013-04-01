@@ -1,9 +1,12 @@
 package com.example.spinningwellness;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.net.MalformedURLException;
 
+import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
 import redstone.xmlrpc.XmlRpcFault;
 
@@ -14,7 +17,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -28,7 +33,10 @@ import android.widget.TextView;
 
 public class ViewMemberActivity extends Activity {
 
+	
 	TableLayout member_table;
+	List<Participant> participants = new ArrayList<Participant>();
+	Ride RideId; 
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,35 +44,32 @@ public class ViewMemberActivity extends Activity {
         setContentView(R.layout.view_members);
         addListenerOnButton();
         member_table = (TableLayout)findViewById(R.id.member_table);
-        Ride RideId = getIntent().getParcelableExtra("RideId");
+        RideId = getIntent().getParcelableExtra("RideId");
         System.out.println("Ride Name via getName"+RideId.getName());
-        fillRideDetails(RideId);      
+        fillParticipantDetails(RideId);      
     }
 	
 	
-    void fillRideDetails(Ride RideId) {
+    void fillParticipantDetails(Ride RideId) {
     	
     	TableRow row;
         TextView t1, t2;
         
-//        Class.forName("com.mysql.jdbc.Driver") ;
-//        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBNAME", "usrname", "pswd") ;
-//        Statement stmt = conn.createStatement() ;
-//        String query = "select userName from participant where rideId=RideId.getName();" ;
-//        ResultSet rs = stmt.executeQuery(query) ;
-//		  Display all names in result set        
-        
+        new ViewParticipantsTask(RideId.getId()).execute();
+       
         //Converting to dip unit
         int dip = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 (float) 1, getResources().getDisplayMetrics());
-        
-        //while rs not empty
-        //while (rs.next())
-        //{
-        //t1.setText(rs.getString(col number for name));
-        	row = new TableRow(this);
+
+        for(Participant p: participants) {
+        	
+        	 System.out.println("Participant name in  "+p.getUserName());
+           	row = new TableRow(this);
         	
         	t1 = new TextView(this);
+        	t1.setText(p.getUserName());
+        	
+
         	t1.setTextColor(Color.parseColor("#ff87aa14"));
         	t1.setTypeface(Typeface.DEFAULT_BOLD);
 
@@ -77,7 +82,7 @@ public class ViewMemberActivity extends Activity {
             row.addView(t1);       	
             member_table.addView(row, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         }
-    
+    }
     
     public void addListenerOnButton() {
     	
@@ -99,6 +104,41 @@ public class ViewMemberActivity extends Activity {
         
                   
     }
+    
+    public class ViewParticipantsTask extends AsyncTask<Void,Void,List<Participant>> {
+		Exception error;
+		Intent i;
+		String RideId;
+		
+		public ViewParticipantsTask(String Id) {
+			// TODO Auto-generated constructor stub
+			RideId = Id;
+		}
+
+        
+		
+		void setIntent(Intent intent){
+			i=intent;
+		}
+		
+		protected List<Participant> doInBackground(Void... params) {
+			
+			return RidesManager.viewParticipantsForRide(RideId);
+		}
+
+		protected void onPostExecute(List<Participant> result) {
+			if(error != null){
+				 
+			} else{
+				 List<Participant> participants = result;
+				 for(Participant p:participants){
+					 System.out.println(p.getUserName());
+				 }
+				
+			}
+		}
+	}
+
 }
 
 
