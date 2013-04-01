@@ -51,10 +51,13 @@
 		  		android:singleLine="true"
 		  		android:layout_marginBottom="20dip"/>
 		  <!--  Source Label -->
-		  <TextView android:layout_width="fill_parent"
-		  		android:layout_height="wrap_content"
-		  		android:textColor="#372c24"
-		  		android:text="Source"/>
+
+		  <TextView
+		      android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		      android:text="Source"
+		      android:textColor="#372c24" />
+
 		  <EditText android:id="@+id/reg_source" 
 		  		android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
@@ -99,12 +102,16 @@
 		  		android:layout_marginBottom="20dip"/>
 		  
 		  
-		  <!-- Create New Ride Button -->		
-		  <Button android:id="@+id/btnCreateRide" 
-		  		android:layout_width="fill_parent"
-		  		android:layout_height="wrap_content"
-		  		android:layout_marginTop="10dip"
-		  		android:text="Create New Ride!!"/>
+		  <!-- Create New Ride Button -->
+
+		  <Button
+		      android:id="@+id/btnCreateRide"
+		      android:layout_width="fill_parent"
+		      android:layout_height="wrap_content"
+		      android:layout_marginTop="10dip"
+		      android:text="Create New Ride!!"
+		      android:textAppearance="@android:style/TextAppearance.Medium" 
+		      android:background="@layout/header_gradient"/>
 				    
 		</LinearLayout>
   		<!-- Create New Ride Form Ends -->

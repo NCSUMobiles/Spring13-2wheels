@@ -9,23 +9,8 @@
   		android:layout_height="wrap_content" android:background="#ffffff">
   		
   		<!--  Header  Starts-->
-  		<LinearLayout android:id="@+id/header"
-  				android:layout_width="fill_parent"
-  				android:layout_height="wrap_content"
-  				android:background="@layout/header_gradient" 
-  				android:paddingTop="5dip"
-  				android:paddingBottom="5dip">
-  				<!-- Logo Start-->
-
-  				<ImageView
-  				    android:layout_width="match_parent"
-  				    android:layout_height="wrap_content"
-  				    android:layout_marginLeft="10dip"
-  				    android:src="@drawable/logo" />
-
-  				<!-- Logo Ends -->
-  		</LinearLayout>
   		<!--  Header Ends -->  
+  		
   		<!-- Footer Start -->
   		<LinearLayout android:id="@+id/footer"
   				android:layout_width="fill_parent"
@@ -36,9 +21,7 @@
   		<!-- Footer Ends -->
   		
   		<!-- Welcome Screen starts -->
-  				
-		<!-- Welcome Screen Ends -->
-
+  		
 		<RelativeLayout
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
@@ -60,7 +43,8 @@
 			    android:layout_marginLeft="15dp"
 			    android:layout_marginTop="2dp"
 			    android:text="@string/hello_world"
-			    android:textColor="#000000" />
+			    android:textColor="#000000"
+			    android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 		    <Chronometer
 		        android:id="@+id/chronometer1"
@@ -129,7 +113,21 @@
 		        android:textColor="#000000" />
 
 		</RelativeLayout>
+		
+<!-- Welcome Screen Ends -->
 
+		<LinearLayout
+		    android:id="@+id/header"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentTop="true"
+		    android:background="@layout/header_gradient"
+		    android:paddingBottom="25dip"
+		    android:paddingTop="25dip" >
+
+		</LinearLayout>
+  
   </RelativeLayout>
 </ScrollView>
 

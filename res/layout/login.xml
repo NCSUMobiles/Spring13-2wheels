@@ -24,11 +24,13 @@
   	-->
  		<!--  Header  Starts-->
 
-      			<LinearLayout android:id="@+id/header"
-  				android:layout_width="fill_parent"
-  				android:layout_height="90dip"
-  				android:background="@drawable/logo"
-  				android:layout_alignParentTop="true">
+      			<LinearLayout
+      			    android:id="@+id/header"
+      			    android:layout_width="fill_parent"
+      			    android:layout_height="60dip"
+      			    android:layout_alignParentTop="true"
+      			    android:background="@drawable/logo" >
+
   		</LinearLayout>
  		<!--  Header Ends -->  
  		
@@ -72,7 +74,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:background="#ffccff66"
-			android:hint="Enter Wordpress Id"
+			android:hint="spinningwellness"
 			android:textSize="20dp"
 			android:textColor="#5C3317"
 			android:gravity="left"
@@ -106,7 +108,8 @@
 			android:layout_centerVertical="true"
 			android:layout_alignParentLeft="true" 
 			android:password="true"
-		  		android:id="@+id/login_password"/>
+			android:text="******"
+		  	android:id="@+id/login_password"/>
 		  <!-- Login button -->	
 		
 		  <TextView android:layout_width="fill_parent"
@@ -133,7 +136,7 @@
 	<ImageButton
     android:id="@+id/btnLogin"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40sp"
     android:background="@android:color/transparent"
     android:src="@layout/logbutton" />
 		    
