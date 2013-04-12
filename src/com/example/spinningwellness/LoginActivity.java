@@ -39,6 +39,8 @@ public class LoginActivity extends Activity {
 				username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
 				password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
 				new LoginTask().execute();
+				Intent loadingIntent = new Intent(LoginActivity.this,LoadingActivity.class); 
+				LoginActivity.this.startActivity(loadingIntent); 
 			}
 		});
 	}

@@ -17,5 +17,6 @@
     <string name="some_text">Join Rides</string>
     <string name="title_activity_view_rides">Ride Details</string>
     <string name="title_activity_post_blog">Post Experience To Blog</string>
+    <string name="title_activity_loading">LoadingActivity</string>
 
 </resources>

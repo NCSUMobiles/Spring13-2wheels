@@ -6,21 +6,11 @@
      <item android:id="@+id/menu_create_new_ride"
           android:title="Create New Ride" />
     
-    <item android:id="@+id/menu_join"
-        android:title="Join Rides" />
- 
     <item android:id="@+id/menu_past"
         android:title="My Past Rides" />
  
-    <item android:id="@+id/menu_upcoming"
-        android:title="My Upcoming Rides" />
+    <item android:id="@+id/menu_edit_del"
+        android:title="Edit/Delete My Ride" />
  
-    <item android:id="@+id/menu_activity"
-        android:title="Log Activity" />
- 
-    <item android:id="@+id/menu_post_blog"
-       android:title="Post to Blog" /> 
- 
-    <item android:id="@+id/menu_about"
-       android:title="About the App" />
+   
 </menu>

@@ -240,14 +240,14 @@ public class WelcomeActivity extends Activity implements OnClickListener {
   			startActivity(i);
   			return true;
         
-        case R.id.menu_join:
-            // Single menu item is selected do something
-            // Ex: launching new activity/screen or show alert message
-//            Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
-        	//call asynctask to get the rides
-            i = new Intent(getApplicationContext(), JoinActivity.class);
-            new GetUpcomingRidesTask().execute();
-            return true;
+//        case R.id.menu_join:
+//            // Single menu item is selected do something
+//            // Ex: launching new activity/screen or show alert message
+////            Toast.makeText(WelcomeActivity.this, "Join rides is Selected", Toast.LENGTH_SHORT).show();
+//        	//call asynctask to get the rides
+//            i = new Intent(getApplicationContext(), JoinActivity.class);
+//            new GetUpcomingRidesTask().execute();
+//            return true;
  
         case R.id.menu_past:
         	 i = new Intent(getApplicationContext(), MyPastRidesActivity.class);
@@ -255,27 +255,31 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 //            Toast.makeText(WelcomeActivity.this, "Past Rides is Selected", Toast.LENGTH_SHORT).show();
             return true;
  
-        case R.id.menu_upcoming:
-        	 i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
-             new GetActualUpcomingRidesTask().execute();
-//            Toast.makeText(WelcomeActivity.this, "Upcoming is Selected", Toast.LENGTH_SHORT).show();
-            return true;
+//        case R.id.menu_upcoming:
+//        	 i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
+//             new GetActualUpcomingRidesTask().execute();
+////            Toast.makeText(WelcomeActivity.this, "Upcoming is Selected", Toast.LENGTH_SHORT).show();
+//            return true;
+// 
+        case R.id.menu_edit_del:
+        	
+        	return true;
+//        	
+//        case R.id.menu_activity:
+//            Toast.makeText(WelcomeActivity.this, "Activity is Selected", Toast.LENGTH_SHORT).show();
+//            return true;
  
-        case R.id.menu_activity:
-            Toast.makeText(WelcomeActivity.this, "Activity is Selected", Toast.LENGTH_SHORT).show();
-            return true;
- 
-        case R.id.menu_about:
-            Toast.makeText(WelcomeActivity.this, "About is Selected", Toast.LENGTH_SHORT).show();
-            return true;
+//        case R.id.menu_about:
+//            Toast.makeText(WelcomeActivity.this, "About is Selected", Toast.LENGTH_SHORT).show();
+//            return true;
             
-        case R.id.menu_post_blog:
-        	Toast.makeText(WelcomeActivity.this, "Post Blog is Selected", Toast.LENGTH_SHORT).show();
-        	i = new Intent(getApplicationContext(), PostBlogActivity.class);
-			i.putExtra("username",username);
-			i.putExtra("password",password);
-			startActivity(i);
-            return true;
+//        case R.id.menu_post_blog:
+//        	Toast.makeText(WelcomeActivity.this, "Post Blog is Selected", Toast.LENGTH_SHORT).show();
+//        	i = new Intent(getApplicationContext(), PostBlogActivity.class);
+//			i.putExtra("username",username);
+//			i.putExtra("password",password);
+//			startActivity(i);
+//            return true;
  
         default:
             return super.onOptionsItemSelected(item);
