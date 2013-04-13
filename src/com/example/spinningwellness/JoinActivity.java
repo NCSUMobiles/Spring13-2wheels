@@ -34,7 +34,7 @@ public class JoinActivity extends Activity {
 	List<String> rideNameList = new ArrayList<String>();
 	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
 	List<Ride> rideList = new ArrayList<Ride>();
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,12 +44,12 @@ public class JoinActivity extends Activity {
 			rideNameList.add(r.getName());
 			rideEntry.add(new CustomEntry(r.getName(), true));
 		}
-//		rideEntry.add(new CustomEntry("prajakta", true));
+		//		rideEntry.add(new CustomEntry("prajakta", true));
 		//Generate list View from ArrayList
 		displayListView();
 
 	}
-	
+
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater menuInflater = getMenuInflater();
@@ -101,12 +101,12 @@ public class JoinActivity extends Activity {
 		//listView.setItemsCanFocus(false);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                    long id) {
-            Toast.makeText(getApplicationContext(), "Click ListItemNumber " + position,Toast.LENGTH_LONG).show();
-            }
-        });
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				Toast.makeText(getApplicationContext(), "Click ListItemNumber " + position,Toast.LENGTH_LONG).show();
+			}
+		});
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -115,28 +115,28 @@ public class JoinActivity extends Activity {
 
 				Ride selectedRide = null;
 				int positionView = listView.getPositionForView(view);
-		        if (positionView != ListView.INVALID_POSITION) {
-		            System.out.println( rideList.get(positionView).getName());
-		        }
-//				for(Ride r:rideList){
-//					if(view.findViewById(R.id.textVal).toString().equalsIgnoreCase(r.getName())){
-//						selectedRide = r;
-//						System.out.println("Ride details passed : " + selectedRide.getName());
-//						break;
-//					}
-//				}
+				if (positionView != ListView.INVALID_POSITION) {
+					System.out.println( rideList.get(positionView).getName());
+				}
+				//				for(Ride r:rideList){
+				//					if(view.findViewById(R.id.textVal).toString().equalsIgnoreCase(r.getName())){
+				//						selectedRide = r;
+				//						System.out.println("Ride details passed : " + selectedRide.getName());
+				//						break;
+				//					}
+				//				}
 
-//				Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
-//				i.putExtra("RideDetails", selectedRide);
-//				
-//				startActivity(i);
+				//				Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+				//				i.putExtra("RideDetails", selectedRide);
+				//				
+				//				startActivity(i);
 			}
 		});
-		
-		
+
+
 
 	}
-	
+
 	public class CustomAdapter extends ArrayAdapter<CustomEntry> {
 		private ArrayList<CustomEntry> entries;
 		private Activity activity;
@@ -177,7 +177,7 @@ public class JoinActivity extends Activity {
 				holder.item1.setText(custom.getTextVal());
 				holder.item2.setEnabled(custom.isJoined());
 			}
-			
+
 			return v;
 		}
 
@@ -187,26 +187,30 @@ public class JoinActivity extends Activity {
 				System.out.println("****start button clicked");
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(v);
-		        if (position != ListView.INVALID_POSITION) {
-		        	System.out.println( rideList.get(position).getName());
-		        }
-				
+				if (position != ListView.INVALID_POSITION) {
+					System.out.println( rideList.get(position).getName());
+					Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
+					i.putExtra("RideDetails", rideList.get(position));
+					startActivity(i);
+				}
 			}
 		};
-		
+
 		private OnCheckedChangeListener mStarCheckedChangeListener = new OnCheckedChangeListener() {
-		    @Override
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		    	System.out.println("checked isjoined");
-		    	final ListView listView = (ListView) findViewById(R.id.listView1);
-		        final int position = listView.getPositionForView(buttonView);
-		        if (position != ListView.INVALID_POSITION) {
-		            //todo:update mStarStates[position] = isChecked;
-		        }
-		    }
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				System.out.println("checked isjoined");
+				final ListView listView = (ListView) findViewById(R.id.listView1);
+				final int position = listView.getPositionForView(buttonView);
+				if (position != ListView.INVALID_POSITION) {
+					//todo:update mStarStates[position] = isChecked;
+
+
+				}
+			}
 		};
 
-		
+
 	}
 
 }

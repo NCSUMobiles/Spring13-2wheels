@@ -50,7 +50,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     boolean not_first_run = false, paused = false;
 	
     private TextView welcome_user, disttext, speedtext;
-     String username,password;
+     String username="",password="";
 
     //Button start_but, stop_but, reset_but;
 	ImageButton play_but, pause_but, stop_but, cancel_but;
@@ -66,8 +66,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 		
-		username = getIntent().getStringExtra("username");
-		password = getIntent().getStringExtra("password");
+//		username = getIntent().getStringExtra("username");
+//		password = getIntent().getStringExtra("password");
 	    TextView welcome_user = (TextView) findViewById(R.id.welcome_user);
 	    welcome_user.setText("Welcome " + username + "!");
         
