@@ -386,61 +386,6 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	   
 	}   
 	
-	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
-		Exception error;
-		Intent i;
-		
-		void setIntent(Intent intent){
-			i=intent;
-		}
-		
-		protected List<Ride> doInBackground(Void... params) {
-			return RidesManager.viewUpcomingRides();
-		}
-
-		protected void onPostExecute(List<Ride> result) {
-			if(error != null){
-				 
-			} else{
-				 List<Ride> rideList = result;
-				 for(Ride r:rideList){
-					 System.out.println(r.getName());
-				 }
-				 Intent i = new Intent(getApplicationContext(), JoinActivity.class);
-				 i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
-				 startActivity(i);
-			}
-		}
-	}
-	
-	
-	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
-		Exception error;
-		Intent i;
-		
-		void setIntent(Intent intent){
-			i=intent;
-		}
-		
-		protected List<Ride> doInBackground(Void... params) {
-			return RidesManager.viewMyUpcomingRides(username);
-		}
-
-		protected void onPostExecute(List<Ride> result) {
-			if(error != null){
-				System.out.println("Error");
-				 
-			} else{
-				 List<Ride> rideList = result;
-				 for(Ride r:rideList){
-					 System.out.println(r.getName());
-				 }
-				 Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
-				 i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
-				 startActivity(i);
-			}
-		}
-	}
 	
     
 }

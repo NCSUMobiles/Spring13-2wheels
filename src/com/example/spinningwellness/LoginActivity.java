@@ -1,7 +1,11 @@
 package com.example.spinningwellness;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.net.MalformedURLException;
+
+import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
 import redstone.xmlrpc.XmlRpcException;
 import redstone.xmlrpc.XmlRpcFault;
@@ -14,6 +18,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -82,11 +87,66 @@ public class LoginActivity extends Activity {
 				LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
 				l.addView(myText);
 			} else{
-				Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
-				i.putExtra("username",username);
-				i.putExtra("password",password);
-				startActivity(i);
+//				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+//				i.putExtra("username",username);
+//				i.putExtra("password",password);
+//				startActivity(i);
+				new GetUpcomingRidesTask().execute();
 			}
 		}
 	}
+	
+	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+				
+		protected List<Ride> doInBackground(Void... params) {
+			return RidesManager.viewUpcomingRides();
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			if(error != null){
+				 
+			} else{
+				 List<Ride> rideList = result;
+				 for(Ride r:rideList){
+					 System.out.println(r.getName());
+				 }
+				 Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				 i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
+				 i.putExtra("username",username);
+				 i.putExtra("password",password);
+				 startActivity(i);
+			}
+		}
+	}
+	
+	
+	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+		Intent i;
+		
+		void setIntent(Intent intent){
+			i=intent;
+		}
+		
+		protected List<Ride> doInBackground(Void... params) {
+			return RidesManager.viewMyUpcomingRides(username);
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			if(error != null){
+				System.out.println("Error");
+				 
+			} else{
+				 List<Ride> rideList = result;
+				 for(Ride r:rideList){
+					 System.out.println(r.getName());
+				 }
+				 Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
+				 i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
+				 startActivity(i);
+			}
+		}
+	}
+	
 }

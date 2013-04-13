@@ -7,7 +7,6 @@ import java.util.List;
 import java.net.MalformedURLException;
 
 import com.example.spinningwellness.ViewMemberActivity.ViewParticipantsTask;
-import com.example.spinningwellness.WelcomeActivity.GetUpcomingRidesTask;
 import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
