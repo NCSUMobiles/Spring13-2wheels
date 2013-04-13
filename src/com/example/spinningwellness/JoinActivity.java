@@ -3,22 +3,28 @@ package com.example.spinningwellness;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ncsu.edu.customadapters.Custom;
-import com.ncsu.edu.customadapters.CustomAdapter;
 import com.ncsu.edu.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -126,6 +132,81 @@ public class JoinActivity extends Activity {
 //				startActivity(i);
 			}
 		});
+		
+		
 
 	}
+	
+	public class CustomAdapter extends ArrayAdapter<CustomEntry> {
+		private ArrayList<CustomEntry> entries;
+		private Activity activity;
+
+		public CustomAdapter(Activity a, int textViewResourceId, ArrayList<CustomEntry> entries) {
+			super(a, textViewResourceId, entries);
+			this.entries = entries;
+			this.activity = a;
+		}
+
+		public class ViewHolder{
+			public TextView item1;
+			public CheckBox item2;
+			public Button start;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			ViewHolder holder;
+			if (v == null) {
+				LayoutInflater vi =
+						(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				v = vi.inflate(R.layout.join_list, null);
+				holder = new ViewHolder();
+				holder.item1 = (TextView) v.findViewById(R.id.textVal);
+				holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
+				holder.start = (Button) v.findViewById(R.id.startRide);
+				holder.start.setOnClickListener(mStartButtonClickListener);
+				holder.item2.setOnCheckedChangeListener(mStarCheckedChangeListener);
+				v.setTag(holder);
+			}
+			else
+				holder=(ViewHolder)v.getTag();
+
+			final CustomEntry custom = entries.get(position);
+			if (custom != null) {
+				holder.item1.setText(custom.getTextVal());
+				holder.item2.setEnabled(custom.isJoined());
+			}
+			
+			return v;
+		}
+
+		private OnClickListener mStartButtonClickListener = new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("****start button clicked");
+				final ListView listView = (ListView) findViewById(R.id.listView1);
+				final int position = listView.getPositionForView(v);
+		        if (position != ListView.INVALID_POSITION) {
+		        	System.out.println( rideList.get(position).getName());
+		        }
+				
+			}
+		};
+		
+		private OnCheckedChangeListener mStarCheckedChangeListener = new OnCheckedChangeListener() {
+		    @Override
+		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		    	System.out.println("checked isjoined");
+		    	final ListView listView = (ListView) findViewById(R.id.listView1);
+		        final int position = listView.getPositionForView(buttonView);
+		        if (position != ListView.INVALID_POSITION) {
+		            //todo:update mStarStates[position] = isChecked;
+		        }
+		    }
+		};
+
+		
+	}
+
 }

@@ -9,19 +9,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" android:descendantFocusability="blocksDescendants">
 
-        <TextView
-            android:id="@+id/textVal"
-            android:layout_width="102dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.84"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <CheckBox
+         <CheckBox
             android:id="@+id/isJoined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@android:drawable/btn_star" />
+         
+        <TextView
+            android:id="@+id/textVal"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.15"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+		
+		<Button
+        android:id="@+id/startRide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@string/Startride" />
+       
+        
     </LinearLayout>
 </LinearLayout>
