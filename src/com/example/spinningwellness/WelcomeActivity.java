@@ -66,8 +66,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 		
-//		username = getIntent().getStringExtra("username");
-//		password = getIntent().getStringExtra("password");
+		username = getIntent().getStringExtra("username");
+		password = getIntent().getStringExtra("password");
 	    TextView welcome_user = (TextView) findViewById(R.id.welcome_user);
 	    welcome_user.setText("Welcome " + username + "!");
         

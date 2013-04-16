@@ -8,19 +8,7 @@
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content" android:background="#ffffff">
   		
-  		<!--  Header  Starts-->
-  		<!--  Header Ends -->  
-  		
-  		<!-- Footer Start -->
-  		<LinearLayout android:id="@+id/footer"
-  				android:layout_width="fill_parent"
-  				android:layout_height="90dip"
-  				android:background="@layout/footer_repeat"
-  				android:layout_alignParentBottom="true">
-  		</LinearLayout>
-  		<!-- Footer Ends -->
-  		
-  		<!-- Welcome Screen starts -->
+  			<include layout="@layout/common_layout"/>
   		
 		<RelativeLayout
 		    android:layout_width="match_parent"
