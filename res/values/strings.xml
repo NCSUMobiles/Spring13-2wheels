@@ -19,5 +19,6 @@
     <string name="title_activity_post_blog">Post Experience To Blog</string>
     <string name="title_activity_loading">LoadingActivity</string>
     <string name="Startride">Start</string>
+    <string name="title_activity_base">BaseActivity</string>
 
 </resources>

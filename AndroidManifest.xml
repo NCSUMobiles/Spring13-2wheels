@@ -30,14 +30,14 @@
         <activity
             android:name="com.example.spinningwellness.RegisterActivity"
             android:label="Register New Account" >
-        </activity>
+        </activity>
         -->
         <activity
             android:name="com.example.spinningwellness.JoinActivity"
             android:label="@string/title_activity_join" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.WelcomeActivity"
+            android:name="com.example.spinningwellness.RecordUserActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_welcome"
             android:screenOrientation="portrait" >
@@ -73,6 +73,10 @@
         <activity
             android:name="com.example.spinningwellness.LoadingActivity"
             android:label="@string/title_activity_loading" >
+        </activity>
+        <activity
+            android:name="com.example.spinningwellness.BaseActivity"
+            android:label="@string/title_activity_base" >
         </activity>
     </application>
 

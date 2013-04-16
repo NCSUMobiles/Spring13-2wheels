@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 
 
 
-public class ChallengeFriendActivity extends Activity {
+public class ChallengeFriendActivity extends BaseActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
  
-public class UpcomingRidesActivity extends Activity {
+public class UpcomingRidesActivity extends BaseActivity {
 	List<String> rideNameList = new ArrayList<String>();
 	List<Ride> rideList = new ArrayList<Ride>();
  @Override

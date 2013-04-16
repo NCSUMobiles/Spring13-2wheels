@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class JoinActivity extends Activity {
+public class JoinActivity extends BaseActivity {
 	List<String> rideNameList = new ArrayList<String>();
 	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
 	List<Ride> rideList = new ArrayList<Ride>();
@@ -48,41 +48,6 @@ public class JoinActivity extends Activity {
 		//Generate list View from ArrayList
 		displayListView();
 
-	}
-
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.layout.welcome_menu, menu);
-		return true;
-	}
-
-
-	/***** Menu Settings ******/
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		Intent i;
-		switch (item.getItemId())
-		{
-		case R.id.menu_create_new_ride:
-			i = new Intent(getApplicationContext(),CreateNewRideActivity.class);
-			startActivity(i);
-			return true;
-
-		case R.id.menu_past:
-			i = new Intent(getApplicationContext(), MyPastRidesActivity.class);
-			startActivity(i);
-			//         Toast.makeText(WelcomeActivity.this, "Past Rides is Selected", Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.menu_edit_del:
-
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
-		}
 	}
 
 	private void displayListView() {
@@ -189,7 +154,7 @@ public class JoinActivity extends Activity {
 				final int position = listView.getPositionForView(v);
 				if (position != ListView.INVALID_POSITION) {
 					System.out.println( rideList.get(position).getName());
-					Intent i = new Intent(getApplicationContext(), WelcomeActivity.class);
+					Intent i = new Intent(getApplicationContext(), RecordUserActivity.class);
 					i.putExtra("RideDetails", rideList.get(position));
 					startActivity(i);
 				}

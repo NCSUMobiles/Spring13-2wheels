@@ -37,7 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ViewRidesActivity extends Activity {
+public class ViewRidesActivity extends BaseActivity {
 	
 	 /** Called when the activity is first created. */
     TableLayout	ride_table;
@@ -47,7 +47,6 @@ public class ViewRidesActivity extends Activity {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.ride_details);
         addListenerOnButton();
         ride_table=(TableLayout)findViewById(R.id.ride_table);

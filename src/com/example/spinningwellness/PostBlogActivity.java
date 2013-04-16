@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PostBlogActivity extends Activity {
+public class PostBlogActivity extends BaseActivity {
 
 	String username;
 	String password;
@@ -42,12 +42,7 @@ public class PostBlogActivity extends Activity {
 		});
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.post_blog, menu);
-		return true;
-	}
+	
 
 	private class PostBlogTask extends AsyncTask<Void,Void,User> {
 		Exception error;

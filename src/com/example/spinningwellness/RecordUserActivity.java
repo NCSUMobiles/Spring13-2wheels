@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class WelcomeActivity extends Activity implements OnClickListener {
+public class RecordUserActivity extends BaseActivity implements OnClickListener {
 
 	double lat1, long1, start_lat, start_long, dest_lat, dest_long;
     Location location, loc1, loc2; 
@@ -64,7 +64,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
         @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.welcome);
+		setContentView(R.layout.activity_record_user);
 		
 		username = getIntent().getStringExtra("username");
 		password = getIntent().getStringExtra("password");
@@ -104,7 +104,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
     
     public Location getLocation() {
         try {
-        	Context mContext = WelcomeActivity.this;
+        	Context mContext = RecordUserActivity.this;
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
  
             // getting GPS status
@@ -169,7 +169,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
             if (!isGPSEnabled && !isNetworkEnabled) 
             {
                 // no network provider is enabled
-            	Toast.makeText(WelcomeActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
+            	Toast.makeText(RecordUserActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
             } 
             
             else 
@@ -349,7 +349,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 			avg_speed = (results_in_miles)*1000*3600/final_time;
 			//disttext.setText("Distance recorded: " + results_in_miles);
 			speedtext.setText("Avg Speed: " + df.format(avg_speed) +" mi/hr");
-			Toast.makeText(WelcomeActivity.this, "Distance & Avg Speed recorded", Toast.LENGTH_SHORT).show();
+			Toast.makeText(RecordUserActivity.this, "Distance & Avg Speed recorded", Toast.LENGTH_SHORT).show();
 			pause_but.setVisibility(arg0.GONE);
 			play_but.setVisibility(arg0.VISIBLE);
 			cancel_but.setVisibility(arg0.VISIBLE);

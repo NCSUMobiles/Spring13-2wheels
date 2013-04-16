@@ -31,7 +31,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ViewMemberActivity extends Activity {
+public class ViewMemberActivity extends BaseActivity {
 
 	
 	TableLayout member_table;
