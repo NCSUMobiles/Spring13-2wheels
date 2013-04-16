@@ -47,7 +47,8 @@ public class ViewRidesActivity extends BaseActivity {
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.ride_details);
+    	super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_ride_details);
         addListenerOnButton();
         ride_table=(TableLayout)findViewById(R.id.ride_table);
      //   Bundle extras = getIntent().getExtras(); 
@@ -113,7 +114,7 @@ public class ViewRidesActivity extends BaseActivity {
     	final Context context = this;
         
         Button member_button  = (Button) findViewById(R.id.btnviewmembers);
-        ImageButton join_button = (ImageButton) findViewById(R.id.btnjoin); 
+//        ImageButton join_button = (ImageButton) findViewById(R.id.btnjoin); 
         
         member_button.setOnClickListener(new OnClickListener() {
         	 
@@ -128,20 +129,20 @@ public class ViewRidesActivity extends BaseActivity {
 			}
  
 		});
-        
-        join_button.setOnClickListener(new OnClickListener() {
-       	 
-			@Override
-			public void onClick(View v) {
-				  // When clicked, show a toast with the TextView text
-				   
-				    RideId=RideDetails.getId();
-				    new AddParticipantsTask().execute();				    
-				    Toast.makeText(getApplicationContext(), username+" has been added to ride!", Toast.LENGTH_LONG).show();
-				    //setContentView(R.layout.activity_join);
-			}
- 
-		});
+        /*TODO Move to join rides activity on star click*/
+//        join_button.setOnClickListener(new OnClickListener() {
+//       	 
+//			@Override
+//			public void onClick(View v) {
+//				  // When clicked, show a toast with the TextView text
+//				   
+//				    RideId=RideDetails.getId();
+//				    new AddParticipantsTask().execute();				    
+//				    Toast.makeText(getApplicationContext(), username+" has been added to ride!", Toast.LENGTH_LONG).show();
+//				    //setContentView(R.layout.activity_join);
+//			}
+// 
+//		});
            
     }
     
@@ -179,9 +180,7 @@ public class ViewRidesActivity extends BaseActivity {
 		public AddParticipantsTask() {
 			// TODO Auto-generated constructor stub
 			
-		}
-
-        
+		}        
 		
 		void setIntent(Intent intent){
 			i=intent;

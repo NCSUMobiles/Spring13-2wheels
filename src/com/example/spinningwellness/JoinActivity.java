@@ -44,7 +44,6 @@ public class JoinActivity extends BaseActivity {
 			rideNameList.add(r.getName());
 			rideEntry.add(new CustomEntry(r.getName(), true));
 		}
-		//		rideEntry.add(new CustomEntry("prajakta", true));
 		//Generate list View from ArrayList
 		displayListView();
 
@@ -53,7 +52,7 @@ public class JoinActivity extends BaseActivity {
 	private void displayListView() {
 
 		//create an ArrayAdaptar from the String Array
-		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.listView1,rideEntry);
+		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.textVal,rideEntry);
 		final ListView listView = (ListView) findViewById(R.id.listView1);
 
 		// Assign adapter to ListView
@@ -65,14 +64,6 @@ public class JoinActivity extends BaseActivity {
 		listView.setTextFilterEnabled(true);
 		//listView.setItemsCanFocus(false);
 		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				Toast.makeText(getApplicationContext(), "Click ListItemNumber " + position,Toast.LENGTH_LONG).show();
-			}
-		});
-		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -82,6 +73,13 @@ public class JoinActivity extends BaseActivity {
 				int positionView = listView.getPositionForView(view);
 				if (positionView != ListView.INVALID_POSITION) {
 					System.out.println( rideList.get(positionView).getName());
+					//start view activity
+					selectedRide = rideList.get(positionView);
+					Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+					i.putExtra("RideDetails", selectedRide);
+					startActivity(i);
+				}else{
+					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
 				}
 				//				for(Ride r:rideList){
 				//					if(view.findViewById(R.id.textVal).toString().equalsIgnoreCase(r.getName())){

@@ -50,14 +50,7 @@
      
     
   </TableLayout>         
-<ImageButton
-   	    
-    android:id="@+id/btnjoin"
-    android:layout_width="wrap_content"
-    android:layout_height="80dp"
-    android:background="@android:color/transparent"
-    android:src="@drawable/joinnow" 
-    android:layout_gravity="left"/>
+
 
 	<TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="30dp"></TextView>
 
