@@ -29,7 +29,7 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
+		setContentView(R.layout.login_activity);
 
 		// Listening to login button
 		ImageButton button  = (ImageButton) findViewById(R.id.btnLogin);
@@ -37,8 +37,8 @@ public class LoginActivity extends BaseActivity {
 
 			public void onClick(View v) {
 				// Switching to Register screen
-				username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
-				password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
+				BaseActivity.username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
+				BaseActivity.password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
 				new LoginTask().execute(); 
 			}
 		});
@@ -54,7 +54,7 @@ public class LoginActivity extends BaseActivity {
 			System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
 			Wordpress wp;
 			try {
-				wp = new Wordpress(username, password, xmlRpcUrl);
+				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
 				User u = wp.getUserInfo();
 				System.out.println(u.getNickname());
 				return u;
@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity {
 				//				i.putExtra("username",username);
 				//				i.putExtra("password",password);
 				//				startActivity(i);
-				Intent loadingIntent = new Intent(LoginActivity.this, JoinActivity.class); 
+				Intent loadingIntent = new Intent(LoginActivity.this, JoinRidesActivity.class); 
 				LoginActivity.this.startActivity(loadingIntent);
 			}
 		}

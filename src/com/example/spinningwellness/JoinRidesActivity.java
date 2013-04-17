@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class JoinActivity extends BaseActivity {
+public class JoinRidesActivity extends BaseActivity {
 
 	List<Ride> rideList = new ArrayList<Ride>();
 	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
@@ -42,9 +42,9 @@ public class JoinActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		//Draw menu
-		tabProvider = new MyTabHostProvider(JoinActivity.this);
+		tabProvider = new MyTabHostProvider(JoinRidesActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
-		tabView.setCurrentView(R.layout.activity_join);
+		tabView.setCurrentView(R.layout.join_rides_activity);
 		setContentView(tabView.render());			
 
 		progressBar = (LinearLayout) findViewById(R.id.Spinner);
@@ -55,11 +55,7 @@ public class JoinActivity extends BaseActivity {
 
 	private void displayListView() {
 		
-		System.out.println("In display list view");
-		
 		progressBar.setVisibility(View.INVISIBLE);
-		
-		System.out.println("Stopping spinner");
 		
 		//create an ArrayAdaptar from the String Array
 		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.textVal, rideEntry);
@@ -130,7 +126,7 @@ public class JoinActivity extends BaseActivity {
 			if (v == null) {
 				LayoutInflater vi =
 						(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = vi.inflate(R.layout.join_list, null);
+				v = vi.inflate(R.layout.join_rides_list, null);
 				holder = new ViewHolder();
 				holder.item1 = (TextView) v.findViewById(R.id.textVal);
 				holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
@@ -179,8 +175,6 @@ public class JoinActivity extends BaseActivity {
 				}
 			}
 		};
-
-
 	}
 
 	@Override
@@ -189,11 +183,11 @@ public class JoinActivity extends BaseActivity {
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Join Ride");		
 	}
 	
+	//AsynTask for getting the list of rides
 	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
 		Exception error;
 
 		protected List<Ride> doInBackground(Void... params) {
-			System.out.println("in doInBG");
 			return RidesManager.viewUpcomingRides();
 		}
 

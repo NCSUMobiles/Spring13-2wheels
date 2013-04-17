@@ -1,7 +1,7 @@
 package com.ncsu.edu.tabpanel;
 
-import com.example.spinningwellness.CreateNewRideActivity;
-import com.example.spinningwellness.JoinActivity;
+import com.example.spinningwellness.CreateRideActivity;
+import com.example.spinningwellness.JoinRidesActivity;
 import com.example.spinningwellness.LeaderBoardActivity;
 import com.example.spinningwellness.MyPastRidesActivity;
 import com.example.spinningwellness.R;
@@ -46,7 +46,7 @@ public class MyTabHostProvider extends TabHostProvider {
 		tabView.setBackgroundID(R.layout.common_color_gradient);
 
 		joinRidesTab = createTab(category, 
-				JoinActivity.class, 
+				JoinRidesActivity.class, 
 				R.drawable.menu_btn_join_rides, 
 				R.drawable.menu_btn_join_rides_selected, 
 				MenuConstants.JOIN_RIDES,
@@ -60,7 +60,7 @@ public class MyTabHostProvider extends TabHostProvider {
 				category.equalsIgnoreCase(MenuConstants.PAST_RIDES)
 				);
 		createRide = createTab(category, 
-				CreateNewRideActivity.class, 
+				CreateRideActivity.class, 
 				R.drawable.menu_btn_create_ride, 
 				R.drawable.menu_btn_create_ride_selected, 
 				MenuConstants.CREATE_RIDE,

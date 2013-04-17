@@ -27,7 +27,7 @@ public class PostBlogActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_post_blog);
+		setContentView(R.layout.post_blog_activity);
 
 		TextView postBlog = (TextView) findViewById(R.id.btnPostBlog);
 		postBlog.setOnClickListener(new View.OnClickListener() {

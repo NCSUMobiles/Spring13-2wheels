@@ -23,7 +23,7 @@ public class UpcomingRidesActivity extends BaseActivity {
  @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upcoming_rides);
+        setContentView(R.layout.upcoming_rides_activity);
         rideList = getIntent().getParcelableArrayListExtra("MyUpcomingRideList");
         for(Ride r:rideList){
         	rideNameList.add(r.getName());

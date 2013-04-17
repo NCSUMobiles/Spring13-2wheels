@@ -13,6 +13,7 @@ import com.ncsu.edu.spinningwellness.Utils.RestClientUtils;
 import com.ncsu.edu.spinningwellness.Utils.Utils;
 import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 
 public class RidesManager {
 
@@ -74,6 +75,27 @@ public class RidesManager {
 		List<Ride> rides = new ArrayList<Ride>();
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_FROM_LAST_WEEK_URL);
+		String ridesJSON = RestClientUtils.executeRequest(viewRide);
+
+		@SuppressWarnings("unchecked")
+		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+		for(Object r: rs) {
+			Ride ride = (Ride) r;  
+			System.out.println(r.toString());
+			rides.add(ride);
+		}
+		return rides;		
+	}	
+
+	public static List<Ride> viewMyPastRides(String userName) {
+		List<Ride> rides = new ArrayList<Ride>();
+
+		System.out.println("UserName = " + userName);
+		HttpGet viewRide = RestClientUtils.createHttpGetRequest(
+				Constants.VIEW_MY_PAST_RIDES_URL + 
+				"/" + 
+				userName
+				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 
 		@SuppressWarnings("unchecked")

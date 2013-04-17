@@ -48,7 +48,7 @@ public class ViewRidesActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_ride_details);
+        setContentView(R.layout.view_ride_details_activity);
         addListenerOnButton();
         ride_table=(TableLayout)findViewById(R.id.ride_table);
      //   Bundle extras = getIntent().getExtras(); 
@@ -166,7 +166,7 @@ public class ViewRidesActivity extends BaseActivity {
 				 for(Ride r:rideList){
 					 System.out.println(r.getName());
 				 }
-				 Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				 Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
 				 i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
 				 startActivity(i);
 			}

@@ -15,8 +15,8 @@ public abstract class BaseActivity extends Activity {
 	protected final String SPINNING_WEELNESS = "SPINNING WELLNESS";
 	protected TabHostProvider tabProvider;
 	
-	String username;
-	String password;
+	protected static String username;
+	protected static String password;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public abstract class BaseActivity extends Activity {
 		switch (item.getItemId())
 		{
 		case R.id.menu_create_new_ride:
-			i = new Intent(getApplicationContext(),CreateNewRideActivity.class);
+			i = new Intent(getApplicationContext(),CreateRideActivity.class);
 			startActivity(i);
 			return true;
 

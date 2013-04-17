@@ -3,22 +3,33 @@ package com.example.spinningwellness;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 import com.ncsu.edu.tabpanel.MenuConstants;
 import com.ncsu.edu.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.tabpanel.TabView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MyPastRidesActivity extends BaseActivity {
+
+	List<Ride> myPastRides = new ArrayList<Ride>();
+	ArrayList<String> myPastRideNames = new ArrayList<String>();
+	private LinearLayout progressBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,84 +38,112 @@ public class MyPastRidesActivity extends BaseActivity {
 		//Draw menu
 		tabProvider = new MyTabHostProvider(MyPastRidesActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
-		tabView.setCurrentView(R.layout.activity_my_past_rides);
+		tabView.setCurrentView(R.layout.my_past_rides_activity);
 		setContentView(tabView.render());			
 
-//		//Generate list View from ArrayList
-//		displayListView();
+		progressBar = (LinearLayout) findViewById(R.id.myPastRidesSpinner);
+		progressBar.setVisibility(View.VISIBLE);
 
+		new GetMyPastRidesTask().execute();		
 	}
 
 	private void displayListView() {
 
-		//Array list of Rides
-		List<String> rideList = new ArrayList<String>();
-		rideList.add("RtoDurham");
-		rideList.add("RtoCary");
-		rideList.add("RtoGreensboro");
-		rideList.add("RtoLakeRaleigh");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		rideList.add("RtoRTP");
-		//  countryList.add("Belize");
-		//  countryList.add("Bermuda");
-		//  countryList.add("Barbados");
-		//  countryList.add("Canada");
-		//  countryList.add("Costa Rica");
-		//  countryList.add("Cuba");
-		//  countryList.add("Cayman Islands");
-		//  countryList.add("Dominica");
-		//  countryList.add("Dominican Republic");
-		//  countryList.add("Guadeloupe");
-		//  countryList.add("Grenada");
-		//  countryList.add("Greenland");
-		//  countryList.add("Guatemala");
-		//  countryList.add("Honduras");
-		//  countryList.add("Haiti");
-		//  countryList.add("Jamaica");
+		progressBar.setVisibility(View.INVISIBLE);
 
 		//create an ArrayAdaptar from the String Array
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.join_list,rideList);
-		ListView listView = (ListView) findViewById(R.id.listView1);
+		MyPastRidesCustomAdapter dataAdapter = new MyPastRidesCustomAdapter(this, R.id.myPastRidesTextVal, myPastRideNames);
+		final ListView listView = (ListView) findViewById(R.id.myPastRidesListView);
 
 		// Assign adapter to ListView
 		listView.setAdapter(dataAdapter);
-
-		//  listView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.FILL_PARENT, ListView.LayoutParams.WRAP_CONTENT));
 
 		//enables filtering for the contents of the given ListView
 		listView.setTextFilterEnabled(true);
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// When clicked, show a toast with the TextView text
-				Toast toast = Toast.makeText(getApplicationContext(),
-						((TextView) view).getText(), Toast.LENGTH_LONG);
+				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
 
-				Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-				//	i.putExtra("username",username);
-				//	i.putExtra("password",password);
-				startActivity(i);
-
-				//	   String text = ((TextView) view).getText().toString();
-				toast.setGravity(Gravity.TOP, 25, 300); 
-				toast.show();
+				Ride selectedRide = null;
+				int positionView = listView.getPositionForView(view);
+				if (positionView != ListView.INVALID_POSITION) {
+					//start view activity
+					selectedRide = myPastRides.get(positionView);
+					Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+					i.putExtra("RideDetails", selectedRide);
+					startActivity(i);
+				} else {
+					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+				}
 			}
-		});
+		});	}
 
-	}
-	
 	@Override
 	public void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "My Past Rides");		
+	}
+
+	public class GetMyPastRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+
+		protected List<Ride> doInBackground(Void... params) {
+			return RidesManager.viewMyPastRides(BaseActivity.username);
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			if(error != null){
+
+			} else {
+				myPastRides = result;
+				for(Ride r: myPastRides){
+					myPastRideNames.add(r.getName());
+				}				
+				displayListView();
+			}
+		}
+	}
+
+	public class MyPastRidesCustomAdapter extends ArrayAdapter<String> {
+		
+		private ArrayList<String> myPastRides;
+		private Activity activity;
+
+		public MyPastRidesCustomAdapter(Activity a, int textViewResourceId, ArrayList<String> myPastRides) {
+			super(a, textViewResourceId, myPastRides);
+			this.myPastRides = myPastRides;
+			this.activity = a;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			ViewHolder holder;
+			if (v == null) {
+				LayoutInflater vi = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				v = vi.inflate(R.layout.my_past_rides_list, null);
+				holder = new ViewHolder();
+				System.out.println((TextView) v.findViewById(R.id.myPastRidesTextVal));
+				holder.myPastRideName = (TextView) v.findViewById(R.id.myPastRidesTextVal);
+				v.setTag(holder);
+			} else {
+				holder = (ViewHolder) v.getTag();
+			}
+
+			System.out.println("holder -------------" + holder.myPastRideName);
+			final String custom = myPastRides.get(position);
+			if (custom != null) {
+				holder.myPastRideName.setText(custom);
+			}
+
+			return v;
+		}
+		
+		public class ViewHolder {
+			public TextView myPastRideName;
+		}
 	}
 }

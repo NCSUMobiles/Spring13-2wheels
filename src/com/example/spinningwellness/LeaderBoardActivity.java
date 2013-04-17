@@ -16,7 +16,7 @@ public class LeaderBoardActivity extends BaseActivity {
 		//Draw menu
 		tabProvider = new MyTabHostProvider(LeaderBoardActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.LEADER_BOARD);
-		tabView.setCurrentView(R.layout.activity_leader_board);
+		tabView.setCurrentView(R.layout.leader_board_activity);
 		setContentView(tabView.render());			
 	}
 

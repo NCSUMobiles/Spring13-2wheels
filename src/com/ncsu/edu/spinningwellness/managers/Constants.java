@@ -42,7 +42,7 @@ public interface Constants {
 	
 	public String VIEW_MY_UPCOMING_RIDES_URL = RIDE_URL + "/myupcomingrides";
 	
-	public String VIEW_MY_PAST_RIDES_FOR_NEXT_WEEK_URL = RIDE_URL + "/mypastridesfromlastweek";
+	public String VIEW_MY_PAST_RIDES_FOR_LAST_WEEK_URL = RIDE_URL + "/mypastridesfromlastweek";
 	
 	public String VIEW_MY_PAST_RIDES_URL = RIDE_URL + "/mypastrides";
 

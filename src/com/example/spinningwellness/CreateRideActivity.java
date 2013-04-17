@@ -14,16 +14,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateNewRideActivity extends BaseActivity {
+public class CreateRideActivity extends BaseActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		//Draw menu
-		tabProvider = new MyTabHostProvider(CreateNewRideActivity.this);
+		tabProvider = new MyTabHostProvider(CreateRideActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.CREATE_RIDE);
-		tabView.setCurrentView(R.layout.activity_create_new_ride);
+		tabView.setCurrentView(R.layout.create_new_ride_activity);
 		setContentView(tabView.render());			
 
 		//Listener for create ride button
@@ -38,7 +38,7 @@ public class CreateNewRideActivity extends BaseActivity {
 				startDate = cal.getTime();
 				RidesManager.createRide("Ride to SJ", "source", "dest", startDate, "prajakta");
 
-				Toast.makeText(CreateNewRideActivity.this, "New Ride is created!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(CreateRideActivity.this, "New Ride is created!", Toast.LENGTH_SHORT).show();
 				Button button1 = (Button) findViewById(R.id.btnCreateRide);
 				button1.setEnabled(false);
 

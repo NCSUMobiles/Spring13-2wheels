@@ -64,7 +64,7 @@ public class RecordUserActivity extends BaseActivity implements OnClickListener 
         @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_record_user);
+		setContentView(R.layout.record_user_activity);
 		
 		username = getIntent().getStringExtra("username");
 		password = getIntent().getStringExtra("password");
@@ -236,7 +236,7 @@ public class RecordUserActivity extends BaseActivity implements OnClickListener 
         switch (item.getItemId())
         {
         case R.id.menu_create_new_ride:
-        	 i = new Intent(getApplicationContext(),CreateNewRideActivity.class);
+        	 i = new Intent(getApplicationContext(),CreateRideActivity.class);
   			startActivity(i);
   			return true;
         

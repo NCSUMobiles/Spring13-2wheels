@@ -34,7 +34,7 @@
         </activity>
         -->
         <activity
-            android:name="com.example.spinningwellness.JoinActivity"
+            android:name="com.example.spinningwellness.JoinRidesActivity"
             android:label="@string/title_activity_join" >
         </activity>
         <activity
@@ -52,7 +52,7 @@
             android:label="@string/title_activity_upcoming_rides" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.CreateNewRideActivity"
+            android:name="com.example.spinningwellness.CreateRideActivity"
             android:label="@string/title_activity_create_new_ride" >
         </activity>
         <activity

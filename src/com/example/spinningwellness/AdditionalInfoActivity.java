@@ -51,7 +51,7 @@ public class AdditionalInfoActivity extends BaseActivity {
 				//				UsersManager.logActivity(rideId,userName,distaceCovered,dcad,averageSpeed, caloriesBurned,activityDate);
 				//			    
 				Toast.makeText(getApplicationContext(), " User Activity has been recorded!", Toast.LENGTH_LONG).show();
-				setContentView(R.layout.activity_record_user);
+				setContentView(R.layout.record_user_activity);
 
 			}
 
