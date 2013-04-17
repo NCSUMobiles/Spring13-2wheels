@@ -14,6 +14,9 @@ public abstract class BaseActivity extends Activity {
 	
 	protected final String SPINNING_WEELNESS = "SPINNING WELLNESS";
 	protected TabHostProvider tabProvider;
+	
+	String username;
+	String password;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

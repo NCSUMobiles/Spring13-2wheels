@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ncsu.edu.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.managers.RidesManager;
 import com.ncsu.edu.tabpanel.MenuConstants;
 import com.ncsu.edu.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.tabpanel.TabView;
@@ -12,6 +13,7 @@ import com.ncsu.edu.tabpanel.TabView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,39 +25,44 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class JoinActivity extends BaseActivity {
-	List<String> rideNameList = new ArrayList<String>();
-	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
+
 	List<Ride> rideList = new ArrayList<Ride>();
+	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
+	private LinearLayout progressBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		//Draw menu
 		tabProvider = new MyTabHostProvider(JoinActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
 		tabView.setCurrentView(R.layout.activity_join);
 		setContentView(tabView.render());			
 
-//		rideList = getIntent().getParcelableArrayListExtra("rideList");
-//		for(Ride r:rideList){
-//			rideNameList.add(r.getName());
-//			rideEntry.add(new CustomEntry(r.getName(), true));
-//		}
-//		//Generate list View from ArrayList
-//		displayListView();
+		progressBar = (LinearLayout) findViewById(R.id.Spinner);
+		progressBar.setVisibility(View.VISIBLE);
+
+		new GetUpcomingRidesTask().execute();		
 	}
 
 	private void displayListView() {
-
+		
+		System.out.println("In display list view");
+		
+		progressBar.setVisibility(View.INVISIBLE);
+		
+		System.out.println("Stopping spinner");
+		
 		//create an ArrayAdaptar from the String Array
-		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.textVal,rideEntry);
+		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.textVal, rideEntry);
 		final ListView listView = (ListView) findViewById(R.id.listView1);
 
 		// Assign adapter to ListView
@@ -98,9 +105,6 @@ public class JoinActivity extends BaseActivity {
 				//				startActivity(i);
 			}
 		});
-
-
-
 	}
 
 	public class CustomAdapter extends ArrayAdapter<CustomEntry> {
@@ -183,5 +187,26 @@ public class JoinActivity extends BaseActivity {
 	public void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Join Ride");		
+	}
+	
+	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
+
+		protected List<Ride> doInBackground(Void... params) {
+			System.out.println("in doInBG");
+			return RidesManager.viewUpcomingRides();
+		}
+
+		protected void onPostExecute(List<Ride> result) {
+			if(error != null){
+
+			} else {
+				rideList = result;
+				for(Ride r:rideList){
+					rideEntry.add(new CustomEntry(r.getName(), true));
+				}				
+				displayListView();
+			}
+		}
 	}
 }

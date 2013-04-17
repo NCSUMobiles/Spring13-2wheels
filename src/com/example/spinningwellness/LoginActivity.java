@@ -25,9 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class LoginActivity extends BaseActivity {
-
-	String username;
-	String password;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,9 +39,7 @@ public class LoginActivity extends BaseActivity {
 				// Switching to Register screen
 				username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
 				password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
-				new LoginTask().execute();
-				Intent loadingIntent = new Intent(LoginActivity.this,LoadingActivity.class); 
-				LoginActivity.this.startActivity(loadingIntent); 
+				new LoginTask().execute(); 
 			}
 		});
 	}
@@ -90,35 +85,11 @@ public class LoginActivity extends BaseActivity {
 				//				i.putExtra("username",username);
 				//				i.putExtra("password",password);
 				//				startActivity(i);
-				new GetUpcomingRidesTask().execute();
+				Intent loadingIntent = new Intent(LoginActivity.this, JoinActivity.class); 
+				LoginActivity.this.startActivity(loadingIntent);
 			}
 		}
 	}
-
-	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
-		Exception error;
-
-		protected List<Ride> doInBackground(Void... params) {
-			return RidesManager.viewUpcomingRides();
-		}
-
-		protected void onPostExecute(List<Ride> result) {
-			if(error != null){
-
-			} else{
-				List<Ride> rideList = result;
-				for(Ride r:rideList){
-					System.out.println(r.getName());
-				}
-				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
-				i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
-				i.putExtra("username",username);
-				i.putExtra("password",password);
-				startActivity(i);
-			}
-		}
-	}
-
 
 	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
 		Exception error;
