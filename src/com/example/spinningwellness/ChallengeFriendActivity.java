@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 
@@ -53,4 +54,11 @@ public class ChallengeFriendActivity extends BaseActivity {
     {
     	EditText search = (EditText)findViewById(R.id.searchfriend);
     }
+    
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText("Rides");		
+	}
+
 }

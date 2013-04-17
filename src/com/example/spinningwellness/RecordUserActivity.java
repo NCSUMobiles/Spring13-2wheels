@@ -387,5 +387,10 @@ public class RecordUserActivity extends BaseActivity implements OnClickListener 
 	}   
 	
 	
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Log Activity");		
+	}
     
 }

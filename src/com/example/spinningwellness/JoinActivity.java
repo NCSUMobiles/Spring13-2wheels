@@ -7,15 +7,10 @@ import com.ncsu.edu.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -46,7 +41,6 @@ public class JoinActivity extends BaseActivity {
 		}
 		//Generate list View from ArrayList
 		displayListView();
-
 	}
 
 	private void displayListView() {
@@ -176,4 +170,9 @@ public class JoinActivity extends BaseActivity {
 
 	}
 
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Join Ride");		
+	}
 }

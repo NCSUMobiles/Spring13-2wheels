@@ -6,13 +6,21 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 
-public class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity {
+	
+	public final String SPINNING_WEELNESS = "SPINNING WELLNESS";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+		setContentView(R.layout.main);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
 		
+		setTitle();
 	}
 
 	@Override
@@ -22,7 +30,7 @@ public class BaseActivity extends Activity {
 		menuInflater.inflate(R.layout.welcome_menu, menu);
 		return true;
 	}
-	
+
 	/***** Menu Settings ******/
 
 	@Override
@@ -50,5 +58,5 @@ public class BaseActivity extends Activity {
 		}
 	}
 
-
+	public abstract void setTitle();
 }

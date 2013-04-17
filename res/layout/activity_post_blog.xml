@@ -10,25 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PostBlogActivity" >
 
-    <!-- Header  Starts -->
-    <!-- Header Ends -->
-    <!-- Footer Start -->
-
     <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="fill_parent"
-        android:layout_height="90dip"
-        android:layout_alignParentBottom="true"
-        android:background="@layout/footer_repeat" >
-    </LinearLayout>
-    <!-- Footer Ends -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header"
         android:orientation="vertical"
         android:padding="10dip" >
 
@@ -38,22 +23,9 @@
             android:layout_height="150dp"
             android:layout_marginBottom="20dip"
             android:layout_marginTop="5dip"
-            android:singleLine="false" 
-            android:textColor="#000000"/>
-
+            android:singleLine="false"
+            android:textColor="#000000" />
         <!-- Create New Ride Button -->
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@layout/header_gradient"
-        android:paddingBottom="25dip"
-        android:paddingTop="25dip"
-        android:text="Start burning your calories NOW!" >
 
         <TextView
             android:layout_width="fill_parent"
@@ -63,17 +35,18 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
 
+        <Button
+            android:id="@+id/btnPostBlog"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout1"
+            android:background="@layout/header_gradient"
+            android:text="Post to Blog"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+
+        <include layout="@layout/common_layout" />
+        
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnPostBlog"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1"
-        android:background="@layout/header_gradient"
-        android:text="Post to Blog" 
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"/>
-
 </RelativeLayout>

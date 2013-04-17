@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdditionalInfoActivity extends BaseActivity {
@@ -56,6 +57,11 @@ public class AdditionalInfoActivity extends BaseActivity {
 		});
 	}
 
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Additional Information");		
+	}
 
 }
 

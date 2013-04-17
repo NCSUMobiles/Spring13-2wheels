@@ -7,36 +7,35 @@ import java.net.MalformedURLException;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
 
-import redstone.xmlrpc.XmlRpcException;
 import redstone.xmlrpc.XmlRpcFault;
 
 import net.bican.wordpress.User;
 import net.bican.wordpress.Wordpress;
-import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class LoginActivity extends Activity {
-	String username ;
+public class LoginActivity extends BaseActivity {
+
+	String username;
 	String password;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
-
-		ImageButton button  = (ImageButton) findViewById(R.id.btnLogin);
+		setContentView(R.layout.activity_login);
 
 		// Listening to login button
+		ImageButton button  = (ImageButton) findViewById(R.id.btnLogin);
 		button.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -87,48 +86,48 @@ public class LoginActivity extends Activity {
 				LinearLayout l = (LinearLayout)findViewById(R.id.login_layout);
 				l.addView(myText);
 			} else{
-//				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
-//				i.putExtra("username",username);
-//				i.putExtra("password",password);
-//				startActivity(i);
+				//				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				//				i.putExtra("username",username);
+				//				i.putExtra("password",password);
+				//				startActivity(i);
 				new GetUpcomingRidesTask().execute();
 			}
 		}
 	}
-	
+
 	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
 		Exception error;
-				
+
 		protected List<Ride> doInBackground(Void... params) {
 			return RidesManager.viewUpcomingRides();
 		}
 
 		protected void onPostExecute(List<Ride> result) {
 			if(error != null){
-				 
+
 			} else{
-				 List<Ride> rideList = result;
-				 for(Ride r:rideList){
-					 System.out.println(r.getName());
-				 }
-				 Intent i = new Intent(getApplicationContext(), JoinActivity.class);
-				 i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
-				 i.putExtra("username",username);
-				 i.putExtra("password",password);
-				 startActivity(i);
+				List<Ride> rideList = result;
+				for(Ride r:rideList){
+					System.out.println(r.getName());
+				}
+				Intent i = new Intent(getApplicationContext(), JoinActivity.class);
+				i.putParcelableArrayListExtra("rideList",(ArrayList<? extends Parcelable>) rideList);
+				i.putExtra("username",username);
+				i.putExtra("password",password);
+				startActivity(i);
 			}
 		}
 	}
-	
-	
+
+
 	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
 		Exception error;
 		Intent i;
-		
+
 		void setIntent(Intent intent){
 			i=intent;
 		}
-		
+
 		protected List<Ride> doInBackground(Void... params) {
 			return RidesManager.viewMyUpcomingRides(username);
 		}
@@ -136,17 +135,32 @@ public class LoginActivity extends Activity {
 		protected void onPostExecute(List<Ride> result) {
 			if(error != null){
 				System.out.println("Error");
-				 
+
 			} else{
-				 List<Ride> rideList = result;
-				 for(Ride r:rideList){
-					 System.out.println(r.getName());
-				 }
-				 Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
-				 i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
-				 startActivity(i);
+				List<Ride> rideList = result;
+				for(Ride r:rideList){
+					System.out.println(r.getName());
+				}
+				Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
+				i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
+				startActivity(i);
 			}
 		}
 	}
-	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return true;
+	}
+
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Login to Burn Those Calories");		
+	}
 }

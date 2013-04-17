@@ -85,4 +85,10 @@ public class PostBlogActivity extends BaseActivity {
 		}
 	}
 
+	@Override
+	public void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Post To Blog");		
+	}
+
 }
