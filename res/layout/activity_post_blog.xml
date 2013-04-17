@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/linearLayout1"
-            android:background="@layout/header_gradient"
+            android:background="@layout/common_color_gradient"
             android:text="Post to Blog"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF" />

@@ -3,6 +3,7 @@ package com.example.spinningwellness;
 import java.util.Date;
 
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
+import com.ncsu.edu.tabpanel.MyTabHostProvider;
 
 import android.app.Activity;
 import android.content.Context;
@@ -62,9 +63,4 @@ public class AdditionalInfoActivity extends BaseActivity {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Additional Information");		
 	}
-
 }
-
-
-
-

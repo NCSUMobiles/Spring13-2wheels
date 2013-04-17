@@ -3,6 +3,9 @@ package com.example.spinningwellness;
 import java.util.List;
 import java.net.MalformedURLException;
 
+import com.ncsu.edu.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.tabpanel.TabView;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -15,14 +18,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-
-
 public class ChallengeFriendActivity extends BaseActivity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.invite_friend);
         addListenerOnButton();
     }
     
@@ -60,5 +60,4 @@ public class ChallengeFriendActivity extends BaseActivity {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText("Rides");		
 	}
-
 }

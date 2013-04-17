@@ -1,5 +1,7 @@
 package com.example.spinningwellness;
 
+import com.ncsu.edu.tabpanel.TabHostProvider;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,32 +12,29 @@ import android.view.Window;
 
 public abstract class BaseActivity extends Activity {
 	
-	public final String SPINNING_WEELNESS = "SPINNING WELLNESS";
+	protected final String SPINNING_WEELNESS = "SPINNING WELLNESS";
+	protected TabHostProvider tabProvider;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		//create custom title bar
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.main);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
-		
-		setTitle();
+		setTitle();		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.layout.welcome_menu, menu);
 		return true;
 	}
 
 	/***** Menu Settings ******/
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
+	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId())
 		{
@@ -58,5 +57,5 @@ public abstract class BaseActivity extends Activity {
 		}
 	}
 
-	public abstract void setTitle();
+	public abstract void setTitle();	
 }

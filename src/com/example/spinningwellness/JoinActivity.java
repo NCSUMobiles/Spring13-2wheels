@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.ncsu.edu.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.tabpanel.MenuConstants;
+import com.ncsu.edu.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.tabpanel.TabView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -33,14 +36,20 @@ public class JoinActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_join);
-		rideList = getIntent().getParcelableArrayListExtra("rideList");
-		for(Ride r:rideList){
-			rideNameList.add(r.getName());
-			rideEntry.add(new CustomEntry(r.getName(), true));
-		}
-		//Generate list View from ArrayList
-		displayListView();
+		
+		//Draw menu
+		tabProvider = new MyTabHostProvider(JoinActivity.this);
+		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
+		tabView.setCurrentView(R.layout.activity_join);
+		setContentView(tabView.render());			
+
+//		rideList = getIntent().getParcelableArrayListExtra("rideList");
+//		for(Ride r:rideList){
+//			rideNameList.add(r.getName());
+//			rideEntry.add(new CustomEntry(r.getName(), true));
+//		}
+//		//Generate list View from ArrayList
+//		displayListView();
 	}
 
 	private void displayListView() {

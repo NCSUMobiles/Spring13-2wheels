@@ -3,7 +3,10 @@ package com.example.spinningwellness;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
+import com.ncsu.edu.tabpanel.MenuConstants;
+import com.ncsu.edu.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.tabpanel.TabView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,10 +23,15 @@ public class MyPastRidesActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_my_past_rides);
 
-		//Generate list View from ArrayList
-		displayListView();
+		//Draw menu
+		tabProvider = new MyTabHostProvider(MyPastRidesActivity.this);
+		TabView tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+		tabView.setCurrentView(R.layout.activity_my_past_rides);
+		setContentView(tabView.render());			
+
+//		//Generate list View from ArrayList
+//		displayListView();
 
 	}
 
@@ -99,5 +107,4 @@ public class MyPastRidesActivity extends BaseActivity {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "My Past Rides");		
 	}
-
 }
