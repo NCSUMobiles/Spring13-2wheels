@@ -36,6 +36,7 @@ public class JoinRidesActivity extends BaseActivity {
 	List<Ride> rideList = new ArrayList<Ride>();
 	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
 	private LinearLayout progressBar;
+	Ride selectedRideSave;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -165,13 +166,16 @@ public class JoinRidesActivity extends BaseActivity {
 		private OnCheckedChangeListener mStarCheckedChangeListener = new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				System.out.println("checked isjoined");
+				System.out.println("checked isjoined" + isChecked); 
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(buttonView);
 				if (position != ListView.INVALID_POSITION) {
 					//todo:update mStarStates[position] = isChecked;
-
-
+					Ride r = rideList.get(position);
+					selectedRideSave = r;
+					progressBar = (LinearLayout) findViewById(R.id.Spinner);
+					progressBar.setVisibility(View.VISIBLE);
+					new JoinRideTask().execute();
 				}
 			}
 		};
@@ -203,4 +207,24 @@ public class JoinRidesActivity extends BaseActivity {
 			}
 		}
 	}
+	
+	//AsynTask for joining the rides
+		public class JoinRideTask extends AsyncTask<Void,Void,String> {
+			Exception error;
+
+			protected String doInBackground(Void... params) {
+				return  RidesManager.addParticipantToRide(selectedRideSave.getId(), username);
+			}
+
+			protected void onPostExecute(String result) {
+				if(result.equalsIgnoreCase("Success")){
+					Toast.makeText(getApplicationContext(), "Joined the ride successfully." , Toast.LENGTH_SHORT).show();
+//					selectedStar.setSelected(true);
+				}else{
+					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+				}
+				
+				displayListView();
+			}
+		}
 }
