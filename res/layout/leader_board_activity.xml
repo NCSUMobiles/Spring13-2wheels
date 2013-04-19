@@ -4,14 +4,40 @@
     android:layout_height="wrap_content"
     android:background="#ffffff" >
 
+    <ListView
+        android:id="@+id/leaderBoardListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="60dp"
+        android:cacheColorHint="#00000000" >
+    </ListView>
+
     <include layout="@layout/common_layout" />
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/leaderBoardSpinner"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Leader Board"
-        android:textColor="#5C3317"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please wait..." >
+        </TextView>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" >
+        </ProgressBar>
+
+        <include layout="@layout/common_layout" />
+    </LinearLayout>
 
 </RelativeLayout>
