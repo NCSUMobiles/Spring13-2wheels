@@ -50,7 +50,7 @@ public class LeaderBoardActivity extends BaseActivity {
 		progressBar.setVisibility(View.INVISIBLE);
 
 		//create an ArrayAdaptar from the String Array
-		UserCustomAdapter dataAdapter = new UserCustomAdapter(this, R.id.leaderBoardTextVal, users);
+		UserCustomAdapter dataAdapter = new UserCustomAdapter(this, R.id.userTextVal, users);
 		final ListView listView = (ListView) findViewById(R.id.leaderBoardListView);
 
 		// Assign adapter to ListView

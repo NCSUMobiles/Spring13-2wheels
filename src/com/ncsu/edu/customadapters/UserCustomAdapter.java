@@ -31,7 +31,7 @@ public class UserCustomAdapter extends ArrayAdapter<String> {
 			LayoutInflater vi = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.users_list, null);
 			holder = new ViewHolder();
-			holder.userName = (TextView) v.findViewById(R.id.leaderBoardTextVal);
+			holder.userName = (TextView) v.findViewById(R.id.userTextVal);
 			v.setTag(holder);
 		} else {
 			holder = (ViewHolder) v.getTag();

@@ -81,7 +81,7 @@ public class JoinRidesActivity extends BaseActivity {
 					System.out.println( rideList.get(positionView).getName());
 					//start view activity
 					selectedRide = rideList.get(positionView);
-					Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
 					i.putExtra("RideDetails", selectedRide);
 					startActivity(i);
 				}else{

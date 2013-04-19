@@ -51,15 +51,15 @@
             android:label="@string/title_activity_create_new_ride" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ViewMemberActivity"
+            android:name="com.example.spinningwellness.ViewParticipantsForARideActivity"
             android:label="@string/title_activity_view_member" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ChallengeFriendActivity"
+            android:name="com.example.spinningwellness.ViewParticipantsForARideActivity"
             android:label="@string/title_activity_challenge_friend" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ViewRidesActivity"
+            android:name="com.example.spinningwellness.ViewRideDetailsActivity"
             android:label="@string/title_activity_view_rides" >
         </activity>
         <activity

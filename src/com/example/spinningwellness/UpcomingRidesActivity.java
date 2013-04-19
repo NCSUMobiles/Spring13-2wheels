@@ -99,7 +99,7 @@ public class UpcomingRidesActivity extends BaseActivity {
     	}
     }
     
-    Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+    Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
     i.putExtra("RideDetails", selectedRide);
     System.out.println("Ride details passed : " + selectedRide.toString());
 	startActivity(i);

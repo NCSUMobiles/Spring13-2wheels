@@ -63,8 +63,8 @@ public class MyPastRidesActivity extends BaseActivity {
 
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
 
 				Ride selectedRide = null;
@@ -72,7 +72,7 @@ public class MyPastRidesActivity extends BaseActivity {
 				if (positionView != ListView.INVALID_POSITION) {
 					//start view activity
 					selectedRide = myPastRides.get(positionView);
-					Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
+					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
 					i.putExtra("RideDetails", selectedRide);
 					startActivity(i);
 				} else {

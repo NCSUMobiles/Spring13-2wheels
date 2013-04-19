@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.net.MalformedURLException;
 
-import com.example.spinningwellness.ViewMemberActivity.ViewParticipantsTask;
 import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
@@ -37,7 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ViewRidesActivity extends BaseActivity {
+public class ViewRideDetailsActivity extends BaseActivity {
 	
 	 /** Called when the activity is first created. */
     TableLayout	ride_table;
@@ -121,8 +120,8 @@ public class ViewRidesActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
  
-			    Intent member_intent = new Intent(context, ViewMemberActivity.class);
-			    member_intent.putExtra("RideId", RideDetails);
+			    Intent member_intent = new Intent(context, ViewParticipantsForARideActivity.class);
+			    member_intent.putExtra("Ride", RideDetails);
                 System.out.println("Ride details passed from ViewRides: " + RideDetails.toString());
             	startActivity(member_intent);   
  
