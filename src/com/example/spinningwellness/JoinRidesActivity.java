@@ -155,9 +155,8 @@ public class JoinRidesActivity extends BaseActivity {
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(v);
 				if (position != ListView.INVALID_POSITION) {
-					System.out.println( rideList.get(position).getName());
-					Intent i = new Intent(getApplicationContext(), RecordUserActivity.class);
-					i.putExtra("RideDetails", rideList.get(position));
+					Intent i = new Intent(getApplicationContext(), RecordRideStatsActivity.class);
+					i.putExtra("Ride", rideList.get(position));
 					startActivity(i);
 				}
 			}
