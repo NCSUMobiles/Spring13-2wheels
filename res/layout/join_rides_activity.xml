@@ -36,7 +36,7 @@
             android:indeterminate="true" >
         </ProgressBar>
 
-        <include layout="@layout/common_layout" />
+       
     </LinearLayout>
 
 </RelativeLayout>

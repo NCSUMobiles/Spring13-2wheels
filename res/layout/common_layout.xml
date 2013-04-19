@@ -1,16 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
 
-    <!-- Footer Start -->
 
-    <LinearLayout
-        android:id="@+id/footer"
+  
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/imagebckgd"
         android:layout_width="fill_parent"
-        android:layout_height="90dip"
-        android:layout_alignParentBottom="true"
-        android:background="@layout/footer_repeat" >
-    </LinearLayout>
-    <!-- Footer Ends -->
+        android:layout_height="fill_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background1" />
 
-</RelativeLayout>
