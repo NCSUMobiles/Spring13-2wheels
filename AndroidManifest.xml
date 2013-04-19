@@ -19,11 +19,6 @@
         <activity
             android:name="com.example.spinningwellness.LoginActivity"
             android:label="Spinning Wellness" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- Entry for RegisterActivity.class -->
@@ -79,8 +74,15 @@
             android:name="com.example.spinningwellness.BaseActivity"
             android:label="@string/title_activity_base" >
         </activity>
+        <activity android:name="com.example.spinningwellness.LeaderBoardActivity" >
+        </activity>
         <activity
-            android:name="com.example.spinningwellness.LeaderBoardActivity">
+            android:name="com.example.spinningwellness.CoverPageActivity"
+            android:label="@string/title_activity_cover_page" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
