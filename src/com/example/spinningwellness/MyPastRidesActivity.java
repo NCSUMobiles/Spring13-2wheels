@@ -73,7 +73,7 @@ public class MyPastRidesActivity extends BaseActivity {
 					//start view activity
 					selectedRide = myPastRides.get(positionView);
 					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
-					i.putExtra("RideDetails", selectedRide);
+					i.putExtra("Ride", selectedRide);
 					startActivity(i);
 				} else {
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
