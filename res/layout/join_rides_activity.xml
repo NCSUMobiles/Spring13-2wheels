@@ -3,16 +3,17 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff" >
-
+   <include layout="@layout/common_layout" />
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:layout_marginTop="100dp"
-        android:cacheColorHint="#00000000" />
+        android:cacheColorHint="#00000000" 
+        android:footerDividersEnabled="true"/>
 
-    <include layout="@layout/common_layout" />
+    
 
     <LinearLayout
         android:id="@+id/Spinner"

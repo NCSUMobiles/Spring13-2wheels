@@ -94,44 +94,6 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 
-	public class GetActualUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
-		Exception error;
-		Intent i;
-
-		void setIntent(Intent intent){
-			i=intent;
-		}
-
-		protected List<Ride> doInBackground(Void... params) {
-			return RidesManager.viewMyUpcomingRides(username);
-		}
-
-		protected void onPostExecute(List<Ride> result) {
-			if(error != null){
-				System.out.println("Error");
-
-			} else{
-				List<Ride> rideList = result;
-				for(Ride r:rideList){
-					System.out.println(r.getName());
-				}
-				Intent i = new Intent(getApplicationContext(), UpcomingRidesActivity.class);
-				i.putParcelableArrayListExtra("MyUpcomingRideList",(ArrayList<? extends Parcelable>) rideList);
-				startActivity(i);
-			}
-		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return true;
-	}
-
 	@Override
 	public void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);

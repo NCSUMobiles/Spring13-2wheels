@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff" >
-
+    <include layout="@layout/common_layout" />
     <ListView
         android:id="@+id/leaderBoardListView"
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:cacheColorHint="#00000000" >
     </ListView>
 
-    <include layout="@layout/common_layout" />
+    
 
     <LinearLayout
         android:id="@+id/leaderBoardSpinner"

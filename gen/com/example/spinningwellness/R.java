@@ -55,7 +55,7 @@ public final class R {
     public static final class id {
         public static final int ScrollView=0x7f090037;
         public static final int Spinner=0x7f090012;
-        public static final int action_settings=0x7f09003c;
+        public static final int action_settings=0x7f090039;
         public static final int btnCadHrt=0x7f09000e;
         public static final int btnCreateRide=0x7f090007;
         public static final int btnLogin=0x7f09001b;
@@ -84,9 +84,6 @@ public final class R {
         public static final int login_layout=0x7f090018;
         public static final int login_password=0x7f09001a;
         public static final int login_username=0x7f090019;
-        public static final int menu_create_new_ride=0x7f090039;
-        public static final int menu_edit_del=0x7f09003b;
-        public static final int menu_past=0x7f09003a;
         public static final int myPastRidesListView=0x7f09001c;
         public static final int myPastRidesSpinner=0x7f09001d;
         public static final int myPastRidesTextVal=0x7f09001e;
@@ -148,7 +145,6 @@ public final class R {
         public static final int users_list=0x7f03001d;
         public static final int view_participants_for_a_ride_activity=0x7f03001e;
         public static final int view_ride_details_activity=0x7f03001f;
-        public static final int welcome_menu=0x7f030020;
     }
     public static final class menu {
         public static final int base=0x7f080000;
