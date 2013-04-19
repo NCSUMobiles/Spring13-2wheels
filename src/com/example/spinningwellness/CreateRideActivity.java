@@ -10,6 +10,7 @@ import com.ncsu.edu.tabpanel.TabView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ public class CreateRideActivity extends BaseActivity {
 		TabView tabView = tabProvider.getTabHost(MenuConstants.CREATE_RIDE);
 		tabView.setCurrentView(R.layout.create_new_ride_activity);
 		setContentView(tabView.render());			
+		
+		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		//Listener for create ride button
 		Button button  = (Button) findViewById(R.id.btnCreateRide);
