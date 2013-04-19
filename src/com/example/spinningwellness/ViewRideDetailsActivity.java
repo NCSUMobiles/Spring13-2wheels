@@ -46,7 +46,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 
 	@Override
 	public void setTitle() {
-		ride = getIntent().getParcelableExtra("Ride");
+		ride = getIntent().getParcelableExtra("RideDetails");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Ride Details for Ride:" + ride.getName());
@@ -109,7 +109,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				Intent member_intent = new Intent(context, ViewParticipantsForARideActivity.class);
-				member_intent.putExtra("Ride", ride);
+				member_intent.putExtra("RideDetails", ride);
 				startActivity(member_intent);   
 			}
 		});
