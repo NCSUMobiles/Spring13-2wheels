@@ -55,10 +55,6 @@
             android:label="@string/title_activity_view_member" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ViewParticipantsForARideActivity"
-            android:label="@string/title_activity_challenge_friend" >
-        </activity>
-        <activity
             android:name="com.example.spinningwellness.ViewRideDetailsActivity"
             android:label="@string/title_activity_view_rides" >
         </activity>
@@ -78,7 +74,7 @@
         </activity>
         <activity
             android:name="com.example.spinningwellness.CoverPageActivity"
-            android:label="@string/title_activity_cover_page" >
+            android:label="Spinning Wellness" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
