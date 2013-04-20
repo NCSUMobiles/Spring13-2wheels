@@ -42,7 +42,7 @@ public class ViewParticipantsForARideActivity extends BaseActivity {
 	}
 	
 	@Override
-	public void setTitle() {
+	protected void setTitle() {
 		
 		ride = getIntent().getParcelableExtra("RideDetails");
 

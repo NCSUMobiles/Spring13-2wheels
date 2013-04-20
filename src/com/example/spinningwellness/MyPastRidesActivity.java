@@ -64,9 +64,6 @@ public class MyPastRidesActivity extends BaseActivity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
-
 				Ride selectedRide = null;
 				int positionView = listView.getPositionForView(view);
 				if (positionView != ListView.INVALID_POSITION) {
@@ -82,7 +79,7 @@ public class MyPastRidesActivity extends BaseActivity {
 		});	}
 
 	@Override
-	public void setTitle() {
+	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "My Past Rides");		
 	}

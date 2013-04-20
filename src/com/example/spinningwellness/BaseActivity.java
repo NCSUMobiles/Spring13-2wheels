@@ -4,9 +4,7 @@ import com.ncsu.edu.tabpanel.TabHostProvider;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -24,8 +22,8 @@ public abstract class BaseActivity extends Activity {
 
 		//create custom title bar
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-		setContentView(R.layout.main);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
+		setContentView(R.layout.base_activity);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.base_activity_title_bar);
 		setTitle();		
 	}
 
@@ -34,12 +32,10 @@ public abstract class BaseActivity extends Activity {
 		return true;
 	}
 
-	/***** Menu Settings ******/
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public abstract void setTitle();	
+	protected abstract void setTitle();	
 }

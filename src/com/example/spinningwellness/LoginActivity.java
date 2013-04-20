@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	@Override
-	public void setTitle() {
+	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Login to Burn Those Calories");		
 	}

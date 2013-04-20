@@ -1,6 +1,0 @@
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/imagebckgd"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:scaleType="fitXY"
-    android:src="@drawable/background1" />

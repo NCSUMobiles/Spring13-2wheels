@@ -52,7 +52,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 	}
 
 	@Override
-	public void setTitle() {
+	protected void setTitle() {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
