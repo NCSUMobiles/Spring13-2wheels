@@ -1,7 +1,10 @@
 package com.example.spinningwellness;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import javax.swing.text.Position;
 
 import com.ncsu.edu.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
@@ -37,11 +40,12 @@ public class JoinRidesActivity extends BaseActivity {
 	ArrayList<CustomEntry> rideEntry = new ArrayList<CustomEntry>();
 	private LinearLayout progressBar;
 	Ride selectedRideSave;
+	int selectedRidePosition;
+	public List<Ride> myJoinedRidesList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		//Draw menu
 		tabProvider = new MyTabHostProvider(JoinRidesActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
@@ -51,13 +55,40 @@ public class JoinRidesActivity extends BaseActivity {
 		progressBar = (LinearLayout) findViewById(R.id.Spinner);
 		progressBar.setVisibility(View.VISIBLE);
 
-		new GetUpcomingRidesTask().execute();		
+		new GetUpcomingRidesTask().execute();	
 	}
 
 	private void displayListView() {
 		
 		progressBar.setVisibility(View.INVISIBLE);
+		//sort by date
+		List<CustomEntry> tempJoined = new ArrayList<CustomEntry>();
+		List<CustomEntry> tempNotJoined = new ArrayList<CustomEntry>();
+		for(CustomEntry ce:rideEntry){
+			if(ce.isJoined()){
+				tempJoined.add(ce);
+			}else{
+				tempNotJoined.add(ce);
+			}
+		}
 		
+		Collections.sort(tempJoined);
+		Collections.sort(tempNotJoined);
+		
+		rideEntry.clear();
+		rideEntry.addAll(tempJoined);
+		rideEntry.addAll(tempNotJoined);
+		
+		List<Ride> temp = new ArrayList<Ride>();
+		for(CustomEntry r:rideEntry){
+			for(Ride r1:rideList){
+				if(r1.getId().equals(r.getRideid())){
+					temp.add(r1);
+				}
+			}
+		}
+		rideList.clear();
+		rideList.addAll(temp);
 		//create an ArrayAdaptar from the String Array
 		CustomAdapter dataAdapter = new CustomAdapter(this, R.id.textVal, rideEntry);
 		final ListView listView = (ListView) findViewById(R.id.listView1);
@@ -88,18 +119,6 @@ public class JoinRidesActivity extends BaseActivity {
 				}else{
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
 				}
-				//				for(Ride r:rideList){
-				//					if(view.findViewById(R.id.textVal).toString().equalsIgnoreCase(r.getName())){
-				//						selectedRide = r;
-				//						System.out.println("Ride details passed : " + selectedRide.getName());
-				//						break;
-				//					}
-				//				}
-
-				//				Intent i = new Intent(getApplicationContext(), ViewRidesActivity.class);
-				//				i.putExtra("RideDetails", selectedRide);
-				//				
-				//				startActivity(i);
 			}
 		});
 	}
@@ -124,27 +143,27 @@ public class JoinRidesActivity extends BaseActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			ViewHolder holder;
-			if (v == null) {
+//			if (v == null) {
 				LayoutInflater vi =
 						(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.join_rides_list, null);
 				holder = new ViewHolder();
 				holder.item1 = (TextView) v.findViewById(R.id.textVal);
 				holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
+				
 				holder.start = (Button) v.findViewById(R.id.startRide);
+				final CustomEntry custom = entries.get(position);
+				if (custom != null) {
+					holder.item1.setText(custom.getTextVal());
+					holder.item2.setChecked(custom.isJoined());
+				}
 				holder.start.setOnClickListener(mStartButtonClickListener);
 				holder.item2.setOnCheckedChangeListener(mStarCheckedChangeListener);
-				v.setTag(holder);
-			}
-			else
+				
+//			}
+//			else
 				holder=(ViewHolder)v.getTag();
-
-			final CustomEntry custom = entries.get(position);
-			if (custom != null) {
-				holder.item1.setText(custom.getTextVal());
-				holder.item2.setEnabled(custom.isJoined());
-			}
-
+			v.setTag(holder);
 			return v;
 		}
 
@@ -172,6 +191,7 @@ public class JoinRidesActivity extends BaseActivity {
 					//todo:update mStarStates[position] = isChecked;
 					Ride r = rideList.get(position);
 					selectedRideSave = r;
+					selectedRidePosition = position;
 					progressBar = (LinearLayout) findViewById(R.id.Spinner);
 					progressBar.setVisibility(View.VISIBLE);
 					new JoinRideTask().execute();
@@ -181,7 +201,7 @@ public class JoinRidesActivity extends BaseActivity {
 	}
 
 	@Override
-	protected void setTitle() {
+	public void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Join Ride");		
 	}
@@ -199,13 +219,44 @@ public class JoinRidesActivity extends BaseActivity {
 
 			} else {
 				rideList = result;
-				for(Ride r:rideList){
-					rideEntry.add(new CustomEntry(r.getName(), true));
-				}				
-				displayListView();
+				new GetJoinedRidesForUser().execute();
 			}
 		}
 	}
+	
+	//AsynTask for getting the list of rides
+		public class GetJoinedRidesForUser extends AsyncTask<Void,Void,List<Ride>> {
+			Exception error;
+
+			protected List<Ride> doInBackground(Void... params) {
+				return RidesManager.viewMyUpcomingRides(username);
+			}
+
+			protected void onPostExecute(List<Ride> result) {
+					myJoinedRidesList = result;
+					List<CustomEntry> temp = new ArrayList<CustomEntry>();
+					for(Ride r:rideList){
+						if(myJoinedRidesList.contains(r)){
+							temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), true));
+						}else{
+							temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), false));
+						}
+					}	
+					for(CustomEntry r:temp){
+						if(r.isJoined()){
+							rideEntry.add(r);
+						}
+					}
+					for(CustomEntry r:temp){
+						if(!r.isJoined()){
+							rideEntry.add(r);
+						}
+					}
+					
+					
+					displayListView();
+			}
+		}
 	
 	//AsynTask for joining the rides
 		public class JoinRideTask extends AsyncTask<Void,Void,String> {
@@ -222,7 +273,16 @@ public class JoinRidesActivity extends BaseActivity {
 				}else{
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
 				}
-				
+				//change order in rideEntry
+				ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();
+				temp.add(rideEntry.get(selectedRidePosition));
+				temp.get(0).setJoined(true);
+				for(CustomEntry r:rideEntry){
+					if(!selectedRideSave.getId().equals(r.getRideid())){
+						temp.add(r);
+					}
+				}
+				rideEntry = temp;
 				displayListView();
 			}
 		}
