@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class CreateRideActivity extends BaseActivity {
@@ -26,32 +28,47 @@ public class CreateRideActivity extends BaseActivity {
 		TabView tabView = tabProvider.getTabHost(MenuConstants.CREATE_RIDE);
 		tabView.setCurrentView(R.layout.create_new_ride_activity);
 		setContentView(tabView.render());			
-		
+
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		
+		setFormFields();
+	}
+
+	@Override
+	protected void setTitle() {
+		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
+		myTitleText.setText(SPINNING_WEELNESS + " " + "Create Ride");		
+	}
+
+	private void setFormFields() {
 
 		//Listener for create ride button
 		Button button  = (Button) findViewById(R.id.btnCreateRide);
 		button.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				Date startDate;
+				
+				System.out.println("In onclick listener");
 
-				Calendar cal = Calendar.getInstance();
-				cal.set(2013, 2, 18);
-				startDate = cal.getTime();
-				RidesManager.createRide("Ride to SJ", "source", "dest", startDate, "prajakta");
+				String rideName = ((TextView) findViewById(R.id.textViewCreateRideRideName)).getText().toString();
+				String source = ((TextView) findViewById(R.id.textViewCreateRideSource)).getText().toString();
+				String destination = ((TextView) findViewById(R.id.textViewCreateRideDestination)).getText().toString();
+
+				int day = ((DatePicker) findViewById(R.id.createRideDatePicker)).getDayOfMonth();
+				int month = ((DatePicker) findViewById(R.id.createRideDatePicker)).getMonth() + 1;
+				int year = ((DatePicker) findViewById(R.id.createRideDatePicker)).getYear();
+				
+				int hour = ((TimePicker) findViewById(R.id.createRideTimePicker)).getCurrentHour();
+				int minute = ((TimePicker) findViewById(R.id.createRideTimePicker)).getCurrentMinute();
+				
+				Calendar calendar = Calendar.getInstance();
+				calendar.set(year, month, day, hour, minute);
+				Date startDate = calendar.getTime();
+				
+				RidesManager.createRide(rideName, source, destination, startDate, username);
 
 				Toast.makeText(CreateRideActivity.this, "New Ride is created!", Toast.LENGTH_SHORT).show();
-				Button button1 = (Button) findViewById(R.id.btnCreateRide);
-				button1.setEnabled(false);
-
 			}
 		});
-	}
-	
-	@Override
-	protected void setTitle() {
-		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Create Ride");		
 	}
 }
