@@ -1,68 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-  	<LinearLayout 
-	android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-	android:background="#ffffff"
-	xmlns:android="http://schemas.android.com/apk/res/android">
-   
-  	<TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent"
-           android:layout_height="25dp"/> 
-  	
-  	 <TableLayout android:id="@+id/heading_layout" android:layout_height="wrap_content" android:layout_width="fill_parent">
-  	     
-  	  <TableRow android:id="@+id/ridename" android:background="@layout/heading_shape" android:layout_width="fill_parent" android:layout_height="350dp">
-      <TextView android:padding="5dp" android:textColor="#ff333333" 
-          android:textStyle= "bold" android:textSize= "27dp" 
-          android:id="@+id/textView1" android:layout_width="190dp" 
-          android:layout_height="wrap_content" 
-          android:textAppearance="?android:attr/textAppearanceMedium" 
-          android:text="Ride Details"></TextView>
-	  <Button android:id="@+id/btnviewmembers"
-    android:layout_width="wrap_content"
-    android:layout_height="25dp"
-    android:background="@layout/green_button" 
-    android:textColor="#191919" 
-    android:text="  View Members  "
-    android:layout_gravity="center_vertical"/> 
-	       </TableRow>	
-	       
-  	<TableRow > 
-    <TextView android:background="#ffffff" android:padding="5dp" android:layout_height="25dp"/>
-    </TableRow>
-       
-     
-     <LinearLayout android:id="@+id/ridedata"
-        android:layout_height="fill_parent" android:layout_width="fill_parent">
-        <ScrollView android:id="@+id/ScrollView"
-            android:layout_width="fill_parent" android:layout_height="fill_parent"
-            android:fillViewport="true">
-            <LinearLayout android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:layout_margin="5dip">
-                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent" android:layout_height="fill_parent"
-                    android:stretchColumns="0,1" android:id="@+id/ride_table">
-                </TableLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-    
-     
-    
-  </TableLayout>         
+    android:background="@drawable/background1"
+    android:orientation="vertical" >
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:padding="5dp" />
 
-	<TextView android:background="#ffffff" android:padding="5dp" android:layout_width="fill_parent" android:layout_height="30dp"></TextView>
+    <TableLayout
+        android:id="@+id/heading_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
- <!-- Footer Start -->
-  		<LinearLayout android:id="@+id/footer"
-  				android:layout_width="fill_parent"
-  				android:layout_height="130dp"
-  				android:background="@layout/footer_repeat"
-  				android:layout_alignParentBottom="true"
-  				android:orientation="horizontal">
-  </LinearLayout>				
-  		<!-- Footer Ends -->    
- 
+        <TableRow
+            android:id="@+id/ridename"
+            android:layout_width="fill_parent"
+            android:layout_height="350dp"
+            android:background="@layout/heading_shape" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ride Details"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff333333"
+                android:textSize="27dp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/btnviewmembers"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:background="@layout/green_button"
+                android:text="  View Members  "
+                android:textColor="#191919" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="25dp"
+                android:padding="5dp" />
+        </TableRow>
+
+        <LinearLayout
+            android:id="@+id/ridedata"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ScrollView
+                android:id="@+id/ScrollView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip" >
+
+                    <TableLayout
+                        android:id="@+id/ride_table"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:stretchColumns="0,1" >
+                    </TableLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:padding="5dp" >
+    </TextView>
+
 </LinearLayout>
-

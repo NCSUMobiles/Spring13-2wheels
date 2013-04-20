@@ -2,13 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true" >
-	
+    android:background="@drawable/background1" >
+
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff" >
-		<include layout="@layout/common_layout" />
+        android:layout_height="wrap_content" >
+
         <LinearLayout
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="3dp"
                 android:textColor="#372c24" />
-            
+
             <EditText
                 android:id="@+id/login_username"
                 android:layout_width="fill_parent"
@@ -85,9 +84,6 @@
                 android:layout_height="40sp"
                 android:background="@android:color/transparent"
                 android:src="@layout/logbutton" />
-            
-            
-            
         </LinearLayout>
         <!-- Login Form Ends -->
     </RelativeLayout>

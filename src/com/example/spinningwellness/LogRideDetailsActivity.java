@@ -33,6 +33,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	TextView textViewRideName, textViewDistanceCovered, textViewTimeOfRide, textViewAverageSpeed, textViewHeartRate, textViewCadence, textViewExperience;
 	Button btnSubmit;
+	
+	String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-		setFormFields();	
+		setFormFields();
 	}
 
 	@Override
@@ -104,41 +106,26 @@ public class LogRideDetailsActivity extends BaseActivity {
 			Date activityDate = new Date();
 			cadence = Double.parseDouble(((TextView) findViewById(R.id.textViewCadence)).getText().toString());
 			heartRate = Double.parseDouble(((TextView) findViewById(R.id.textViewHeartRate)).getText().toString());
-
-			UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);	
+			String result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);
 
 			//Post to blog
-			String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
-			System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
-
+			System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
 			Wordpress wp;
 			try {
 				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
-				List<Page> plist = wp.getPages();
-				for(Page p:plist){
-					int i = p.getPage_id();
-				}
 				Page recentPost = new Page();
 				recentPost.setDescription(((TextView) findViewById(R.id.textViewExperience)).getText().toString());
-				String result = wp.newPost(recentPost, true);
-
+				String postBlogResult = wp.newPost(recentPost, true);
+				System.out.println(postBlogResult);
 			} catch (MalformedURLException e) {
-				e.printStackTrace();
 				error = e;
 			} catch (XmlRpcFault e) {
-				e.printStackTrace();
 				error = e;
 			}
 			return null;
 		}
 
 		protected void onPostExecute(User result) {
-			if(error != null){
-				Toast.makeText(LogRideDetailsActivity.this, "Issue in posting to blog", Toast.LENGTH_SHORT).show();
-			} else{
-				Toast.makeText(LogRideDetailsActivity.this, "Post Successful", Toast.LENGTH_SHORT).show();
-			}
-			
 			//Redirect to join rides page
 			moveToJoinRidesPage();
 		}

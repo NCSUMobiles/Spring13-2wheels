@@ -2,25 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff" >
-   <include layout="@layout/common_layout" />
+    android:background="@drawable/background1" >
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:layout_marginTop="100dp"
-        android:cacheColorHint="#00000000" 
+        android:cacheColorHint="#00000000"
         android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"/>
-
-    
+        android:headerDividersEnabled="true" />
 
     <LinearLayout
         android:id="@+id/Spinner"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -37,8 +34,6 @@
             android:layout_gravity="center"
             android:indeterminate="true" >
         </ProgressBar>
-
-       
     </LinearLayout>
 
 </RelativeLayout>
