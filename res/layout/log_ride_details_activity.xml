@@ -113,7 +113,8 @@
                 android:id="@+id/textViewHeartRate"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:singleLine="true" 
+                android:inputType="number"/>
 
             <!-- Cadence -->
 
@@ -127,7 +128,8 @@
                 android:id="@+id/textViewCadence"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true" />
+                android:singleLine="true" 
+                android:inputType="number"/>
 
             <!-- Post to blog -->
 
@@ -144,7 +146,8 @@
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
                 android:singleLine="false"
-                android:textColor="#000000" />
+                android:textColor="#000000" 
+                android:inputType="text"/>
 
             <Button
                 android:id="@+id/btnSubmit"
