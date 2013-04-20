@@ -33,8 +33,6 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	TextView textViewRideName, textViewDistanceCovered, textViewTimeOfRide, textViewAverageSpeed, textViewHeartRate, textViewCadence, textViewExperience;
 	Button btnSubmit;
-
-	String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
 	
 	LinearLayout progressBar;
 
@@ -58,7 +56,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Log Ride Details for Ride:" + ride.getName());
+		myTitleText.setText(SPINNING_WELLNESS + " " + "Log Ride Details for Ride:" + ride.getName());
 	}
 
 	private void validateUserInputAndCallAsyncTask() {
@@ -113,6 +111,21 @@ public class LogRideDetailsActivity extends BaseActivity {
 	}
 
 	private void moveToJoinRidesPage() {
+		
+		progressBar.setVisibility(View.INVISIBLE);
+
+		LinearLayout logRideDetailsForm = (LinearLayout) findViewById(R.id.logRideDetailsForm);
+		logRideDetailsForm.setVisibility(View.VISIBLE);
+
+		//clear the text boxes
+		textViewRideName.setText(ride.getName());
+		textViewDistanceCovered.setText(((Double) distanceCovered).toString());
+		textViewTimeOfRide.setText(((Long) timeOfRide).toString());
+		textViewAverageSpeed.setText(((Double) averageSpeed).toString());
+		textViewHeartRate.setText("");
+		textViewCadence.setText("");
+		textViewExperience.setText("");
+
 		Intent joinRidesIntent = new Intent(LogRideDetailsActivity.this, JoinRidesActivity.class); 
 		LogRideDetailsActivity.this.startActivity(joinRidesIntent);
 	}
@@ -150,11 +163,11 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
-			if(error == null) {
+			//if(error == null) {
 				moveToJoinRidesPage();
-			} else {
+			//} else {
 				//Display the error to user
-			}
+			//}
 		}
 	}
 }

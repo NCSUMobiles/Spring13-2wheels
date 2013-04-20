@@ -48,7 +48,7 @@ public class ViewParticipantsForARideActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Participants for Ride:" + ride.getName());				
+		myTitleText.setText(SPINNING_WELLNESS + " " + "Participants for Ride:" + ride.getName());				
 	}	
 
 	private void displayListView() {

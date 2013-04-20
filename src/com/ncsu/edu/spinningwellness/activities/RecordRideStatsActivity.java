@@ -122,7 +122,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Record Ride: " + ride.getName());		
+		myTitleText.setText(SPINNING_WELLNESS + " " + "Record Ride: " + ride.getName());		
 	}
 
 	private void registerLocationListener() {

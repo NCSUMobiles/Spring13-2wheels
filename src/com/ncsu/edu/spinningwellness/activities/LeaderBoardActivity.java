@@ -43,7 +43,7 @@ public class LeaderBoardActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Leader Board");		
+		myTitleText.setText(SPINNING_WELLNESS + " " + "Leader Board");		
 	}
 
 	private void displayListView() {

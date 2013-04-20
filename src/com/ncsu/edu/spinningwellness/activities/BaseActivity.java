@@ -11,7 +11,8 @@ import android.view.Window;
 
 public abstract class BaseActivity extends Activity {
 
-	protected final String SPINNING_WEELNESS = "SPINNING WELLNESS";
+	protected final String SPINNING_WELLNESS = "SPINNING WELLNESS";
+	protected final String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
 	protected TabHostProvider tabProvider;
 
 	protected static String username;

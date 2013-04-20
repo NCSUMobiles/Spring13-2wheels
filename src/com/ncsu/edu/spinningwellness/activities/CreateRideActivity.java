@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 public class CreateRideActivity extends BaseActivity {
-	
+
 	LinearLayout progressBar;
 
 	@Override
@@ -46,7 +46,7 @@ public class CreateRideActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WEELNESS + " " + "Create Ride");		
+		myTitleText.setText(SPINNING_WELLNESS + " " + "Create Ride");		
 	}
 
 	private void addListenerForCreateRideButton() {
@@ -69,7 +69,7 @@ public class CreateRideActivity extends BaseActivity {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
 			createRideForm.setVisibility(View.INVISIBLE);
-			
+
 			new CreateRideTask().execute();
 		} else {
 			//Show the error message to user
@@ -78,6 +78,24 @@ public class CreateRideActivity extends BaseActivity {
 	}
 
 	private void moveToJoinRidesPage() {
+
+		progressBar.setVisibility(View.INVISIBLE);
+
+		LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
+		createRideForm.setVisibility(View.VISIBLE);
+
+		//clear the text boxes
+		TextView textViewRideName = (TextView) findViewById(R.id.textViewCreateRideRideName);
+		textViewRideName.setText("");
+
+		TextView textViewSource = (TextView) findViewById(R.id.textViewCreateRideSource);
+		textViewSource.setText("");
+
+		TextView textViewDestination = (TextView) findViewById(R.id.textViewCreateRideDestination);
+		textViewDestination.setText("");
+
+		//Date picker and time picker have to be reset
+
 		Intent joinRidesIntent = new Intent(CreateRideActivity.this, JoinRidesActivity.class); 
 		CreateRideActivity.this.startActivity(joinRidesIntent);
 	}

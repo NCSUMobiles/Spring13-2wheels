@@ -1,91 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background1" >
+    android:background="@drawable/background1"
+    android:fillViewport="true" >
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/loginSpinner"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logging in..." >
+        </TextView>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" >
+        </ProgressBar>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
 
         <LinearLayout
-            android:id="@+id/login_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dip" >
+            android:id="@+id/LoginForm"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+            
+            <TextView
+                android:id="@+id/textViewLoginError"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Login Failed..."
+                android:textColor="#372c24" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Username"
-                android:textColor="#5C3317"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="3dp"
                 android:textColor="#372c24" />
 
             <EditText
-                android:id="@+id/login_username"
+                android:id="@+id/textViewLoginUserName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="#ffccff66"
-                android:gravity="left"
-                android:hint="spinningwellness"
-                android:textColor="#5C3317"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="15dp"
-                android:textColor="#372c24" />
-
-            <!-- Password Label -->
+                android:hint="username"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Password"
-                android:textColor="#5C3317"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="3dp"
                 android:textColor="#372c24" />
 
             <EditText
-                android:id="@+id/login_password"
+                android:id="@+id/textViewLoginPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="#ffccff66"
-                android:gravity="left"
-                android:password="true"
-                android:text="******"
-                android:textColor="#5C3317"
-                android:textSize="20dp" />
+                android:hint="******"
+                android:inputType="textPassword"
+                android:singleLine="true" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:textColor="#372c24" />
-
-            <ImageButton
+            <Button
                 android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
-                android:layout_height="40sp"
-                android:background="@android:color/transparent"
-                android:src="@layout/logbutton" />
+                android:layout_height="40dip"
+                android:layout_marginBottom="40dip"
+                android:layout_marginTop="10dip"
+                android:background="@layout/common_color_gradient"
+                android:text="Login!!"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
         </LinearLayout>
-        <!-- Login Form Ends -->
-    </RelativeLayout>
+        <!-- Create New Ride Form Ends -->
+    </ScrollView>
 
-</ScrollView>
+</RelativeLayout>
