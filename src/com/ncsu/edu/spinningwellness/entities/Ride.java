@@ -7,7 +7,32 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 @XmlRootElement
-public class Ride extends BaseEntity implements Parcelable{
+public class Ride extends BaseEntity implements Parcelable,Comparable<Ride>{
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ride other = (Ride) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 
 	String id;
 	String name;
@@ -126,4 +151,15 @@ public class Ride extends BaseEntity implements Parcelable{
 	    }
 
 	};
+
+	@Override
+	public int compareTo(Ride another) {
+		if(this.startTime < another.startTime){
+			return 1;
+		} else if(this.startTime > another.startTime) {
+			return -1;	
+		} else{
+			return 0;
+		}
+	}
 }
