@@ -48,8 +48,6 @@ public class CreateRideActivity extends BaseActivity {
 
 			public void onClick(View v) {
 				
-				System.out.println("In onclick listener");
-
 				String rideName = ((TextView) findViewById(R.id.textViewCreateRideRideName)).getText().toString();
 				String source = ((TextView) findViewById(R.id.textViewCreateRideSource)).getText().toString();
 				String destination = ((TextView) findViewById(R.id.textViewCreateRideDestination)).getText().toString();
