@@ -57,8 +57,8 @@
             android:label="@string/title_activity_view_rides" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.PostBlogActivity"
-            android:label="@string/title_activity_post_blog" >
+            android:name="com.example.spinningwellness.LogRideDetailsActivity"
+            android:label="@string/title_activity_log_ride_details" >
         </activity>
         <activity
             android:name="com.example.spinningwellness.LoadingActivity"

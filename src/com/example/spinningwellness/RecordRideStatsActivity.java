@@ -5,6 +5,7 @@ import com.ncsu.edu.tabpanel.MenuConstants;
 import com.ncsu.edu.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.tabpanel.TabView;
 
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -34,6 +35,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 	double previousLatitude = 0.0, previousLongitude = 0.0;
 	double distanceCovered = 0.0;
 	long timeOfRide = 0;
+	double averageSpeed = 0.0;
 
 	boolean isGPSEnabled = false, isNetworkEnabled = false;
 	boolean isStarted = false;
@@ -53,6 +55,8 @@ public class RecordRideStatsActivity extends BaseActivity {
 		isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+		registerLocationListener();
+
 		if (!isGPSEnabled && !isNetworkEnabled) {
 			Toast.makeText(RecordRideStatsActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
 		} else if(isGPSEnabled) {
@@ -62,8 +66,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
 			locationManagerType = LocationManager.NETWORK_PROVIDER;
 		}
-		
-		registerLocationListener();
 		
 		setPageElementsAndOnClickListeners();
 	}
@@ -233,10 +235,20 @@ public class RecordRideStatsActivity extends BaseActivity {
 		btnStop.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {			
+				timeOfRide = chronometer.getBase() - SystemClock.elapsedRealtime();
+				chronometer.stop();
+
+				isStarted = false;
+
 				locationManager.removeUpdates(myLocationListener);
 
 				//Redirect to next page with all the fields in intent
-
+				Intent i = new Intent(getApplicationContext(), LogRideDetailsActivity.class);
+				i.putExtra("Ride", ride);
+				i.putExtra("DistanceCovered", distanceCovered);
+				i.putExtra("AverageSpeed", averageSpeed);
+				i.putExtra("TimeOfRide", timeOfRide);
+				startActivity(i);
 			}
 		});
 	}

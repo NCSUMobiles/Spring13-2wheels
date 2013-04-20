@@ -9,15 +9,26 @@
         android:layout_height="wrap_content"
         android:background="#ffffff" >
 
-        <include layout="@layout/common_layout" />
-        <!-- Create New Ride Form -->
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/common_layout" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <!-- Name of Ride Label -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Just a minute!"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ff87cc1b"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <!-- Ride Details -->
 
             <TextView
                 android:layout_width="fill_parent"
@@ -25,80 +36,108 @@
                 android:text="Name of ride"
                 android:textColor="#372c24" />
 
-            <EditText
-                android:id="@+id/reg_nameofride"
+            <TextView
+                android:id="@+id/textViewRideName"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
-            <!-- Source Label -->
+            <!-- Distance Covered -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Source"
+                android:text="Distance Covered: "
                 android:textColor="#372c24" />
 
-            <EditText
-                android:id="@+id/reg_source"
+            <TextView
+                android:id="@+id/textViewDistanceCovered"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
-            <!-- Destination Label -->
+            <!-- Time of ride -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Destination"
+                android:text="Time of Ride: "
                 android:textColor="#372c24" />
 
-            <EditText
-                android:id="@+id/reg_destination"
+            <TextView
+                android:id="@+id/textViewTimeOfRide"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
-            <!-- Date Label -->
+            <!-- Average Speed -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Date"
+                android:text="Average Speed: "
                 android:textColor="#372c24" />
 
-            <EditText
-                android:id="@+id/reg_date"
+            <TextView
+                android:id="@+id/textViewAverageSpeed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
-            <!-- Time Label -->
+            <!-- Heart Rate -->
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Time"
+                android:text="Enter Heart Rate: "
                 android:textColor="#372c24" />
 
             <EditText
-                android:id="@+id/time"
+                android:id="@+id/textViewHeartRate"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true" />
 
-            <!-- Create New Ride Button -->
+            <!-- Cadence -->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter Cadence: "
+                android:textColor="#372c24" />
+
+            <EditText
+                android:id="@+id/textViewCadence"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+            <!-- Post to blog -->
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your experience: "
+                android:textColor="#372c24" />
+
+            <EditText
+                android:id="@+id/textViewExperience"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="false"
+                android:textColor="#000000" />
 
             <Button
-                android:id="@+id/btnCreateRide"
+                android:id="@+id/btnSubmit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
                 android:background="@layout/common_color_gradient"
-                android:text="Create New Ride!!"
+                android:text="Submit"
                 android:textAppearance="@android:style/TextAppearance.Medium" />
         </LinearLayout>
-        <!-- Create New Ride Form Ends -->
     </RelativeLayout>
 
 </ScrollView>
