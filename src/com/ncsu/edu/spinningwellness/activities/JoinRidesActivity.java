@@ -1,4 +1,4 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,12 +6,13 @@ import java.util.List;
 
 import javax.swing.text.Position;
 
-import com.ncsu.edu.customadapters.CustomEntry;
+import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
-import com.ncsu.edu.tabpanel.MenuConstants;
-import com.ncsu.edu.tabpanel.MyTabHostProvider;
-import com.ncsu.edu.tabpanel.TabView;
+import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
+import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.app.Activity;
 import android.content.Context;

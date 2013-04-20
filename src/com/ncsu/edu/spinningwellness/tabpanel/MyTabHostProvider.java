@@ -1,10 +1,10 @@
-package com.ncsu.edu.tabpanel;
+package com.ncsu.edu.spinningwellness.tabpanel;
 
-import com.example.spinningwellness.CreateRideActivity;
-import com.example.spinningwellness.JoinRidesActivity;
-import com.example.spinningwellness.LeaderBoardActivity;
-import com.example.spinningwellness.MyPastRidesActivity;
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.activities.CreateRideActivity;
+import com.ncsu.edu.spinningwellness.activities.JoinRidesActivity;
+import com.ncsu.edu.spinningwellness.activities.LeaderBoardActivity;
+import com.ncsu.edu.spinningwellness.activities.MyPastRidesActivity;
 
 import android.app.Activity;
 import android.content.Intent;

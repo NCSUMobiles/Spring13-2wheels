@@ -1,13 +1,14 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.util.Calendar;
 import java.util.Date;
 
+import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
-import com.ncsu.edu.tabpanel.MenuConstants;
-import com.ncsu.edu.tabpanel.MyTabHostProvider;
-import com.ncsu.edu.tabpanel.TabView;
+import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
+import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.content.Intent;
 import android.os.AsyncTask;

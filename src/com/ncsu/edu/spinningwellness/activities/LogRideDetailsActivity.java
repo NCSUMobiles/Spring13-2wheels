@@ -1,4 +1,4 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.net.MalformedURLException;
 import java.util.Date;
@@ -8,11 +8,12 @@ import net.bican.wordpress.User;
 import net.bican.wordpress.Wordpress;
 import redstone.xmlrpc.XmlRpcFault;
 
+import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
-import com.ncsu.edu.tabpanel.MenuConstants;
-import com.ncsu.edu.tabpanel.MyTabHostProvider;
-import com.ncsu.edu.tabpanel.TabView;
+import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
+import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.content.Intent;
 import android.os.AsyncTask;

@@ -1,4 +1,4 @@
-package com.ncsu.edu.customadapters;
+package com.ncsu.edu.spinningwellness.customadapters;
 
 public class CustomEntry implements Comparable<CustomEntry> {
 	private String rideid;

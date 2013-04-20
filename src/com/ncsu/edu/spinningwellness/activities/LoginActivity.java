@@ -1,9 +1,10 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.net.MalformedURLException;
 
+import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
 

@@ -1,6 +1,7 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
-import com.ncsu.edu.tabpanel.TabHostProvider;
+import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.tabpanel.TabHostProvider;
 
 import android.os.Bundle;
 import android.app.Activity;

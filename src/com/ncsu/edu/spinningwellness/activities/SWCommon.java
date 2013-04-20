@@ -1,4 +1,4 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.io.IOException;
 

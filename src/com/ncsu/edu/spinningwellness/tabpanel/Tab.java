@@ -1,4 +1,4 @@
-package com.ncsu.edu.tabpanel;
+package com.ncsu.edu.spinningwellness.tabpanel;
 
 import com.example.spinningwellness.R;
 

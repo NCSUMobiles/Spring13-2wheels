@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/CustomTheme" >
         <activity
-            android:name="com.example.spinningwellness.LoginActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.LoginActivity"
             android:label="Spinning Wellness" >
         </activity>
 
@@ -29,49 +29,49 @@
         </activity>
         -->
         <activity
-            android:name="com.example.spinningwellness.JoinRidesActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.JoinRidesActivity"
             android:label="@string/title_activity_join" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.RecordRideStatsActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.RecordRideStatsActivity"
             android:label="@string/title_activity_welcome" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.MyPastRidesActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.MyPastRidesActivity"
             android:label="@string/title_activity_my_past_rides" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.UpcomingRidesActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.UpcomingRidesActivity"
             android:label="@string/title_activity_upcoming_rides" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.CreateRideActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.CreateRideActivity"
             android:label="@string/title_activity_create_new_ride" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ViewParticipantsForARideActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.ViewParticipantsForARideActivity"
             android:label="@string/title_activity_view_member" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.ViewRideDetailsActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.ViewRideDetailsActivity"
             android:label="@string/title_activity_view_rides" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.LogRideDetailsActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.LogRideDetailsActivity"
             android:label="@string/title_activity_log_ride_details" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.LoadingActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.LoadingActivity"
             android:label="@string/title_activity_loading" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.BaseActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.BaseActivity"
             android:label="@string/title_activity_base" >
         </activity>
-        <activity android:name="com.example.spinningwellness.LeaderBoardActivity" >
+        <activity android:name="com.ncsu.edu.spinningwellness.activities.LeaderBoardActivity" >
         </activity>
         <activity
-            android:name="com.example.spinningwellness.CoverPageActivity"
+            android:name="com.ncsu.edu.spinningwellness.activities.CoverPageActivity"
             android:label="Spinning Wellness" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

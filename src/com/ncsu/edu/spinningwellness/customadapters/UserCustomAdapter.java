@@ -1,4 +1,4 @@
-package com.ncsu.edu.customadapters;
+package com.ncsu.edu.spinningwellness.customadapters;
 
 import java.util.List;
 

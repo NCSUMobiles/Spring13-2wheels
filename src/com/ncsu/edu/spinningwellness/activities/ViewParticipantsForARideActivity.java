@@ -1,15 +1,16 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ncsu.edu.customadapters.UserCustomAdapter;
+import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.customadapters.UserCustomAdapter;
 import com.ncsu.edu.spinningwellness.entities.Participant;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
-import com.ncsu.edu.tabpanel.MenuConstants;
-import com.ncsu.edu.tabpanel.MyTabHostProvider;
-import com.ncsu.edu.tabpanel.TabView;
+import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
+import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
+import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

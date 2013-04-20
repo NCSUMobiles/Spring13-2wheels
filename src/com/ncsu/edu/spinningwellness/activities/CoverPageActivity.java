@@ -1,4 +1,6 @@
-package com.example.spinningwellness;
+package com.ncsu.edu.spinningwellness.activities;
+
+import com.example.spinningwellness.R;
 
 import android.os.Bundle;
 import android.os.Handler;
