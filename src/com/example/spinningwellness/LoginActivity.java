@@ -50,16 +50,13 @@ public class LoginActivity extends BaseActivity {
 	private class LoginTask extends AsyncTask<Void,Void,User> {
 		Exception error;
 		protected User doInBackground(Void... params) {
-			//System.out.println("********bckgrnd");
 			String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
-			// Switching to Register screen
 
 			System.setProperty("org.xml.sax.driver","org.xmlpull.v1.sax2.Driver");
 			Wordpress wp;
 			try {
 				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
 				User u = wp.getUserInfo();
-				System.out.println(u.getNickname());
 				return u;
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -74,7 +71,6 @@ public class LoginActivity extends BaseActivity {
 		}
 
 		protected void onPostExecute(User result) {
-			//System.out.println("********post");
 			if(error != null){
 				TextView myText = new TextView(getBaseContext());
 				myText.setTextColor(Color.RED);

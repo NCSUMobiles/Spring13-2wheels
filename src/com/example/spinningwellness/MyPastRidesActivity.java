@@ -123,14 +123,12 @@ public class MyPastRidesActivity extends BaseActivity {
 				LayoutInflater vi = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				v = vi.inflate(R.layout.my_past_rides_list, null);
 				holder = new ViewHolder();
-				System.out.println((TextView) v.findViewById(R.id.myPastRidesTextVal));
 				holder.myPastRideName = (TextView) v.findViewById(R.id.myPastRidesTextVal);
 				v.setTag(holder);
 			} else {
 				holder = (ViewHolder) v.getTag();
 			}
 
-			System.out.println("holder -------------" + holder.myPastRideName);
 			final String custom = myPastRides.get(position);
 			if (custom != null) {
 				holder.myPastRideName.setText(custom);

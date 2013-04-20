@@ -143,10 +143,5 @@ public class Test {
 //		UsersManager.viewWorkoutDetailsForLastWeek("amarja");
 //		
 //		UsersManager.viewBestRide("amarja");
-		
-		List<Ride> rides = RidesManager.viewMyUpcomingRides("amarja");
-		for(Ride ride: rides) {
-			System.out.println(ride.toString());
-		}
 	}
 }

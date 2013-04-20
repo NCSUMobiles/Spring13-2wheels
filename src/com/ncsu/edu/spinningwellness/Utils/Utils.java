@@ -45,8 +45,6 @@ public class Utils {
 			int startIndex = str.indexOf("[");
 			JSON = str.substring(startIndex, JSON.length()-1);
 
-			System.out.println(JSON);
-
 			JsonElement json = new JsonParser().parse(JSON); 
 			JsonArray array= json.getAsJsonArray();
 
@@ -60,8 +58,6 @@ public class Utils {
 			int startIndex = str.indexOf(":");
 
 			JSON = str.substring(startIndex+1, JSON.length()-1);
-
-			System.out.println(JSON);			
 
 			list.add(JSONToObject(JSON, objectType));
 		}

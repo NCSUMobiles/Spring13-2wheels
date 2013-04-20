@@ -65,7 +65,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -81,7 +80,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -90,7 +88,6 @@ public class RidesManager {
 	public static List<Ride> viewMyPastRides(String userName) {
 		List<Ride> rides = new ArrayList<Ride>();
 
-		System.out.println("UserName = " + userName);
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(
 				Constants.VIEW_MY_PAST_RIDES_URL + 
 				"/" + 
@@ -102,7 +99,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -119,7 +115,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -135,7 +130,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -173,7 +167,6 @@ public class RidesManager {
 		List<Object> ps =  Utils.JSONToObjectList(JSON, Participant.class);
 		for(Object p: ps) {
 			Participant participant = (Participant) p;  
-			System.out.println(participant.toString());
 			participants.add(participant);
 		}
 		return participants;
@@ -194,7 +187,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		
@@ -215,7 +207,6 @@ public class RidesManager {
 		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;		

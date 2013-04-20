@@ -105,7 +105,6 @@ public class UsersManager {
 		List<Object> rs =  Utils.JSONToObjectList(JSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;
@@ -121,7 +120,6 @@ public class UsersManager {
 		List<Object> rs =  Utils.JSONToObjectList(JSON, Ride.class);
 		for(Object r: rs) {
 			Ride ride = (Ride) r;  
-			System.out.println(r.toString());
 			rides.add(ride);
 		}
 		return rides;
@@ -137,7 +135,6 @@ public class UsersManager {
 		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
 		for(Object u: us) {
 			User user = (User) u;  
-			System.out.println(user.toString());
 			users.add(user);
 		}
 		return users;
@@ -153,7 +150,6 @@ public class UsersManager {
 		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
 		for(Object u: us) {
 			User user = (User) u;  
-			System.out.println(user.toString());
 			users.add(user);
 		}
 		return users;

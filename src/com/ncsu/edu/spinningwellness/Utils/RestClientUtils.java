@@ -53,7 +53,6 @@ public class RestClientUtils {
 
 			HttpResponse response = client.execute(request);
 			if (response.getStatusLine().getStatusCode() != 201) {
-				System.out.println(response.getStatusLine().getStatusCode());
 			}
 
 			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
@@ -61,7 +60,6 @@ public class RestClientUtils {
 			String serverOutput = null;
 			while ((serverOutput = rd.readLine()) != null) {
 				op.append(serverOutput);
-				System.out.println(serverOutput);
 			}
 
 			client.getConnectionManager().shutdown();

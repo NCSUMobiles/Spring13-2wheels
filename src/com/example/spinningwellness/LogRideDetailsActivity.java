@@ -2,7 +2,6 @@ package com.example.spinningwellness;
 
 import java.net.MalformedURLException;
 import java.util.Date;
-import java.util.List;
 
 import net.bican.wordpress.Page;
 import net.bican.wordpress.User;
@@ -21,8 +20,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class LogRideDetailsActivity extends BaseActivity {
 
@@ -33,8 +32,10 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	TextView textViewRideName, textViewDistanceCovered, textViewTimeOfRide, textViewAverageSpeed, textViewHeartRate, textViewCadence, textViewExperience;
 	Button btnSubmit;
-	
+
 	String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
+	
+	LinearLayout progressBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,31 @@ public class LogRideDetailsActivity extends BaseActivity {
 		myTitleText.setText(SPINNING_WEELNESS + " " + "Log Ride Details for Ride:" + ride.getName());
 	}
 
+	private void validateUserInputAndCallAsyncTask() {
+
+		//Add validation code herer
+		boolean isValid = true;
+		if(isValid) {
+			progressBar.setVisibility(View.VISIBLE);
+			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.logRideDetailsForm);
+			createRideForm.setVisibility(View.INVISIBLE);
+
+			new LogRideDetailsTask().execute();
+		} else {
+			//Show the error message to user
+			System.out.println("Error in user input");
+		}
+	}
+
 	private void setFormFields() {
+		
+		progressBar = (LinearLayout) findViewById(R.id.logRideDetailsSpinner);
+		progressBar.setVisibility(View.INVISIBLE);
 
 		//Get information from intent
-//		distanceCovered = getIntent().getParcelableExtra("DistanceCovered");
-//		averageSpeed = getIntent().getParcelableExtra("AverageSpeed");
-//		timeOfRide = getIntent().getParcelableExtra("TimeOfRide");
+		//		distanceCovered = getIntent().getParcelableExtra("DistanceCovered");
+		//		averageSpeed = getIntent().getParcelableExtra("AverageSpeed");
+		//		timeOfRide = getIntent().getParcelableExtra("TimeOfRide");
 
 		//Get the elements on the form
 		textViewRideName = (TextView) findViewById(R.id.textViewRideName);
@@ -86,7 +106,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 		button.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				new LogRideDetailsTask().execute();
+				validateUserInputAndCallAsyncTask();
 			}
 		});
 	}
@@ -107,6 +127,9 @@ public class LogRideDetailsActivity extends BaseActivity {
 			cadence = Double.parseDouble(((TextView) findViewById(R.id.textViewCadence)).getText().toString());
 			heartRate = Double.parseDouble(((TextView) findViewById(R.id.textViewHeartRate)).getText().toString());
 			String result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);
+			if(!result.equalsIgnoreCase("success")) {
+				error = new Exception();
+			}
 
 			//Post to blog
 			System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
@@ -115,8 +138,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
 				Page recentPost = new Page();
 				recentPost.setDescription(((TextView) findViewById(R.id.textViewExperience)).getText().toString());
-				String postBlogResult = wp.newPost(recentPost, true);
-				System.out.println(postBlogResult);
+				wp.newPost(recentPost, true);
 			} catch (MalformedURLException e) {
 				error = e;
 			} catch (XmlRpcFault e) {
@@ -127,7 +149,11 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
-			moveToJoinRidesPage();
+			if(error == null) {
+				moveToJoinRidesPage();
+			} else {
+				//Display the error to user
+			}
 		}
 	}
 }
