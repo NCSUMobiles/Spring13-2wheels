@@ -60,7 +60,7 @@ public class JoinRidesActivity extends BaseActivity {
 	}
 
 	private void displayListView() {
-		
+
 		progressBar.setVisibility(View.INVISIBLE);
 		//sort by date
 		List<CustomEntry> tempJoined = new ArrayList<CustomEntry>();
@@ -72,14 +72,14 @@ public class JoinRidesActivity extends BaseActivity {
 				tempNotJoined.add(ce);
 			}
 		}
-		
+
 		Collections.sort(tempJoined);
 		Collections.sort(tempNotJoined);
-		
+
 		rideEntry.clear();
 		rideEntry.addAll(tempJoined);
 		rideEntry.addAll(tempNotJoined);
-		
+
 		List<Ride> temp = new ArrayList<Ride>();
 		for(CustomEntry r:rideEntry){
 			for(Ride r1:rideList){
@@ -144,26 +144,26 @@ public class JoinRidesActivity extends BaseActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			ViewHolder holder;
-//			if (v == null) {
-				LayoutInflater vi =
-						(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = vi.inflate(R.layout.join_rides_list, null);
-				holder = new ViewHolder();
-				holder.item1 = (TextView) v.findViewById(R.id.textVal);
-				holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
-				
-				holder.start = (Button) v.findViewById(R.id.startRide);
-				final CustomEntry custom = entries.get(position);
-				if (custom != null) {
-					holder.item1.setText(custom.getTextVal());
-					holder.item2.setChecked(custom.isJoined());
-				}
-				holder.start.setOnClickListener(mStartButtonClickListener);
-				holder.item2.setOnCheckedChangeListener(mStarCheckedChangeListener);
-				
-//			}
-//			else
-				holder=(ViewHolder)v.getTag();
+			//			if (v == null) {
+			LayoutInflater vi =
+					(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			v = vi.inflate(R.layout.join_rides_list, null);
+			holder = new ViewHolder();
+			holder.item1 = (TextView) v.findViewById(R.id.textVal);
+			holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
+
+			holder.start = (Button) v.findViewById(R.id.startRide);
+			final CustomEntry custom = entries.get(position);
+			if (custom != null) {
+				holder.item1.setText(custom.getTextVal());
+				holder.item2.setChecked(custom.isJoined());
+			}
+			holder.start.setOnClickListener(mStartButtonClickListener);
+			holder.item2.setOnCheckedChangeListener(mStarCheckedChangeListener);
+
+			//			}
+			//			else
+			holder=(ViewHolder)v.getTag();
 			v.setTag(holder);
 			return v;
 		}
@@ -195,7 +195,11 @@ public class JoinRidesActivity extends BaseActivity {
 					selectedRidePosition = position;
 					progressBar = (LinearLayout) findViewById(R.id.Spinner);
 					progressBar.setVisibility(View.VISIBLE);
-					new JoinRideTask().execute();
+					if(isChecked){
+						new JoinRideTask().execute();
+					}else{
+						new UnJoinRideTask().execute();
+					}
 				}
 			}
 		};
@@ -206,7 +210,7 @@ public class JoinRidesActivity extends BaseActivity {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText(SPINNING_WELLNESS + " " + "Join Ride");		
 	}
-	
+
 	//AsynTask for getting the list of rides
 	public class GetUpcomingRidesTask extends AsyncTask<Void,Void,List<Ride>> {
 		Exception error;
@@ -224,67 +228,97 @@ public class JoinRidesActivity extends BaseActivity {
 			}
 		}
 	}
-	
+
 	//AsynTask for getting the list of rides
-		public class GetJoinedRidesForUser extends AsyncTask<Void,Void,List<Ride>> {
-			Exception error;
+	public class GetJoinedRidesForUser extends AsyncTask<Void,Void,List<Ride>> {
+		Exception error;
 
-			protected List<Ride> doInBackground(Void... params) {
-				return RidesManager.viewMyUpcomingRides(username);
-			}
-
-			protected void onPostExecute(List<Ride> result) {
-					myJoinedRidesList = result;
-					List<CustomEntry> temp = new ArrayList<CustomEntry>();
-					for(Ride r:rideList){
-						if(myJoinedRidesList.contains(r)){
-							temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), true));
-						}else{
-							temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), false));
-						}
-					}	
-					for(CustomEntry r:temp){
-						if(r.isJoined()){
-							rideEntry.add(r);
-						}
-					}
-					for(CustomEntry r:temp){
-						if(!r.isJoined()){
-							rideEntry.add(r);
-						}
-					}
-					
-					
-					displayListView();
-			}
+		protected List<Ride> doInBackground(Void... params) {
+			return RidesManager.viewMyUpcomingRides(username);
 		}
-	
-	//AsynTask for joining the rides
-		public class JoinRideTask extends AsyncTask<Void,Void,String> {
-			Exception error;
 
-			protected String doInBackground(Void... params) {
-				return  RidesManager.addParticipantToRide(selectedRideSave.getId(), username);
-			}
-
-			protected void onPostExecute(String result) {
-				if(result.equalsIgnoreCase("Success")){
-					Toast.makeText(getApplicationContext(), "Joined the ride successfully." , Toast.LENGTH_SHORT).show();
-//					selectedStar.setSelected(true);
+		protected void onPostExecute(List<Ride> result) {
+			myJoinedRidesList = result;
+			List<CustomEntry> temp = new ArrayList<CustomEntry>();
+			for(Ride r:rideList){
+				if(myJoinedRidesList.contains(r)){
+					temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), true));
 				}else{
-					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+					temp.add(new CustomEntry(r.getId(),r.getStartTime(),r.getName(), false));
 				}
-				//change order in rideEntry
-				ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();
-				temp.add(rideEntry.get(selectedRidePosition));
-				temp.get(0).setJoined(true);
-				for(CustomEntry r:rideEntry){
-					if(!selectedRideSave.getId().equals(r.getRideid())){
-						temp.add(r);
-					}
+			}	
+			for(CustomEntry r:temp){
+				if(r.isJoined()){
+					rideEntry.add(r);
 				}
-				rideEntry = temp;
-				displayListView();
 			}
+			for(CustomEntry r:temp){
+				if(!r.isJoined()){
+					rideEntry.add(r);
+				}
+			}
+
+
+			displayListView();
 		}
+	}
+
+	//AsynTask for joining the rides
+	public class JoinRideTask extends AsyncTask<Void,Void,String> {
+		Exception error;
+
+		protected String doInBackground(Void... params) {
+			return  RidesManager.addParticipantToRide(selectedRideSave.getId(), username);
+		}
+
+		protected void onPostExecute(String result) {
+			if(result.equalsIgnoreCase("Success")){
+				Toast.makeText(getApplicationContext(), "Joined the ride successfully." , Toast.LENGTH_SHORT).show();
+				//					selectedStar.setSelected(true);
+			}else{
+				Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+			}
+			//change order in rideEntry
+			ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();
+			temp.add(rideEntry.get(selectedRidePosition));
+			temp.get(0).setJoined(true);
+			for(CustomEntry r:rideEntry){
+				if(!selectedRideSave.getId().equals(r.getRideid())){
+					temp.add(r);
+				}
+			}
+			rideEntry = temp;
+			displayListView();
+		}
+	}
+
+	//AsynTask for joining the rides
+	public class UnJoinRideTask extends AsyncTask<Void,Void,String> {
+		Exception error;
+
+		protected String doInBackground(Void... params) {
+			return  RidesManager.deleteParticipantToRide(selectedRideSave.getId(), username);
+		}
+
+		protected void onPostExecute(String result) {
+			if(result.equalsIgnoreCase("Success")){
+				Toast.makeText(getApplicationContext(), "UnJoined the ride successfully." , Toast.LENGTH_SHORT).show();
+				//							selectedStar.setSelected(true);
+			}else{
+				Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+			}
+			//change order in rideEntry
+			ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();
+			
+			for(CustomEntry r:rideEntry){
+				if(!selectedRideSave.getId().equals(r.getRideid())){
+					temp.add(r);
+				}
+			}
+			temp.add(rideEntry.get(selectedRidePosition));
+			temp.get(temp.size()-1).setJoined(false);
+			rideEntry = temp;
+			displayListView();
+		}
+	}
 }
