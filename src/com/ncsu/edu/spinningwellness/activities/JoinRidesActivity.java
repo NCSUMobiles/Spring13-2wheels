@@ -106,6 +106,8 @@ public class JoinRidesActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				
+				System.out.println("clicked");
 				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
 
 				Ride selectedRide = null;
@@ -115,7 +117,7 @@ public class JoinRidesActivity extends BaseActivity {
 					//start view activity
 					selectedRide = rideList.get(positionView);
 					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
-					i.putExtra("RideDetails", selectedRide);
+					i.putExtra("Ride", selectedRide);
 					startActivity(i);
 				}else{
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
@@ -208,7 +210,7 @@ public class JoinRidesActivity extends BaseActivity {
 	@Override
 	public void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Join Ride");		
+		myTitleText.setText("Join Ride");		
 	}
 
 	//AsynTask for getting the list of rides

@@ -20,7 +20,7 @@ public class CoverPageActivity extends Activity {
 		
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		setContentView(R.layout.activity_cover_page);
+		setContentView(R.layout.cover_page_activity);
 		new Handler().postDelayed(new Runnable(){ 
 			@Override 
 			public void run() { 

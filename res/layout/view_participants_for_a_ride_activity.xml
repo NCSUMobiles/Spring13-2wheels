@@ -2,38 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background1" >
+    android:background="@drawable/background1"
+    android:fillViewport="true" >
 
-    <ListView
-        android:id="@+id/viewParticipantsForARideListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:layout_marginTop="60dp"
-        android:cacheColorHint="#00000000" >
-    </ListView>
+    <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
 
-    <LinearLayout
-        android:id="@+id/viewParticipantsForARideSpinner"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <TextView
-            android:layout_width="wrap_content"
+        <ListView
+            android:id="@+id/viewParticipantsForARideListView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please wait..." >
-        </TextView>
+            android:cacheColorHint="#00000000"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true" >
+        </ListView>
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleInverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true" >
-        </ProgressBar>
+        <LinearLayout
+            android:id="@+id/viewParticipantsForARideSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-    </LinearLayout>
+            <TextView
+                style="@style/TextViewFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait..." >
+            </TextView>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" >
+            </ProgressBar>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

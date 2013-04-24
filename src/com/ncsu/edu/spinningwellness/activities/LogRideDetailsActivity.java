@@ -56,7 +56,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Log Ride Details for Ride:" + ride.getName());
+		myTitleText.setText("Log Ride Details");
 	}
 
 	private void validateUserInputAndCallAsyncTask() {
@@ -86,14 +86,24 @@ public class LogRideDetailsActivity extends BaseActivity {
 		//		timeOfRide = getIntent().getParcelableExtra("TimeOfRide");
 
 		//Get the elements on the form
-		textViewRideName = (TextView) findViewById(R.id.textViewRideName);
-		textViewDistanceCovered = (TextView) findViewById(R.id.textViewDistanceCovered);
-		textViewTimeOfRide = (TextView) findViewById(R.id.textViewTimeOfRide);
-		textViewAverageSpeed = (TextView) findViewById(R.id.textViewAverageSpeed);
-		textViewHeartRate = (TextView) findViewById(R.id.textViewHeartRate);
-		textViewCadence = (TextView) findViewById(R.id.textViewCadence);
-		textViewExperience = (TextView) findViewById(R.id.textViewExperience);
-
+		textViewRideName = (TextView) findViewById(R.id.textViewLogRideDetailsRideName);
+		textViewRideName.setKeyListener(null);
+		
+		textViewDistanceCovered = (TextView) findViewById(R.id.textViewLogRideDetailsDistanceCovered);
+		textViewDistanceCovered.setKeyListener(null);
+		
+		textViewTimeOfRide = (TextView) findViewById(R.id.textViewLogRideDetailsRideTime);
+		textViewTimeOfRide.setKeyListener(null);
+		
+		textViewAverageSpeed = (TextView) findViewById(R.id.textViewLogRideDetailsAverageSpeed);
+		textViewAverageSpeed.setKeyListener(null);
+		
+		textViewHeartRate = (TextView) findViewById(R.id.textViewLogRideDetailsHeartRate);
+		
+		textViewCadence = (TextView) findViewById(R.id.textViewLogRideDetailsCadence);
+		
+		textViewExperience = (TextView) findViewById(R.id.textViewLogRideDetailsExperience);
+		
 		//Set the parameters which are recorded automatically
 		textViewRideName.setText(ride.getName());
 		textViewDistanceCovered.setText(((Double) distanceCovered).toString());
@@ -138,8 +148,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			//Log activity to backend
 			Date activityDate = new Date();
-			cadence = Double.parseDouble(((TextView) findViewById(R.id.textViewCadence)).getText().toString());
-			heartRate = Double.parseDouble(((TextView) findViewById(R.id.textViewHeartRate)).getText().toString());
+			cadence = Double.parseDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString());
+			heartRate = Double.parseDouble(((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString());
 			String result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);
 			if(!result.equalsIgnoreCase("success")) {
 				error = new Exception();
@@ -151,7 +161,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 			try {
 				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
 				Page recentPost = new Page();
-				recentPost.setDescription(((TextView) findViewById(R.id.textViewExperience)).getText().toString());
+				recentPost.setDescription(((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString());
 				wp.newPost(recentPost, true);
 			} catch (MalformedURLException e) {
 				error = e;
@@ -163,7 +173,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
-			//if(error == null) {
+			if(error == null)
 				moveToJoinRidesPage();
 			//} else {
 				//Display the error to user

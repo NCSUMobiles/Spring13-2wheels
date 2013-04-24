@@ -25,7 +25,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 	Ride ride;
 
-	TextView textViewDistance, textViewAverageSpeed;
+	TextView textViewDistance, textViewAverageSpeed, textViewRideName;
 	ImageButton btnPlay, btnPause, btnStop;
 	Chronometer chronometer;
 
@@ -122,7 +122,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Record Ride: " + ride.getName());		
+		myTitleText.setText("Record Ride");		
 	}
 
 	private void registerLocationListener() {
@@ -196,6 +196,9 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 		textViewDistance = (TextView) findViewById(R.id.textViewDistance);
 		textViewAverageSpeed = (TextView) findViewById(R.id.textViewAverageSpeed);
+		
+		textViewRideName = (TextView) findViewById(R.id.textViewRecordRideDetailsRideName);
+		textViewRideName.setText(ride.getName());
 
 		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
 		btnPlay.setOnClickListener(new View.OnClickListener() {

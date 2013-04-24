@@ -48,12 +48,15 @@ public class ViewParticipantsForARideActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Participants for Ride:" + ride.getName());				
+		myTitleText.setText("Participants for Ride");				
 	}	
 
 	private void displayListView() {
 
 		progressBar.setVisibility(View.INVISIBLE);
+		
+//		TextView textViewRideName = (TextView) findViewById(R.id.textViewViewParticipantsDetailsRideName);
+//		textViewRideName.setText(ride.getName());
 
 		//create an ArrayAdaptar from the String Array
 		UserCustomAdapter dataAdapter = new UserCustomAdapter(this, R.id.userTextVal, users);

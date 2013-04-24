@@ -46,7 +46,7 @@ public class CreateRideActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Create Ride");		
+		myTitleText.setText("Create Ride");		
 	}
 
 	private void addListenerForCreateRideButton() {

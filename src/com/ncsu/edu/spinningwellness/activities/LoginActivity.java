@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Login to Burn Those Calories");		
+		myTitleText.setText("Login to Burn Those Calories");		
 	}
 
 	private void validateUserInputAndCallAsyncTask() {

@@ -51,7 +51,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "Ride Details for Ride:" + ride.getName());
+		myTitleText.setText("Ride Details");
 	}
 
 	void fillRideDetails() {

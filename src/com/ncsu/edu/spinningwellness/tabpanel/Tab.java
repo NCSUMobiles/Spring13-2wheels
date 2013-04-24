@@ -110,7 +110,7 @@ public class Tab {
 
 	private void createView() {
 
-		btn = (Button)(context.getLayoutInflater().inflate(R.layout.bizbutton, null));
+		btn = (Button)(context.getLayoutInflater().inflate(R.layout.common_menu_bar_button, null));
 
 		int iconId = resourceIcon;
 		GradientDrawable btnBackGrad = btnGradient;

@@ -82,7 +82,7 @@ public class MyPastRidesActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText(SPINNING_WELLNESS + " " + "My Past Rides");		
+		myTitleText.setText("My Past Rides");		
 	}
 
 	public class GetMyPastRidesTask extends AsyncTask<Void,Void,List<Ride>> {
