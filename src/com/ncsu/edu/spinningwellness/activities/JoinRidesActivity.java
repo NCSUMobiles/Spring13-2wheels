@@ -46,6 +46,7 @@ public class JoinRidesActivity extends BaseActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+	
 		super.onCreate(savedInstanceState);
 		//Draw menu
 		tabProvider = new MyTabHostProvider(JoinRidesActivity.this);
@@ -57,6 +58,7 @@ public class JoinRidesActivity extends BaseActivity {
 		progressBar.setVisibility(View.VISIBLE);
 
 		new GetUpcomingRidesTask().execute();	
+	
 	}
 
 	private void displayListView() {
@@ -107,8 +109,8 @@ public class JoinRidesActivity extends BaseActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
-				System.out.println("clicked");
-				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
+				
+//				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
 
 				Ride selectedRide = null;
 				int positionView = listView.getPositionForView(view);
