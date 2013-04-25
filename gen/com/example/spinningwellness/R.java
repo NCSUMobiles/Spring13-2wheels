@@ -56,97 +56,80 @@ public final class R {
         public static final int title=0x7f02001b;
     }
     public static final class id {
-        public static final int LoginForm=0x7f090021;
-        public static final int Spinner=0x7f090010;
-        public static final int action_settings=0x7f09003b;
+        public static final int LoginForm=0x7f09001d;
+        public static final int Spinner=0x7f09000c;
+        public static final int action_settings=0x7f090036;
         public static final int btnCreateRide=0x7f09000a;
-        public static final int btnLogin=0x7f090025;
-        public static final int btnPause=0x7f09002a;
-        public static final int btnPlay=0x7f09002b;
-        public static final int btnStop=0x7f09002c;
-        public static final int btnSubmit=0x7f09001f;
-        public static final int btnViewParticipants=0x7f090039;
-        public static final int btnsearch=0x7f09000e;
+        public static final int btnLogin=0x7f090021;
+        public static final int btnPause=0x7f090026;
+        public static final int btnPlay=0x7f090027;
+        public static final int btnStop=0x7f090028;
+        public static final int btnSubmit=0x7f09001b;
+        public static final int btnViewParticipants=0x7f090034;
         public static final int chronometer=0x7f090029;
         public static final int createRideDatePicker=0x7f090008;
         public static final int createRideForm=0x7f090004;
         public static final int createRideSpinner=0x7f090003;
         public static final int createRideTimePicker=0x7f090009;
-        public static final int footer=0x7f09000b;
-        public static final int header=0x7f09002e;
         public static final int image=0x7f090000;
-        public static final int isJoined=0x7f090011;
-        public static final int leaderBoardListView=0x7f090014;
-        public static final int leaderBoardSpinner=0x7f090015;
-        public static final int listView1=0x7f09000f;
-        public static final int listView2=0x7f09002f;
-        public static final int logRideDetailsForm=0x7f090017;
-        public static final int logRideDetailsSpinner=0x7f090016;
-        public static final int loginSpinner=0x7f090020;
-        public static final int myPastRidesListView=0x7f090026;
-        public static final int myPastRidesSpinner=0x7f090027;
-        public static final int myPastRidesTextVal=0x7f090028;
+        public static final int isJoined=0x7f09000d;
+        public static final int leaderBoardListView=0x7f090010;
+        public static final int leaderBoardSpinner=0x7f090011;
+        public static final int listView1=0x7f09000b;
+        public static final int logRideDetailsForm=0x7f090013;
+        public static final int logRideDetailsSpinner=0x7f090012;
+        public static final int loginSpinner=0x7f09001c;
+        public static final int myPastRidesListView=0x7f090022;
+        public static final int myPastRidesSpinner=0x7f090023;
+        public static final int myPastRidesTextVal=0x7f090024;
         public static final int myTitle=0x7f090001;
-        public static final int rideDetailsSpinner=0x7f09003a;
-        public static final int rideDetailsTable=0x7f090032;
-        public static final int searchfriend=0x7f09000d;
-        public static final int startRide=0x7f090013;
-        public static final int tableLayout1=0x7f09000c;
-        public static final int textVal=0x7f090012;
-        public static final int textViewAverageSpeed=0x7f09001b;
-        public static final int textViewCadence=0x7f09001d;
+        public static final int rideDetailsSpinner=0x7f090035;
+        public static final int startRide=0x7f09000f;
+        public static final int textVal=0x7f09000e;
+        public static final int textViewAverageSpeed=0x7f09002b;
         public static final int textViewCreateRideDestination=0x7f090007;
         public static final int textViewCreateRideRideName=0x7f090005;
         public static final int textViewCreateRideSource=0x7f090006;
-        public static final int textViewDistance=0x7f09002d;
-        public static final int textViewDistanceCovered=0x7f090019;
-        public static final int textViewExperience=0x7f09001e;
-        public static final int textViewHeartRate=0x7f09001c;
-        public static final int textViewLoginError=0x7f090022;
-        public static final int textViewLoginPassword=0x7f090024;
-        public static final int textViewLoginUserName=0x7f090023;
-        public static final int textViewRideDetailsCreator=0x7f090038;
-        public static final int textViewRideDetailsDate=0x7f090036;
-        public static final int textViewRideDetailsDestination=0x7f090035;
-        public static final int textViewRideDetailsRideName=0x7f090033;
-        public static final int textViewRideDetailsSource=0x7f090034;
-        public static final int textViewRideDetailsTime=0x7f090037;
-        public static final int textViewRideName=0x7f090018;
-        public static final int textViewTimeOfRide=0x7f09001a;
+        public static final int textViewDistance=0x7f09002a;
+        public static final int textViewLogRideDetailsAverageSpeed=0x7f090017;
+        public static final int textViewLogRideDetailsCadence=0x7f090019;
+        public static final int textViewLogRideDetailsDistanceCovered=0x7f090015;
+        public static final int textViewLogRideDetailsExperience=0x7f09001a;
+        public static final int textViewLogRideDetailsHeartRate=0x7f090018;
+        public static final int textViewLogRideDetailsRideName=0x7f090014;
+        public static final int textViewLogRideDetailsRideTime=0x7f090016;
+        public static final int textViewLoginError=0x7f09001e;
+        public static final int textViewLoginPassword=0x7f090020;
+        public static final int textViewLoginUserName=0x7f09001f;
+        public static final int textViewRecordRideDetailsRideName=0x7f090025;
+        public static final int textViewRideDetailsCreator=0x7f090033;
+        public static final int textViewRideDetailsDate=0x7f090031;
+        public static final int textViewRideDetailsDestination=0x7f090030;
+        public static final int textViewRideDetailsRideName=0x7f09002e;
+        public static final int textViewRideDetailsSource=0x7f09002f;
+        public static final int textViewRideDetailsTime=0x7f090032;
         public static final int userTextVal=0x7f090002;
-        public static final int viewParticipantsForARideListView=0x7f090030;
-        public static final int viewParticipantsForARideSpinner=0x7f090031;
+        public static final int viewParticipantsForARideListView=0x7f09002c;
+        public static final int viewParticipantsForARideSpinner=0x7f09002d;
     }
     public static final class layout {
-        public static final int activity_cover_page=0x7f030000;
-        public static final int base_activity=0x7f030001;
-        public static final int base_activity_title_bar=0x7f030002;
-        public static final int bizbutton=0x7f030003;
-        public static final int cell_shape=0x7f030004;
-        public static final int common_color_gradient=0x7f030005;
-        public static final int common_users_list=0x7f030006;
-        public static final int create_new_ride_activity=0x7f030007;
-        public static final int footer_repeat=0x7f030008;
-        public static final int green_button=0x7f030009;
-        public static final int green_pressed=0x7f03000a;
-        public static final int green_rel=0x7f03000b;
-        public static final int heading_shape=0x7f03000c;
-        public static final int invite_friend=0x7f03000d;
-        public static final int join_rides_activity=0x7f03000e;
-        public static final int join_rides_list=0x7f03000f;
-        public static final int leader_board_activity=0x7f030010;
-        public static final int log_ride_details_activity=0x7f030011;
-        public static final int logbutton=0x7f030012;
-        public static final int login_activity=0x7f030013;
-        public static final int my_past_rides_activity=0x7f030014;
-        public static final int my_past_rides_list=0x7f030015;
-        public static final int record_ride_stats_activity=0x7f030016;
-        public static final int sq_cell_shape=0x7f030017;
-        public static final int sub_button=0x7f030018;
-        public static final int upcoming_list=0x7f030019;
-        public static final int upcoming_rides_activity=0x7f03001a;
-        public static final int view_participants_for_a_ride_activity=0x7f03001b;
-        public static final int view_ride_details_activity=0x7f03001c;
+        public static final int base_activity=0x7f030000;
+        public static final int base_activity_title_bar=0x7f030001;
+        public static final int common_color_gradient=0x7f030002;
+        public static final int common_menu_bar_button=0x7f030003;
+        public static final int common_users_list=0x7f030004;
+        public static final int cover_page_activity=0x7f030005;
+        public static final int create_new_ride_activity=0x7f030006;
+        public static final int join_rides_activity=0x7f030007;
+        public static final int join_rides_list=0x7f030008;
+        public static final int leader_board_activity=0x7f030009;
+        public static final int log_ride_details_activity=0x7f03000a;
+        public static final int login_activity=0x7f03000b;
+        public static final int my_past_rides_activity=0x7f03000c;
+        public static final int my_past_rides_list=0x7f03000d;
+        public static final int record_ride_stats_activity=0x7f03000e;
+        public static final int view_participants_for_a_ride_activity=0x7f03000f;
+        public static final int view_ride_details_activity=0x7f030010;
     }
     public static final class menu {
         public static final int base=0x7f080000;
@@ -180,15 +163,6 @@ public final class R {
     }
     public static final class style {
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
@@ -201,11 +175,14 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f070000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f070001;
+        public static final int Button=0x7f070008;
         public static final int CustomTheme=0x7f070003;
         public static final int CustomWindowTitleBackground=0x7f070002;
+        public static final int EditTextViewFont=0x7f070007;
+        public static final int TextViewFont=0x7f070004;
+        public static final int TextViewForLabels=0x7f070005;
+        public static final int TextViewForList=0x7f070006;
+        public static final int basicRelativeLayoutOverBackground=0x7f070009;
     }
 }
