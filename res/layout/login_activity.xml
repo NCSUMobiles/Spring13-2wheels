@@ -80,7 +80,8 @@
                 <Button
                     android:id="@+id/btnLogin"
                     style="@style/Button"
-                    android:text="Login!!" />
+                    android:text="Login!!" 
+                    android:layout_margin="30dp"/>
             </LinearLayout>
             <!-- Create New Ride Form Ends -->
         </ScrollView>

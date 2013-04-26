@@ -154,7 +154,8 @@
                 <Button
                     android:id="@+id/btnSubmit"
                     style="@style/Button"
-                    android:text="Submit!!" />
+                    android:text="Submit!!" 
+                    android:layout_margin="25dp"/>
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

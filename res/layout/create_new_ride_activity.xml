@@ -47,7 +47,8 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ride Name" />
+                    android:text="Ride Name" 
+                    android:layout_marginTop="10dp"/>
 
                 <EditText
                     android:id="@+id/textViewCreateRideRideName"
@@ -62,7 +63,8 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Source" />
+                    android:text="Source" 
+                    android:layout_marginTop="10dp"/>
 
                 <EditText
                     android:id="@+id/textViewCreateRideSource"
@@ -77,7 +79,8 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Destination" />
+                    android:text="Destination" 
+                    android:layout_marginTop="10dp"/>
 
                 <EditText
                     android:id="@+id/textViewCreateRideDestination"
@@ -91,7 +94,8 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date" />
+                    android:text="Date" 
+                    android:layout_marginTop="10dp"/>
 
                 <DatePicker
                     android:id="@+id/createRideDatePicker"
@@ -104,7 +108,8 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time" />
+                    android:text="Time" 
+                    android:layout_marginTop="10dp"/>
 
                 <TimePicker
                     android:id="@+id/createRideTimePicker"
@@ -116,7 +121,8 @@
                 <Button
                     android:id="@+id/btnCreateRide"
                     style="@style/Button"
-                    android:text="Create New Ride!!" />
+                    android:text="Create New Ride!!" 
+                    android:layout_margin="25dp"/>
             </LinearLayout>
             <!-- Create New Ride Form Ends -->
         </ScrollView>

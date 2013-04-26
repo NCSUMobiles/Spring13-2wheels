@@ -8,6 +8,7 @@
     <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
 
         <RelativeLayout
+            android:id="@+id/relativeLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
@@ -25,6 +26,20 @@
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                	<Chronometer
+                        android:id="@+id/chronometer"
+                        style="@style/TextViewFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textColor="#9CD020"
+                        android:textSize="80sp" />
+                </RelativeLayout>
+                
+                <RelativeLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="100dp" >
 
                     <RelativeLayout
@@ -33,44 +48,40 @@
 
                         <ImageButton
                             android:id="@+id/btnPause"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="40dp"
-                            android:src="@drawable/btn_pause" />
+                            android:background="@android:color/transparent"
+							android:layout_width="80dp"
+            				android:layout_height="80dp"
+     						android:scaleType="centerInside"
+                            android:src="@drawable/btn_pause_new" />
 
                         <ImageButton
                             android:id="@+id/btnPlay"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:layout_marginLeft="40dp"
-                            android:src="@drawable/btn_play" />
+                            android:background="@android:color/transparent"
+							android:layout_width="80dp"
+            				android:layout_height="80dp"
+     						android:scaleType="centerInside"
+     						android:src="@drawable/btn_play_new" />
                     </RelativeLayout>
 
                     <ImageButton
                         android:id="@+id/btnStop"
-                        android:layout_width="100dip"
-                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginRight="40dp"
-                        android:src="@drawable/btn_stop" />
+                        android:background="@android:color/transparent"
+						android:layout_width="80dp"
+            			android:layout_height="80dp"
+     					android:scaleType="centerInside"
+                        android:src="@drawable/btn_stop_new" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
 
-                    <Chronometer
-                        android:id="@+id/chronometer"
-                        style="@style/TextViewFont"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -78,25 +89,31 @@
 
                     <TextView
                         android:id="@+id/textViewDistance"
-                        style="@style/TextViewFont"
+                        style="@style/TextViewForLabels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Distance:" />
+                        android:text=" Distance:" 
+                        android:textSize="24sp" 
+                        android:layout_margin="20dp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" >
-
-                    <TextView
-                        android:id="@+id/textViewAverageSpeed"
-                        style="@style/TextViewFont"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" Avg Speed:" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textViewAverageSpeed"
+            style="@style/TextViewForLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/relativeLayout1"
+            android:layout_below="@+id/relativeLayout1"
+            android:text=" Avg Speed:"
+            android:textSize="24sp"
+            android:layout_margin="20dp" />
     </RelativeLayout>
 
 </ScrollView>

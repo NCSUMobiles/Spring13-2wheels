@@ -1,5 +1,7 @@
 package com.ncsu.edu.spinningwellness.activities;
 
+import java.text.DecimalFormat;
+
 import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
@@ -24,6 +26,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 	private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
 
 	Ride ride;
+	DecimalFormat df = new DecimalFormat("#.###");
 
 	TextView textViewDistance, textViewAverageSpeed, textViewRideName;
 	ImageButton btnPlay, btnPause, btnStop;
@@ -150,14 +153,14 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 						float[] dist = {0};
 						try {
-							Location.distanceBetween(previousLatitude, previousLongitude, location.getLatitude(), location.getLongitude(), null);
+							Location.distanceBetween(previousLatitude, previousLongitude, location.getLatitude(), location.getLongitude(), dist);
 							
 							System.out.println("dis = " + dist[0]);
 							
 						} catch(IllegalArgumentException e) {
 							System.out.println("inside catch");
 							
-							dist[0] = 0;;
+							dist[0] = 0;
 						}
 
 						previousLatitude = location.getLatitude();
@@ -258,6 +261,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 	}
 
 	private void setDistanceCovered() {
-		textViewDistance.setText(((Double) distanceCovered).toString());
+		textViewDistance.setText("Distance: " + df.format(distanceCovered) + " m");
 	}
 }

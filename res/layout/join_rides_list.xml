@@ -9,20 +9,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:button="@android:drawable/btn_star" 
-        android:layout_weight=".10" />
+        android:layout_weight=".15" />
 
     <TextView
         android:id="@+id/textVal"
         style="@style/TextViewForList"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight=".70" />
+        android:layout_weight=".75" />
 
-    <Button
-        android:id="@+id/startRide"
-        style="@style/Button"
-        android:layout_width="0dp"
-        android:text="@string/Startride" 
-        android:layout_weight=".20" />
+    
+     <ImageButton
+        android:id="@+id/img_start"
+        android:layout_weight=".10"
+        android:src="@drawable/button_start"
+        android:background="@android:color/transparent"
+		android:layout_width="35dp"
+        android:layout_height="35dp"
+     	android:scaleType="centerInside" 
+     	style="@style/Button"/>
     
 </LinearLayout>

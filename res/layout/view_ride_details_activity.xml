@@ -143,7 +143,8 @@
                 <Button
                     android:id="@+id/btnViewParticipants"
                     style="@style/Button"
-                    android:text="Participants" />
+                    android:text="Participants" 
+                    android:layout_margin="25dp"/>
             </LinearLayout>
         </ScrollView>
 

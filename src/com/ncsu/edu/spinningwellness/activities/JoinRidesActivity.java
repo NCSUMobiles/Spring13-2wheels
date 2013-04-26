@@ -1,5 +1,6 @@
 package com.ncsu.edu.spinningwellness.activities;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -141,7 +143,7 @@ public class JoinRidesActivity extends BaseActivity {
 		public class ViewHolder{
 			public TextView item1;
 			public CheckBox item2;
-			public Button start;
+			public ImageButton start;
 		}
 
 		@Override
@@ -156,7 +158,7 @@ public class JoinRidesActivity extends BaseActivity {
 			holder.item1 = (TextView) v.findViewById(R.id.textVal);
 			holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
 
-			holder.start = (Button) v.findViewById(R.id.startRide);
+			holder.start = (ImageButton) v.findViewById(R.id.img_start);
 			final CustomEntry custom = entries.get(position);
 			if (custom != null) {
 				holder.item1.setText(custom.getTextVal());
