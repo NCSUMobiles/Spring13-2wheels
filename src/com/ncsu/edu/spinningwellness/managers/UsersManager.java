@@ -17,8 +17,8 @@ import com.ncsu.edu.spinningwellness.entities.UserActivity;
 
 public class UsersManager {
 
-	public static String createUser(String name) {
-		HttpPost post = RestClientUtils.createHttpPostRequest(Constants.CREATE_USER_URL, new User(name).toJSON());
+	public static String createUser(String name, String email) {
+		HttpPost post = RestClientUtils.createHttpPostRequest(Constants.CREATE_USER_URL, new User(name, email).toJSON());
 		return RestClientUtils.executeRequest(post);
 	}
 
@@ -144,6 +144,21 @@ public class UsersManager {
 		List<User> users = new ArrayList<User>();
 
 		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_TOP_PERFORMERS_URL);
+		String JSON = RestClientUtils.executeRequest(get); 
+
+		@SuppressWarnings("unchecked")
+		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
+		for(Object u: us) {
+			User user = (User) u;  
+			users.add(user);
+		}
+		return users;
+	}
+	
+	public static List<User> getAllUsers() {
+		List<User> users = new ArrayList<User>();
+
+		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_ALL_USERS);
 		String JSON = RestClientUtils.executeRequest(get); 
 
 		@SuppressWarnings("unchecked")

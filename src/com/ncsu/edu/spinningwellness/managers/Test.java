@@ -20,11 +20,11 @@ import com.ncsu.edu.spinningwellness.managers.UsersManager;
 public class Test {
 	
 	private static void createUsers() {
-		UsersManager.createUser("amarja");
-		UsersManager.createUser("minakshi");
-		UsersManager.createUser("prajakta");
-		UsersManager.createUser("sruthi");
-		UsersManager.createUser("jay");
+		UsersManager.createUser("amarja", "arvaidya@ncsu.edu");
+		UsersManager.createUser("minakshi", "skdg@ncsu.edu");
+		UsersManager.createUser("prajakta", "djg@ncsu.edu");
+		UsersManager.createUser("sruthi", ",dsjg@ncsu.edu");
+		UsersManager.createUser("jay", "dkjsga@ncsu.edu");
 	}
 	
 	private static void createRides() {
