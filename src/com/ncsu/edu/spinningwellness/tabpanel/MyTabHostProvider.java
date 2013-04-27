@@ -44,7 +44,7 @@ public class MyTabHostProvider extends TabHostProvider {
 		tabView = new TabView(context);
 		tabView.setOrientation(TabView.Orientation.BOTTOM);
 		tabView.setBackgroundID(R.layout.common_color_gradient);
-
+		
 		joinRidesTab = createTab(category, 
 				JoinRidesActivity.class, 
 				R.drawable.menu_btn_join_rides, 
