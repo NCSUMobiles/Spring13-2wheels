@@ -60,12 +60,13 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}	
@@ -75,12 +76,13 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_FROM_LAST_WEEK_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}	
@@ -94,12 +96,13 @@ public class RidesManager {
 				userName
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}	
@@ -110,12 +113,13 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}		
@@ -126,11 +130,13 @@ public class RidesManager {
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_FROM_LAST_WEEK_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}
@@ -162,12 +168,13 @@ public class RidesManager {
 				"/" + rideId
 				);
 		String JSON = RestClientUtils.executeRequest(viewParticipantsForRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> ps =  Utils.JSONToObjectList(JSON, Participant.class);
-		for(Object p: ps) {
-			Participant participant = (Participant) p;  
-			participants.add(participant);
+		if(JSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> ps =  Utils.JSONToObjectList(JSON, Participant.class);
+			for(Object p: ps) {
+				Participant participant = (Participant) p;  
+				participants.add(participant);
+			}
 		}
 		return participants;
 	}
@@ -182,12 +189,13 @@ public class RidesManager {
 				userName
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}		
