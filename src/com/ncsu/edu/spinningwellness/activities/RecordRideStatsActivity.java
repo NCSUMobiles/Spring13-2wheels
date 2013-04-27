@@ -7,6 +7,7 @@ import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
+import com.sun.org.apache.xml.internal.utils.StopParseException;
 
 import android.content.Intent;
 import android.location.Location;
@@ -22,11 +23,12 @@ import android.widget.Toast;
 
 public class RecordRideStatsActivity extends BaseActivity {
 
-	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1; // 14 meters
+	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 14 meters
 	private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
 
 	Ride ride;
 	DecimalFormat df = new DecimalFormat("#.###");
+	DecimalFormat tf = new DecimalFormat("#.##");
 
 	TextView textViewDistance, textViewAverageSpeed, textViewRideName;
 	ImageButton btnPlay, btnPause, btnStop;
@@ -37,13 +39,17 @@ public class RecordRideStatsActivity extends BaseActivity {
 	LocationListener myLocationListener;
 
 	double previousLatitude = 0.0, previousLongitude = 0.0;
+	double distanceCovered_met = 0.0;
 	double distanceCovered = 0.0;
 	long timeOfRide = 0;
+	float timeRead_mins = 0;
 	double averageSpeed = 0.0;
 
 	boolean isGPSEnabled = false, isNetworkEnabled = false;
 	boolean isStarted = false;
-
+	boolean wasPaused = false;
+	boolean wasStopped = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -152,6 +158,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 						System.out.println("has some value");
 
 						float[] dist = {0};
+						
 						try {
 							Location.distanceBetween(previousLatitude, previousLongitude, location.getLatitude(), location.getLongitude(), dist);
 							
@@ -166,11 +173,16 @@ public class RecordRideStatsActivity extends BaseActivity {
 						previousLatitude = location.getLatitude();
 						previousLongitude = location.getLongitude();
 
-						distanceCovered += (float) dist[0];			
+						distanceCovered_met += (float) dist[0];  //distance in meters
+						distanceCovered = (float) ((distanceCovered_met/1000) * 0.62137);   //distance in miles
 						
 						System.out.println("dc = " + distanceCovered);
+				
+						timeRead_mins = readChronometer();  //time read in mins
+						averageSpeed = distanceCovered/(timeRead_mins/60); //Avg speed in miles/hr
 						
 						setDistanceCovered();
+						setAvgSpeed();
 					}
 				}
 			}
@@ -207,7 +219,11 @@ public class RecordRideStatsActivity extends BaseActivity {
 		btnPlay.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-
+				if(wasStopped){
+					timeOfRide = 0;
+					wasStopped = false;
+				}
+				
 				chronometer.setBase(SystemClock.elapsedRealtime() + timeOfRide);
 				chronometer.start();
 				
@@ -229,6 +245,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 				chronometer.stop();
 
 				isStarted = false;
+				wasPaused = true;
 				
 				locationManager.removeUpdates(myLocationListener);
 
@@ -242,11 +259,20 @@ public class RecordRideStatsActivity extends BaseActivity {
 		btnStop.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {			
+				if(wasPaused){
+					//use the previous timeOfRide value
+				}
+				else {
 				timeOfRide = chronometer.getBase() - SystemClock.elapsedRealtime();
+				}
+				
 				chronometer.stop();
-
+				
 				isStarted = false;
-
+				wasPaused = false;
+				wasStopped = true;
+				
+		//		Toast.makeText(RecordRideStatsActivity.this, "Time: " + tf.format(readChronometer()) + "mins", Toast.LENGTH_SHORT).show();
 				locationManager.removeUpdates(myLocationListener);
 
 				//Redirect to next page with all the fields in intent
@@ -254,13 +280,38 @@ public class RecordRideStatsActivity extends BaseActivity {
 				i.putExtra("Ride", ride);
 				i.putExtra("DistanceCovered", distanceCovered);
 				i.putExtra("AverageSpeed", averageSpeed);
-				i.putExtra("TimeOfRide", timeOfRide);
+				i.putExtra("TimeOfRide", tf.format(readChronometer()));    //Jay
 				startActivity(i);
 			}
 		});
 	}
 
-	private void setDistanceCovered() {
-		textViewDistance.setText("Distance: " + df.format(distanceCovered) + " m");
+	
+	private float readChronometer(){
+		float stoppedMins = 0;
+		String chronoText = chronometer.getText().toString();
+		String array[] = chronoText.split(":");
+
+		if (array.length == 2) {
+	        stoppedMins = Integer.parseInt(array[0]) + (float) (Float.parseFloat(array[1]) / 60);
+	      } 
+		else if (array.length == 3) {
+	        stoppedMins = Integer.parseInt(array[0]) * 60 + Integer.parseInt(array[1]) + (float) (Float.parseFloat(array[2]) / 60);
+	      }
+	      
+	//	Toast.makeText(RecordRideStatsActivity.this, "Time: " + stoppedMins + "mins", Toast.LENGTH_SHORT).show();
+		return stoppedMins;
 	}
+
+	
+	private void setDistanceCovered() {
+		textViewDistance.setText("Distance: " + df.format(distanceCovered) + " mi");
+	}
+	
+	private void setAvgSpeed() {
+		textViewAverageSpeed.setText("Avg Speed: " + tf.format(averageSpeed) + " mi/hr");
+	}
+	
+	
+		
 }

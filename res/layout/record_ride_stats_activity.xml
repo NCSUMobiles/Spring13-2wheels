@@ -92,8 +92,9 @@
                         style="@style/TextViewForLabels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" Distance:" 
-                        android:textSize="24sp" 
+                        android:text="Distance: 0.0"
+                        android:textStyle="normal" 
+                        android:textSize="22sp" 
                         android:layout_margin="20dp"/>
                 </RelativeLayout>
 
@@ -111,8 +112,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/relativeLayout1"
             android:layout_below="@+id/relativeLayout1"
-            android:text=" Avg Speed:"
-            android:textSize="24sp"
+            android:text="Avg Speed: 0.0"
+            android:textStyle="normal"
+            android:textSize="22sp"
             android:layout_margin="20dp" />
     </RelativeLayout>
 
