@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LogRideDetailsActivity extends BaseActivity {
 
@@ -132,10 +133,10 @@ public class LogRideDetailsActivity extends BaseActivity {
 		logRideDetailsForm.setVisibility(View.VISIBLE);
 
 		//clear the text boxes
-		textViewRideName.setText(ride.getName());
-		textViewDistanceCovered.setText(((Double) distanceCovered).toString());
-		textViewTimeOfRide.setText(((Long) timeOfRide).toString());
-		textViewAverageSpeed.setText(((Double) averageSpeed).toString());
+		textViewRideName.setText("");
+		textViewDistanceCovered.setText("");
+		textViewTimeOfRide.setText("");
+		textViewAverageSpeed.setText("");
 		textViewHeartRate.setText("");
 		textViewCadence.setText("");
 		textViewExperience.setText("");
@@ -147,7 +148,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	private class LogRideDetailsTask extends AsyncTask<Void,Void,User> {
 
-		Exception error;
+		Exception errorPostBlog;
+		Exception errorLogDetails;
 
 		protected User doInBackground(Void... params) {
 
@@ -168,8 +170,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 			}
 			
 			String result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);
-			if(!result.equalsIgnoreCase("success")) {
-				error = new Exception();
+			if(!result.equalsIgnoreCase("Success")) {
+				errorLogDetails = new Exception();
 			}
 
 			String blogText = ((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString();
@@ -183,9 +185,9 @@ public class LogRideDetailsActivity extends BaseActivity {
 					recentPost.setDescription(blogText);
 					wp.newPost(recentPost, true);
 				} catch (MalformedURLException e) {
-					error = e;
+					errorPostBlog = e;
 				} catch (XmlRpcFault e) {
-					error = e;
+					errorPostBlog = e;
 				}
 			}
 			return null;
@@ -193,14 +195,16 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
-			if(error == null){
-				moveToJoinRidesPage();
-			} else {
-				//Display the error to user
-				progressBar.setVisibility(View.INVISIBLE);
-				textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
-				textViewLoginError.setVisibility(View.VISIBLE);
+		    if(errorPostBlog != null && errorLogDetails != null){
+				Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT).show();
+			}else if(errorPostBlog != null){
+				Toast.makeText(getApplicationContext(), "An error occured while posting to blog.", Toast.LENGTH_SHORT).show();
+			} else if (errorLogDetails != null){
+				Toast.makeText(getApplicationContext(), "An error occured while logging the details.", Toast.LENGTH_SHORT).show();
 			}
+			moveToJoinRidesPage();
+//		    textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
+//			textViewLoginError.setVisibility(View.VISIBLE);
 		}
 	}
 }
