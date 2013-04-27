@@ -38,7 +38,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
+				
+                 <TextView
+                    android:id="@+id/textViewLogRideError"
+                    style="@style/TextViewForLabels"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="An error occured." />
+                 
                 <TextView
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"

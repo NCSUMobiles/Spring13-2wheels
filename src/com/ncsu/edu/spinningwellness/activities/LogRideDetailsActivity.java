@@ -35,6 +35,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 	Button btnSubmit;
 	
 	LinearLayout progressBar;
+	static TextView textViewLoginError;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		setFormFields();
+		textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
+		textViewLoginError.setVisibility(View.INVISIBLE);
 	}
 
 	@Override
@@ -69,6 +72,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 			createRideForm.setVisibility(View.INVISIBLE);
 
 			new LogRideDetailsTask().execute();
+			
 		} else {
 			//Show the error message to user
 			System.out.println("Error in user input");
@@ -138,6 +142,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		Intent joinRidesIntent = new Intent(LogRideDetailsActivity.this, JoinRidesActivity.class); 
 		LogRideDetailsActivity.this.startActivity(joinRidesIntent);
+		
 	}
 
 	private class LogRideDetailsTask extends AsyncTask<Void,Void,User> {
@@ -148,36 +153,54 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			//Log activity to backend
 			Date activityDate = new Date();
-			cadence = Double.parseDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString());
-			heartRate = Double.parseDouble(((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString());
+			String cadenceString = ((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim();
+			if(!cadenceString.equals("")){
+				cadence = Double.parseDouble(cadenceString);
+			} else {
+				cadence = 0;
+			}
+			
+			String hrString = ((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim();
+			if(!cadenceString.equals("")){
+				heartRate = Double.parseDouble(hrString);
+			} else {
+				heartRate = 0;
+			}
+			
 			String result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, timeOfRide, heartRate, activityDate);
 			if(!result.equalsIgnoreCase("success")) {
 				error = new Exception();
 			}
 
-			//Post to blog
-			System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
-			Wordpress wp;
-			try {
-				wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
-				Page recentPost = new Page();
-				recentPost.setDescription(((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString());
-				wp.newPost(recentPost, true);
-			} catch (MalformedURLException e) {
-				error = e;
-			} catch (XmlRpcFault e) {
-				error = e;
+			String blogText = ((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString();
+			if(blogText != null && !blogText.equals("")){
+				//Post to blog
+				System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
+				Wordpress wp;
+				try {
+					wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
+					Page recentPost = new Page();
+					recentPost.setDescription(blogText);
+					wp.newPost(recentPost, true);
+				} catch (MalformedURLException e) {
+					error = e;
+				} catch (XmlRpcFault e) {
+					error = e;
+				}
 			}
 			return null;
 		}
 
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
-			if(error == null)
+			if(error == null){
 				moveToJoinRidesPage();
-			//} else {
+			} else {
 				//Display the error to user
-			//}
+				progressBar.setVisibility(View.INVISIBLE);
+				textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
+				textViewLoginError.setVisibility(View.VISIBLE);
+			}
 		}
 	}
 }

@@ -202,12 +202,14 @@ public class RidesManager {
 				userName
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-
-		@SuppressWarnings("unchecked")
-		List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
-		for(Object r: rs) {
-			Ride ride = (Ride) r;  
-			rides.add(ride);
+		if(ridesJSON != null){
+		
+			@SuppressWarnings("unchecked")
+			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
+			for(Object r: rs) {
+				Ride ride = (Ride) r;  
+				rides.add(ride);
+			}
 		}
 		return rides;		
 	}		

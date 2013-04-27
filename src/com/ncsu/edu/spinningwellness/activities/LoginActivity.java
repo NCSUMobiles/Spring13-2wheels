@@ -115,6 +115,7 @@ public class LoginActivity extends BaseActivity {
 
 				moveToJoinRidesPage();
 			} else {
+				progressBar.setVisibility(View.INVISIBLE);
 				LoginActivity.this.textViewLoginError.setVisibility(View.VISIBLE);
 			}
 		}
