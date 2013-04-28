@@ -10,6 +10,7 @@ import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
@@ -47,15 +48,19 @@ public class EmailDispatcher extends Authenticator{
 			Session session=Session.getInstance(props,this);
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("spinningwellness", "SpinningWellness Admin"));
+			InternetAddress[] addressTo = new InternetAddress[u.size()];
+			int i=0;
 			for(User user:u){
 				if(user.getEmail() != null){
-					msg.addRecipient(Message.RecipientType.TO,
-							new InternetAddress(user.getEmail(), user.getName()));
+//					msg.addRecipient(Message.RecipientType.TO,
+//							new InternetAddress(user.getEmail(), user.getName()));
+					System.out.println(user.getEmail());
+					addressTo[i++] = new InternetAddress(user.getEmail());
 					canSend = true;
 				} 
 			}
-
 			if(canSend){
+				msg.setRecipients(Message.RecipientType.TO, addressTo);
 				//Build message subject string
 				StringBuilder msgSubject = new StringBuilder();
 				msgSubject.append("New Ride Created: " + ride.getName());

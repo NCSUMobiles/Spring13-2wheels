@@ -184,9 +184,9 @@ public class CreateRideActivity extends BaseActivity {
 		}
 
 		protected Void doInBackground(Void... params) {
-			List<User> l = new ArrayList<User>();
+			
 			//TODO: get from the webservice 
-			new EmailDispatcher().sendEmailToAll(l, r);
+			new EmailDispatcher().sendEmailToAll(list, r);
 			return null;
 			//send email
 			
