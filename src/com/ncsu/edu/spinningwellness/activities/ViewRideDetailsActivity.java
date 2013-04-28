@@ -41,6 +41,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		addListenerOnButton();
 
 		fillRideDetails();
+	//	fillRideStats();
 
 		progressBar = (LinearLayout) findViewById(R.id.rideDetailsSpinner);
 		progressBar.setVisibility(View.INVISIBLE);
@@ -72,6 +73,13 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		((TextView) findViewById(R.id.textViewRideDetailsTime)).setText(dfForRideTime.format(rideDate));
 	}
 
+//	public void fillRideStats(){
+//		
+//		((TextView) findViewById(R.id.textViewRideDetailsRideName)).setText(ride.getName());
+//		((TextView) findViewById(R.id.textViewRideDetailsSource)).setText(ride.getSource());
+//		
+//		
+//	}
 	public void addListenerOnButton() {
 
 		final Context context = this;

@@ -10,11 +10,16 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
+            
+          <LinearLayout
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content">  
 
             <LinearLayout
-                android:id="@+id/createRideForm"
+                android:id="@+id/pastRideForm"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="@layout/common_table_background"
                 android:gravity="center"
                 android:orientation="vertical" >
 
@@ -146,6 +151,9 @@
                     android:text="Participants" 
                     android:layout_margin="25dp"/>
             </LinearLayout>
+               
+              
+          </LinearLayout>
         </ScrollView>
 
         <LinearLayout

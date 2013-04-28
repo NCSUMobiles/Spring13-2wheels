@@ -29,6 +29,7 @@ import android.widget.TimePicker;
 public class CreateRideActivity extends BaseActivity {
 
 	LinearLayout progressBar;
+	TextView textViewCreateError;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class CreateRideActivity extends BaseActivity {
 
 		progressBar = (LinearLayout) findViewById(R.id.createRideSpinner);
 		progressBar.setVisibility(View.INVISIBLE);
+		
+		textViewCreateError = (TextView) findViewById(R.id.txtViewCreateError);
+		textViewCreateError.setVisibility(View.INVISIBLE);
 	}
 
 	@Override
@@ -68,8 +72,25 @@ public class CreateRideActivity extends BaseActivity {
 
 	private void validateUserInputAndCallAsyncTask() {
 
-		//Add validation code herer
+		String missing="";
 		boolean isValid = true;
+		
+		
+		//Add validation code here
+		String rideName = ((TextView) findViewById(R.id.textViewCreateRideRideName)).getText().toString().trim();
+		String source = ((TextView) findViewById(R.id.textViewCreateRideSource)).getText().toString().trim();
+		String destination = ((TextView) findViewById(R.id.textViewCreateRideDestination)).getText().toString().trim();
+		
+//		if(rideName.equals(""))
+//			missing= missing + "Ride Name, ";
+//		if(source.equals(""))
+//			missing= missing + "Source, ";
+//		if(destination.equals(""))
+//			missing= missing + "Destination! ";
+//		
+		if(rideName.equals("") || source.equals("")||destination.equals(""))
+			isValid = false;
+		
 		if(isValid) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
@@ -78,7 +99,10 @@ public class CreateRideActivity extends BaseActivity {
 			new CreateRideTask().execute();
 		} else {
 			//Show the error message to user
-			System.out.println("Error in user input");
+		
+//			textViewCreateError.append("\nEnter "+missing+"\n");
+			textViewCreateError.setVisibility(View.VISIBLE);
+			 //System.out.println("Enter "+missing);
 		}
 	}
 
@@ -128,6 +152,7 @@ public class CreateRideActivity extends BaseActivity {
 			Ride ride = null;
 			String result = RidesManager.createRide(rideName, source, destination, startDate, username);
 			if(!result.equalsIgnoreCase("success")) {
+				textViewCreateError.setVisibility(View.VISIBLE);
 				error = new Exception();
 			}else{
 				ride = new Ride("1",rideName, source, destination, startDate.getTime(), username);
@@ -144,6 +169,7 @@ public class CreateRideActivity extends BaseActivity {
 				moveToJoinRidesPage();
 			} else {
 				//Display the error to user
+					textViewCreateError.setVisibility(View.VISIBLE);
 			}
 		}
 	}

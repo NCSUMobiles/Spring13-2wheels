@@ -41,13 +41,21 @@
                 android:gravity="center"
                 android:orientation="vertical" >
 
+                 
+                 <TextView
+                    android:id="@+id/txtViewCreateError"
+                    style="@style/TextViewFont"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter mandatory fields!" />
+                 
                 <!-- Name of Ride Label -->
 
                 <TextView
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ride Name" 
+                    android:text="Ride Name*" 
                     android:layout_marginTop="10dp"/>
 
                 <EditText
@@ -63,7 +71,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Source" 
+                    android:text="Source*" 
                     android:layout_marginTop="10dp"/>
 
                 <EditText
@@ -79,7 +87,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Destination" 
+                    android:text="Destination*" 
                     android:layout_marginTop="10dp"/>
 
                 <EditText

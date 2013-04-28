@@ -41,7 +41,7 @@
         <item name="android:background">@layout/common_color_gradient</item>
         <item name="android:textAppearance">@style/TextViewFont</item>
         <item name="android:layout_height">40sp</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">274sp</item> 
         <item name="android:layout_gravity">center</item>
     </style>
 
