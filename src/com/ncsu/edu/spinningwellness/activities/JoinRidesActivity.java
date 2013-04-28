@@ -120,13 +120,17 @@ public class JoinRidesActivity extends BaseActivity {
 //				Toast.makeText(getApplicationContext(), " Clicked " , Toast.LENGTH_SHORT).show();
 
 				Ride selectedRide = null;
+				String Caller = "JoinRide";
 				int positionView = listView.getPositionForView(view);
 				if (positionView != ListView.INVALID_POSITION) {
-					System.out.println( rideList.get(positionView).getName());
+					//System.out.println( rideList.get(positionView).getName());
 					//start view activity
 					selectedRide = rideList.get(positionView);
 					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
+					i.putExtra("Caller", Caller);
 					i.putExtra("Ride", selectedRide);
+					
+					//System.out.println("Sending caller as :"+Caller);
 					startActivity(i);
 				}else{
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();

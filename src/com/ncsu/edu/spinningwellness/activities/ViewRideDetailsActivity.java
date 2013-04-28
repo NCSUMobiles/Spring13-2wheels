@@ -23,6 +23,7 @@ import android.widget.TextView;
 public class ViewRideDetailsActivity extends BaseActivity {
 
 	Ride ride;
+	Bundle Caller;
 	LinearLayout progressBar;
 
 	@Override
@@ -30,8 +31,17 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		//Draw menu
+		Caller=getIntent().getExtras();
+		//Caller = getIntent().getExtra("Caller");
+		//System.out.println("Caller in onCreate : "+ Caller.getString("Caller"));
+		TabView tabView;
+		
 		tabProvider = new MyTabHostProvider(ViewRideDetailsActivity.this);
-		TabView tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+		if(Caller.getString("Caller").equals("JoinRide"))
+			tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
+		else
+			tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+		
 		tabView.setCurrentView(R.layout.view_ride_details_activity);
 		setContentView(tabView.render());
 
@@ -50,9 +60,16 @@ public class ViewRideDetailsActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		ride = getIntent().getParcelableExtra("Ride");
-
+	//	System.out.println("Ride received :"+ride.getName());
+		Bundle Caller=getIntent().getExtras();
+		//System.out.println("Caller before : "+ Caller.getString("Caller"));
+		
+	//	System.out.println("Caller in after : "+ Caller);
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText("Ride Details");
+		if(Caller.getString("Caller").equals("JoinRide"))
+			myTitleText.setText("Upcoming Ride Details");
+		else
+			myTitleText.setText("Past Ride Details");
 	}
 
 	void fillRideDetails() {

@@ -66,12 +66,14 @@ public class MyPastRidesActivity extends BaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Ride selectedRide = null;
+				String Caller = "PastRide";
 				int positionView = listView.getPositionForView(view);
 				if (positionView != ListView.INVALID_POSITION) {
 					//start view activity
 					selectedRide = myPastRides.get(positionView);
 					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
 					i.putExtra("Ride", selectedRide);
+					i.putExtra("Caller",Caller);
 					startActivity(i);
 				} else {
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
