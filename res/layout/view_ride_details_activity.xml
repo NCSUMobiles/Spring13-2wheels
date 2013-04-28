@@ -16,7 +16,7 @@
                android:layout_height="wrap_content">  
 
             <LinearLayout
-                android:id="@+id/pastRideForm"
+                android:id="@+id/createRideForm"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@layout/common_table_background"
