@@ -78,4 +78,8 @@ public interface Constants {
 	
 	public String VIEW_ALL_USERS = USER_URL + "/getallusers";
 	
+	public static String adminPassword = "ncsuspr2013";
+	public static String adminEmail = "spinningwellness2013@gmail.com";
+	public static String adminUserName = "spinningwellness";
+	
 }

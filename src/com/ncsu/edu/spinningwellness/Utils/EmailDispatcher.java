@@ -1,11 +1,18 @@
 package com.ncsu.edu.spinningwellness.Utils; 
 
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -14,65 +21,82 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class EmailDispatcher {
+import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.entities.User;
+import com.ncsu.edu.spinningwellness.managers.Constants;
 
-	public static void sendEmailToAll() {
+public class EmailDispatcher extends Authenticator{
 
-		Properties props = System.getProperties();
-		props.put("mail.smtp.starttls.enable", true); // added this line
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.user", "spinningwellness2013");
-		props.put("mail.smtp.password", "ncsuspr2013");
-		props.put("mail.smtp.port", "587");
-		props.put("mail.smtp.auth", true);
-
-		Session session = Session.getInstance(props,null);
-		MimeMessage message = new MimeMessage(session);
-
-		System.out.println("Port: "+session.getProperty("mail.smtp.port"));
-
-		// Create the email addresses involved
+	private static String mUserName;
+	private static String mPassword;
+	private static String mHostName;
+	
+	public void sendEmailToAll(List<User> u, Ride ride) {
+		mUserName=Constants.adminEmail;
+		mPassword=Constants.adminPassword;
+		mHostName="smtp.gmail.com";
+		
 		try {
-			InternetAddress from = new InternetAddress("spinningwellness2013");
-			message.setSubject("Yes we can");
-			message.setFrom(from);
-			message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("arvaidya@ncsu.edu"));
+			Properties props = new Properties(); 
+			props.put("mail.smtp.host", mHostName);   
+			props.put("mail.smtp.auth", "true");           
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.port", "587");
+			// this object will handle the authentication
+			Session session=Session.getInstance(props,this);
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress("spinningwellness", "SpinningWellness Admin"));
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress("arvaidya@ncsu.edu", "arvaidya"));
 
-			// Create a multi-part to combine the parts
-			Multipart multipart = new MimeMultipart("alternative");
+			//Build message subject string
+			StringBuilder msgSubject = new StringBuilder();
+			msgSubject.append("New Ride Created: " + ride.getName());
+			msg.setSubject(msgSubject.toString());
 
-			// Create your text message part
-			BodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText("some text to send");
+			//Build message
+			StringBuilder msgBody = new StringBuilder();
+			msgBody.append("Hello Amarja\n");
+			msgBody.append("\n");
+			msgBody.append("A new ride has been created by " + ride.getCreator() + "\n");
+			msgBody.append("Ride Details - \n");
+			msgBody.append("\tRide Name: " + ride.getName() +" \n");
+			msgBody.append("\tStarting Point: " + ride.getSource() +" \n");
+			msgBody.append("\tEnd Point: " + ride.getDest() +" \n");
+			
+			Date rideDate = new Date(ride.getStartTime());
+			String[] formats = new String[] {"dd-MMM-yy", "HH:mm"};
 
-			// Add the text part to the multipart
-			multipart.addBodyPart(messageBodyPart);
+			SimpleDateFormat dfForRideDate = new SimpleDateFormat(formats[0], Locale.US);
+			msgBody.append("\tDate: " + dfForRideDate.format(rideDate) +" \n");
 
-			// Create the html part
-			messageBodyPart = new MimeBodyPart();
-			String htmlMessage = "Our html text";
-			messageBodyPart.setContent(htmlMessage, "text/html");
+			SimpleDateFormat dfForRideTime = new SimpleDateFormat(formats[1], Locale.US);
+			msgBody.append("\tTime: " + dfForRideTime.format(rideDate) +" \n");
 
+			msgBody.append("\n");
+			msgBody.append("You can join the ride using Spinning Wellness app...\n");
+			
+			msgBody.append("\n");
+			msgBody.append("Admin\n");
 
-			// Add html part to multi part
-			multipart.addBodyPart(messageBodyPart);
-
-			// Associate multi-part with message
-			message.setContent(multipart);
-
-			// Send message
+			msg.setText(msgBody.toString());
 			Transport transport = session.getTransport("smtp");
-			transport.connect("smtp.gmail.com", "spinningwellness2013", "ncsuspr2013");
-			System.out.println("Transport: "+transport.toString());
-			transport.sendMessage(message, message.getAllRecipients());
 
-
+			transport.connect(mUserName, mPassword);
+			transport.sendMessage(msg, msg.getAllRecipients());
+			transport.close();
+			
 		} catch (AddressException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override 
+	public PasswordAuthentication getPasswordAuthentication() { 
+		return new PasswordAuthentication(mUserName, mPassword); 
+	} 
 }
