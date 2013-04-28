@@ -111,7 +111,7 @@ public class CreateRideActivity extends BaseActivity {
 			String destination = ((TextView) findViewById(R.id.textViewCreateRideDestination)).getText().toString();
 
 			int day = ((DatePicker) findViewById(R.id.createRideDatePicker)).getDayOfMonth();
-			int month = ((DatePicker) findViewById(R.id.createRideDatePicker)).getMonth() + 1;
+			int month = ((DatePicker) findViewById(R.id.createRideDatePicker)).getMonth();
 			int year = ((DatePicker) findViewById(R.id.createRideDatePicker)).getYear();
 
 			int hour = ((TimePicker) findViewById(R.id.createRideTimePicker)).getCurrentHour();
