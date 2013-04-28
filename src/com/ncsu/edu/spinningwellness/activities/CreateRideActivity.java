@@ -1,10 +1,14 @@
 package com.ncsu.edu.spinningwellness.activities;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.Utils.EmailDispatcher;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
@@ -120,23 +124,49 @@ public class CreateRideActivity extends BaseActivity {
 			Calendar calendar = Calendar.getInstance();
 			calendar.set(year, month, day, hour, minute);
 			Date startDate = calendar.getTime();
-
+			Ride ride = null;
 			String result = RidesManager.createRide(rideName, source, destination, startDate, username);
 			if(!result.equalsIgnoreCase("success")) {
 				error = new Exception();
+			}else{
+				ride = new Ride("1",rideName, source, destination, startDate.getTime(), username);
 			}
 
-			return null;
+			return ride;
 		}
 
 		protected void onPostExecute(Ride result) {
 
 			//Redirect to join rides page
 			if(error == null) {
+				new SendEmailTask(result).execute();
 				moveToJoinRidesPage();
 			} else {
 				//Display the error to user
 			}
+		}
+	}
+	
+	private class SendEmailTask extends AsyncTask<Void, Void, Void> {
+		
+		Exception error;
+		Ride r;
+		
+		SendEmailTask(Ride ride){
+			r = ride;
+		}
+
+		protected Void doInBackground(Void... params) {
+			List<User> l = new ArrayList<User>();
+			//TODO: get from the webservice 
+			new EmailDispatcher().sendEmailToAll(l, r);
+			return null;
+			//send email
+			
+		}
+
+		protected void onPostExecute(Ride result) {
+			
 		}
 	}
 }
