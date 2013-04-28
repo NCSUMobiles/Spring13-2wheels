@@ -3,14 +3,18 @@ package com.ncsu.edu.spinningwellness.activities;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.text.Position;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.Utils.EventsCalendar;
 import com.ncsu.edu.spinningwellness.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
+import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
@@ -20,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -294,8 +299,68 @@ public class JoinRidesActivity extends BaseActivity {
 				}
 			}
 			rideEntry = temp;
+			new GetLoggedinUserTask(true).execute();
 			displayListView();
 		}
+	}
+	
+	private class GetLoggedinUserTask extends AsyncTask<Void, Void, User> {
+		Exception error;
+		boolean isJoin;
+		GetLoggedinUserTask(boolean isJoin){
+			this.isJoin = isJoin;
+		}
+			
+		@Override
+		protected User doInBackground(Void... arg0) {
+			User u = UsersManager.getUser(username);
+			return u;
+		}
+		
+		protected void onPostExecute(User result) {
+			if(isJoin){
+				new AddToCalendarTask(result).execute();
+			}else{
+				new DeleteFromCalendar(result).execute();
+			}
+		}
+	}
+	
+	
+	private class AddToCalendarTask extends AsyncTask<Void, Void, Void> {
+		User user;
+		AddToCalendarTask(User user){
+			this.user = user;
+		}
+		
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave.getName(), selectedRideSave.getSource(), selectedRideSave.getDest(), 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
+			return null;
+		}
+		
+		protected void onPostExecute(Void result) {
+			System.out.println("added to calendar.");
+		}
+		
+	}
+	
+	private class DeleteFromCalendar extends AsyncTask<Void, Void, Void> {
+		User user;
+		DeleteFromCalendar(User user){
+			this.user = user;
+		}
+		
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave.getName(), selectedRideSave.getSource(), selectedRideSave.getDest(), 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
+			return null;
+		}
+		
+		protected void onPostExecute(Void result) {
+			System.out.println("added to calendar.");
+		}
+		
 	}
 
 	//AsynTask for joining the rides

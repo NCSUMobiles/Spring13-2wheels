@@ -25,7 +25,7 @@ public class EventsCalendar {
 	 * @param needMailService
 	 * @return
 	 */
-	public static long pushAppointmentsToCalender(Activity curActivity, String title, String addInfo, String place, int status, long startDate, boolean needReminder, boolean needMailService) {
+	public static long pushAppointmentsToCalender(Activity curActivity, String title, String addInfo, String place, int status, long startDate, boolean needReminder, boolean needMailService, String username, String email) {
 	    String eventUriString = "content://com.android.calendar/events";
 	    ContentValues eventValues = new ContentValues();
 
@@ -100,11 +100,8 @@ public class EventsCalendar {
 	        ContentValues attendeesValues = new ContentValues();
 
 	        attendeesValues.put("event_id", eventID);
-	        attendeesValues.put("attendeeName", "praj"); // Attendees name
-	        attendeesValues.put("attendeeEmail", "pshegde@ncsu.edu");// Attendee
-	                                                                            // E
-	                                                                            // mail
-	                                                                            // id
+	        attendeesValues.put("attendeeName", username); // Attendees name
+	        attendeesValues.put("attendeeEmail", email);// Attendee email
 	        attendeesValues.put("attendeeRelationship", 0); // Relationship_Attendee(1),
 	                                                        // Relationship_None(0),
 	                                                        // Organizer(2),

@@ -166,7 +166,6 @@ public class CreateRideActivity extends BaseActivity {
 
 			//Redirect to join rides page
 			if(error == null) {
-				new AddToCalendarTask().execute();
 				new GetAllUsersTask(result).execute();
 				moveToJoinRidesPage();
 			} else {
@@ -196,6 +195,13 @@ public class CreateRideActivity extends BaseActivity {
 			//Redirect to join rides page
 			if(error == null) {
 				new SendEmailTask(r,result).execute();
+				//fidn this user.... 
+				for(User u:result){
+					if(u.getName().equalsIgnoreCase(username)){
+						new AddToCalendarTask(u).execute();
+					}
+				}
+				
 			}
 		}
 	}
@@ -226,10 +232,14 @@ public class CreateRideActivity extends BaseActivity {
 	}
 	
 	private class AddToCalendarTask extends AsyncTask<Void, Void, Void> {
-
+		User user;
+		AddToCalendarTask(User user){
+			this.user = user;
+		}
+		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this, "ride1", "abcd", "pune", 0, new Date().getTime(), true, true);
+			EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this, "ride1", "abcd", "pune", 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
 			return null;
 		}
 		

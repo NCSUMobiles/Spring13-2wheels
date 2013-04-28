@@ -171,4 +171,12 @@ public class UsersManager {
 		}
 		return users;
 	}
+	
+	public static User getUser(String userName) {
+
+		HttpGet viewUser = RestClientUtils.createHttpGetRequest(Constants.VIEW_USER_URL + "/" + userName);
+		String JSON = RestClientUtils.executeRequest(viewUser);
+
+		return (User)Utils.JSONToObject(JSON, User.class);
+	}
 }
