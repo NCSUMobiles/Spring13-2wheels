@@ -10,6 +10,7 @@ import com.ncsu.edu.spinningwellness.Utils.EmailDispatcher;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
+import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
@@ -139,7 +140,7 @@ public class CreateRideActivity extends BaseActivity {
 
 			//Redirect to join rides page
 			if(error == null) {
-				new SendEmailTask(result).execute();
+				new GetAllUsersTask(result).execute();
 				moveToJoinRidesPage();
 			} else {
 				//Display the error to user
@@ -147,13 +148,39 @@ public class CreateRideActivity extends BaseActivity {
 		}
 	}
 	
-	private class SendEmailTask extends AsyncTask<Void, Void, Void> {
+	private class GetAllUsersTask extends AsyncTask<Void, Void, List<User>> {
 		
 		Exception error;
 		Ride r;
+//		List<User> list = new ArrayList<User>();
 		
-		SendEmailTask(Ride ride){
+		GetAllUsersTask(Ride ride){
 			r = ride;
+		}
+
+		protected List<User> doInBackground(Void... params) {
+			//TODO: get from the webservice 
+			List<User> list = UsersManager.getAllUsers();
+			return list;
+		}
+
+		protected void onPostExecute(List<User> result) {
+			//Redirect to join rides page
+			if(error == null) {
+				new SendEmailTask(r,result).execute();
+			}
+		}
+	}
+	
+	private class SendEmailTask extends AsyncTask<Void, Void, Void> {
+		Exception error;
+		Ride r;
+		List<User> list;
+		
+		
+		SendEmailTask(Ride ride,List<User> list){
+			r = ride;
+			this.list = list;
 		}
 
 		protected Void doInBackground(Void... params) {
@@ -166,7 +193,7 @@ public class CreateRideActivity extends BaseActivity {
 		}
 
 		protected void onPostExecute(Ride result) {
-			
+			System.out.println("email sent!");
 		}
 	}
 }

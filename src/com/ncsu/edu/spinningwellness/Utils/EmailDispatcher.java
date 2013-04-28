@@ -30,12 +30,13 @@ public class EmailDispatcher extends Authenticator{
 	private static String mUserName;
 	private static String mPassword;
 	private static String mHostName;
-	
+	private boolean canSend = false;
+
 	public void sendEmailToAll(List<User> u, Ride ride) {
 		mUserName=Constants.adminEmail;
 		mPassword=Constants.adminPassword;
 		mHostName="smtp.gmail.com";
-		
+
 		try {
 			Properties props = new Properties(); 
 			props.put("mail.smtp.host", mHostName);   
@@ -46,46 +47,52 @@ public class EmailDispatcher extends Authenticator{
 			Session session=Session.getInstance(props,this);
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("spinningwellness", "SpinningWellness Admin"));
-			msg.addRecipient(Message.RecipientType.TO,
-					new InternetAddress("arvaidya@ncsu.edu", "arvaidya"));
+			for(User user:u){
+				if(user.getEmail() != null){
+					msg.addRecipient(Message.RecipientType.TO,
+							new InternetAddress(user.getEmail(), user.getName()));
+					canSend = true;
+				} 
+			}
 
-			//Build message subject string
-			StringBuilder msgSubject = new StringBuilder();
-			msgSubject.append("New Ride Created: " + ride.getName());
-			msg.setSubject(msgSubject.toString());
+			if(canSend){
+				//Build message subject string
+				StringBuilder msgSubject = new StringBuilder();
+				msgSubject.append("New Ride Created: " + ride.getName());
+				msg.setSubject(msgSubject.toString());
 
-			//Build message
-			StringBuilder msgBody = new StringBuilder();
-			msgBody.append("Hello Amarja\n");
-			msgBody.append("\n");
-			msgBody.append("A new ride has been created by " + ride.getCreator() + "\n");
-			msgBody.append("Ride Details - \n");
-			msgBody.append("\tRide Name: " + ride.getName() +" \n");
-			msgBody.append("\tStarting Point: " + ride.getSource() +" \n");
-			msgBody.append("\tEnd Point: " + ride.getDest() +" \n");
-			
-			Date rideDate = new Date(ride.getStartTime());
-			String[] formats = new String[] {"dd-MMM-yy", "HH:mm"};
+				//Build message
+				StringBuilder msgBody = new StringBuilder();
+				msgBody.append("Hello, \n");
+				msgBody.append("\n");
+				msgBody.append("A new ride has been created by " + ride.getCreator() + "\n");
+				msgBody.append("Ride Details - \n");
+				msgBody.append("\tRide Name: " + ride.getName() +" \n");
+				msgBody.append("\tStarting Point: " + ride.getSource() +" \n");
+				msgBody.append("\tEnd Point: " + ride.getDest() +" \n");
 
-			SimpleDateFormat dfForRideDate = new SimpleDateFormat(formats[0], Locale.US);
-			msgBody.append("\tDate: " + dfForRideDate.format(rideDate) +" \n");
+				Date rideDate = new Date(ride.getStartTime());
+				String[] formats = new String[] {"dd-MMM-yy", "HH:mm"};
 
-			SimpleDateFormat dfForRideTime = new SimpleDateFormat(formats[1], Locale.US);
-			msgBody.append("\tTime: " + dfForRideTime.format(rideDate) +" \n");
+				SimpleDateFormat dfForRideDate = new SimpleDateFormat(formats[0], Locale.US);
+				msgBody.append("\tDate: " + dfForRideDate.format(rideDate) +" \n");
 
-			msgBody.append("\n");
-			msgBody.append("You can join the ride using Spinning Wellness app...\n");
-			
-			msgBody.append("\n");
-			msgBody.append("Admin\n");
+				SimpleDateFormat dfForRideTime = new SimpleDateFormat(formats[1], Locale.US);
+				msgBody.append("\tTime: " + dfForRideTime.format(rideDate) +" \n");
 
-			msg.setText(msgBody.toString());
-			Transport transport = session.getTransport("smtp");
+				msgBody.append("\n");
+				msgBody.append("You can join the ride using Spinning Wellness app...\n");
 
-			transport.connect(mUserName, mPassword);
-			transport.sendMessage(msg, msg.getAllRecipients());
-			transport.close();
-			
+				msgBody.append("\n");
+				msgBody.append("-Admin\n");
+
+				msg.setText(msgBody.toString());
+				Transport transport = session.getTransport("smtp");
+
+				transport.connect(mUserName, mPassword);
+				transport.sendMessage(msg, msg.getAllRecipients());
+				transport.close();
+			}
 		} catch (AddressException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
@@ -93,8 +100,9 @@ public class EmailDispatcher extends Authenticator{
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+
 	}
-	
+
 	@Override 
 	public PasswordAuthentication getPasswordAuthentication() { 
 		return new PasswordAuthentication(mUserName, mPassword); 

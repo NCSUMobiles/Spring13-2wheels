@@ -160,12 +160,13 @@ public class UsersManager {
 
 		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_ALL_USERS);
 		String JSON = RestClientUtils.executeRequest(get); 
-
-		@SuppressWarnings("unchecked")
-		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
-		for(Object u: us) {
-			User user = (User) u;  
-			users.add(user);
+		if(JSON != null){
+			@SuppressWarnings("unchecked")
+			List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
+			for(Object u: us) {
+				User user = (User) u;  
+				users.add(user);
+			}
 		}
 		return users;
 	}
