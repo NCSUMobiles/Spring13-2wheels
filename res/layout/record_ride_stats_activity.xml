@@ -92,10 +92,14 @@
                         style="@style/TextViewForLabels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="20dp"
+                        android:layout_marginLeft="18dp"
                         android:text="Distance: 0.0"
-                        android:textStyle="normal" 
-                        android:textSize="22sp" 
-                        android:layout_margin="20dp"/>
+                        android:textSize="22sp"
+                        android:textStyle="normal" />
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -112,10 +116,12 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/relativeLayout1"
             android:layout_below="@+id/relativeLayout1"
+            android:layout_margin="15dp"
+            android:layout_marginLeft="18dp"
             android:text="Avg Speed: 0.0"
-            android:textStyle="normal"
             android:textSize="22sp"
-            android:layout_margin="20dp" />
+            android:textStyle="normal" />
+
     </RelativeLayout>
 
 </ScrollView>

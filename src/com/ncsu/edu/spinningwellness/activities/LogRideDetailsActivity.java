@@ -1,6 +1,7 @@
 package com.ncsu.edu.spinningwellness.activities;
 
 import java.net.MalformedURLException;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import net.bican.wordpress.Page;
@@ -29,18 +30,25 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	Ride ride;
 
-	long timeOfRide = 0;
-	double distanceCovered, averageSpeed = 0.0, cadence, heartRate;
+	double distanceCovered, averageSpeed = 0.0, cadence, heartRate, timeOfRide = 0;
 
 	TextView textViewRideName, textViewDistanceCovered, textViewTimeOfRide, textViewAverageSpeed, textViewHeartRate, textViewCadence, textViewExperience;
 	Button btnSubmit;
 	
 	LinearLayout progressBar;
 	static TextView textViewLoginError;
+	
+	DecimalFormat df = new DecimalFormat("#.###");
+	DecimalFormat tf = new DecimalFormat("#.##");
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Bundle b = getIntent().getExtras();
+		distanceCovered = b.getDouble("DistanceCovered");
+		averageSpeed = b.getDouble("AverageSpeed");
+		timeOfRide = b.getDouble("TimeOfRide");
 
 		//Draw menu
 		tabProvider = new MyTabHostProvider(LogRideDetailsActivity.this);
@@ -58,6 +66,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		ride = getIntent().getParcelableExtra("Ride");
+		
+		
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
 		myTitleText.setText("Log Ride Details");
@@ -85,11 +95,6 @@ public class LogRideDetailsActivity extends BaseActivity {
 		progressBar = (LinearLayout) findViewById(R.id.logRideDetailsSpinner);
 		progressBar.setVisibility(View.INVISIBLE);
 
-		//Get information from intent
-		//		distanceCovered = getIntent().getParcelableExtra("DistanceCovered");
-		//		averageSpeed = getIntent().getParcelableExtra("AverageSpeed");
-		//		timeOfRide = getIntent().getParcelableExtra("TimeOfRide");
-
 		//Get the elements on the form
 		textViewRideName = (TextView) findViewById(R.id.textViewLogRideDetailsRideName);
 		textViewRideName.setKeyListener(null);
@@ -111,9 +116,9 @@ public class LogRideDetailsActivity extends BaseActivity {
 		
 		//Set the parameters which are recorded automatically
 		textViewRideName.setText(ride.getName());
-		textViewDistanceCovered.setText(((Double) distanceCovered).toString());
-		textViewAverageSpeed.setText(((Double) averageSpeed).toString());
-		textViewTimeOfRide.setText(((Long) timeOfRide).toString());
+		textViewDistanceCovered.setText(df.format(distanceCovered) + " mi");
+		textViewAverageSpeed.setText(tf.format(averageSpeed) + " mi/hr");
+		textViewTimeOfRide.setText(tf.format(timeOfRide) + " mins");
 
 		//Set onClickListener for the submit button
 		Button button  = (Button) findViewById(R.id.btnSubmit);

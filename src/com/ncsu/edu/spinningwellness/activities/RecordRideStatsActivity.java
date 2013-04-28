@@ -9,6 +9,8 @@ import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 import com.sun.org.apache.xml.internal.utils.StopParseException;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -49,6 +51,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 	boolean isStarted = false;
 	boolean wasPaused = false;
 	boolean wasStopped = false;
+	boolean flag_cancel = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +68,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 		isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-		registerLocationListener();
-
-		if (!isGPSEnabled && !isNetworkEnabled) {
-			Toast.makeText(RecordRideStatsActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
-		} else if(isGPSEnabled) {
-			locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
-			locationManagerType = LocationManager.GPS_PROVIDER;
-		} else if(isNetworkEnabled) {
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
-			locationManagerType = LocationManager.NETWORK_PROVIDER;
-		}
-		
 		setPageElementsAndOnClickListeners();
 	}
 
@@ -219,20 +210,45 @@ public class RecordRideStatsActivity extends BaseActivity {
 		btnPlay.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				if(wasStopped){
-					timeOfRide = 0;
-					wasStopped = false;
+				isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+				isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+			
+				if (!isGPSEnabled && !isNetworkEnabled) {
+					Toast.makeText(RecordRideStatsActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
+					flag_cancel = true;
+					createGpsDisabledAlert();
+					}
+				
+				if(isGPSEnabled) {
+					registerLocationListener();
+					flag_cancel = false;
+					locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
+					locationManagerType = LocationManager.GPS_PROVIDER;
+				} else if(isNetworkEnabled) {
+					registerLocationListener();
+					flag_cancel = false;
+					locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
+					locationManagerType = LocationManager.NETWORK_PROVIDER;
 				}
-				
-				chronometer.setBase(SystemClock.elapsedRealtime() + timeOfRide);
-				chronometer.start();
-				
-				isStarted = true;
-				
-				locationManager.requestLocationUpdates(locationManagerType, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
+	
+				if(!flag_cancel){
+					
+					if(wasStopped){
+						timeOfRide = 0;
+						wasStopped = false;
+					}
 
-				btnPlay.setVisibility(View.INVISIBLE);
-				btnPause.setVisibility(View.VISIBLE);
+					chronometer.setBase(SystemClock.elapsedRealtime() + timeOfRide);
+					chronometer.start();
+				
+					isStarted = true;
+				
+					locationManager.requestLocationUpdates(locationManagerType, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
+
+					btnPlay.setVisibility(View.INVISIBLE);
+					btnPause.setVisibility(View.VISIBLE);
+				
+				}
 			}
 		});
 		btnPlay.setVisibility(View.VISIBLE);
@@ -272,15 +288,22 @@ public class RecordRideStatsActivity extends BaseActivity {
 				wasPaused = false;
 				wasStopped = true;
 				
+				btnPlay.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.INVISIBLE);					
+		
 		//		Toast.makeText(RecordRideStatsActivity.this, "Time: " + tf.format(readChronometer()) + "mins", Toast.LENGTH_SHORT).show();
 				locationManager.removeUpdates(myLocationListener);
 
 				//Redirect to next page with all the fields in intent
 				Intent i = new Intent(getApplicationContext(), LogRideDetailsActivity.class);
 				i.putExtra("Ride", ride);
-				i.putExtra("DistanceCovered", distanceCovered);
-				i.putExtra("AverageSpeed", averageSpeed);
-				i.putExtra("TimeOfRide", tf.format(readChronometer()));    //Jay
+				
+				Bundle b = new Bundle();
+				b.putDouble("DistanceCovered", distanceCovered);
+				b.putDouble("AverageSpeed", averageSpeed);
+				b.putDouble("TimeOfRide", readChronometer());
+				i.putExtras(b);
+				 
 				startActivity(i);
 			}
 		});
@@ -312,6 +335,31 @@ public class RecordRideStatsActivity extends BaseActivity {
 		textViewAverageSpeed.setText("Avg Speed: " + tf.format(averageSpeed) + " mi/hr");
 	}
 	
-	
-		
+    protected void createGpsDisabledAlert() {
+    	AlertDialog builder = new AlertDialog.Builder(this).create();
+    	builder.setMessage("Your GPS is disabled! Would you like to enable it?");
+
+    	builder.setButton("Enable GPS", new DialogInterface.OnClickListener() {
+
+    		public void onClick(DialogInterface dialog, int id) {
+     			showGpsOptions();
+    		}
+    	});
+
+    	builder.setButton2("Back", new DialogInterface.OnClickListener() {
+    		public void onClick(DialogInterface dialog, int id) {
+    		//	flag_cancel = true;
+    			return;
+    		}
+    	});
+    	builder.show();
+    }
+
+
+    private void showGpsOptions() {
+    	Intent gpsOptionsIntent = new Intent(
+    			android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+    	startActivity(gpsOptionsIntent);
+    }
+			
 }
