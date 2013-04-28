@@ -1,5 +1,9 @@
 package com.ncsu.edu.spinningwellness.Utils;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.net.Uri;
@@ -31,8 +35,15 @@ public class EventsCalendar {
 	    eventValues.put("title", title);
 	    eventValues.put("description", addInfo);
 	    eventValues.put("eventLocation", place);
-
+	    startDate = startDate +  1000 * 60 * 60; // For next 1hr
 	    long endDate = startDate + 1000 * 60 * 60; // For next 1hr
+	    Calendar c  = Calendar.getInstance();
+	    c.setTime(new Date(startDate));
+	    
+	    Calendar c1 = Calendar.getInstance();
+	    c1.setTime(new Date(endDate));
+	    System.out.println("start at: "+c.get(Calendar.DATE) + " " + c.get(Calendar.MONTH) + " " + c.get(Calendar.YEAR));
+	    System.out.println("ends at: ");
 
 	    eventValues.put("dtstart", startDate);
 	    eventValues.put("dtend", endDate);
@@ -45,18 +56,22 @@ public class EventsCalendar {
 	    // entries tentative (0),
 	    // confirmed (1) or canceled
 	    // (2):
-	    eventValues.put("visibility", 3); // visibility to default (0),
-	                                        // confidential (1), private
+//	    eventValues.put("visibility", 3); // visibility to default (0),
+//	                                        // confidential (1), private
 	                                        // (2), or public (3):
-	    eventValues.put("transparency", 0); // You can control whether
+//	    eventValues.put("transparency", 0); // You can control whether
 	                                        // an event consumes time
 	                                        // opaque (0) or transparent
 	                                        // (1).
 	    eventValues.put("hasAlarm", 1); // 0 for false, 1 for true
+	    eventValues.put("eventTimezone", TimeZone.getDefault().getID());
 
-	    Uri eventUri = curActivity.getApplicationContext().getContentResolver().insert(Uri.parse(eventUriString), eventValues);
-	    long eventID = Long.parseLong(eventUri.getLastPathSegment());
-
+	   // Uri eventUri = curActivity.getApplicationContext().getContentResolver().insert(Uri.parse(eventUriString), eventValues);
+	    Uri url = curActivity.getApplicationContext().getContentResolver().insert(Uri.parse(eventUriString), eventValues);
+	    System.out.println(url.getLastPathSegment());
+	    long eventID = Long.parseLong(url.getLastPathSegment());
+	    System.out.println("event: " + eventID);
+	    
 	    if (needReminder) {
 	        String reminderUriString = "content://com.android.calendar/reminders";
 
