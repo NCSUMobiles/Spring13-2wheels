@@ -32,7 +32,7 @@ public class ViewParticipantsForARideActivity extends BaseActivity {
 
 		//Draw menu
 		tabProvider = new MyTabHostProvider(ViewParticipantsForARideActivity.this);
-		TabView tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
 		tabView.setCurrentView(R.layout.view_participants_for_a_ride_activity);
 		setContentView(tabView.render());			
 
