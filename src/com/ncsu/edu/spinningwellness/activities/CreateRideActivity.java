@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.Utils.EmailDispatcher;
+import com.ncsu.edu.spinningwellness.Utils.EventsCalendar;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
@@ -165,6 +166,7 @@ public class CreateRideActivity extends BaseActivity {
 
 			//Redirect to join rides page
 			if(error == null) {
+				new AddToCalendarTask().execute();
 				new GetAllUsersTask(result).execute();
 				moveToJoinRidesPage();
 			} else {
@@ -221,5 +223,19 @@ public class CreateRideActivity extends BaseActivity {
 		protected void onPostExecute(Ride result) {
 			System.out.println("email sent!");
 		}
+	}
+	
+	private class AddToCalendarTask extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this, "ride1", "abcd", "pune", 0, new Date().getTime(), true, true);
+			return null;
+		}
+		
+		protected void onPostExecute(Void result) {
+			System.out.println("added to calendar.");
+		}
+		
 	}
 }

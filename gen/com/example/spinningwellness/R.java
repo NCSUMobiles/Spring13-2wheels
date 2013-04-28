@@ -62,14 +62,14 @@ public final class R {
     public static final class id {
         public static final int LoginForm=0x7f09001f;
         public static final int Spinner=0x7f09000d;
-        public static final int action_settings=0x7f09003a;
+        public static final int action_settings=0x7f090039;
         public static final int btnCreateRide=0x7f09000b;
         public static final int btnLogin=0x7f090023;
         public static final int btnPause=0x7f09002a;
         public static final int btnPlay=0x7f09002b;
         public static final int btnStop=0x7f09002c;
         public static final int btnSubmit=0x7f09001d;
-        public static final int btnViewParticipants=0x7f090038;
+        public static final int btnViewParticipants=0x7f090037;
         public static final int chronometer=0x7f090029;
         public static final int createRideDatePicker=0x7f090009;
         public static final int createRideForm=0x7f090004;
@@ -88,9 +88,8 @@ public final class R {
         public static final int myPastRidesSpinner=0x7f090025;
         public static final int myPastRidesTextVal=0x7f090026;
         public static final int myTitle=0x7f090001;
-        public static final int pastRideForm=0x7f090031;
         public static final int relativeLayout1=0x7f090027;
-        public static final int rideDetailsSpinner=0x7f090039;
+        public static final int rideDetailsSpinner=0x7f090038;
         public static final int textVal=0x7f09000f;
         public static final int textViewAverageSpeed=0x7f09002e;
         public static final int textViewCreateRideDestination=0x7f090008;
@@ -109,12 +108,12 @@ public final class R {
         public static final int textViewLoginPassword=0x7f090022;
         public static final int textViewLoginUserName=0x7f090021;
         public static final int textViewRecordRideDetailsRideName=0x7f090028;
-        public static final int textViewRideDetailsCreator=0x7f090037;
-        public static final int textViewRideDetailsDate=0x7f090035;
-        public static final int textViewRideDetailsDestination=0x7f090034;
-        public static final int textViewRideDetailsRideName=0x7f090032;
-        public static final int textViewRideDetailsSource=0x7f090033;
-        public static final int textViewRideDetailsTime=0x7f090036;
+        public static final int textViewRideDetailsCreator=0x7f090036;
+        public static final int textViewRideDetailsDate=0x7f090034;
+        public static final int textViewRideDetailsDestination=0x7f090033;
+        public static final int textViewRideDetailsRideName=0x7f090031;
+        public static final int textViewRideDetailsSource=0x7f090032;
+        public static final int textViewRideDetailsTime=0x7f090035;
         public static final int txtViewCreateError=0x7f090005;
         public static final int userTextVal=0x7f090002;
         public static final int viewParticipantsForARideListView=0x7f09002f;
