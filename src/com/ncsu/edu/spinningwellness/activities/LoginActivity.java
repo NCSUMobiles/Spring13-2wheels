@@ -8,7 +8,11 @@ import redstone.xmlrpc.XmlRpcFault;
 
 import net.bican.wordpress.User;
 import net.bican.wordpress.Wordpress;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +37,12 @@ public class LoginActivity extends BaseActivity {
 		Button button  = (Button) findViewById(R.id.btnLogin);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				if(isOnline() == true){
 				validateUserInputAndCallAsyncTask(); 
+				}
+				else{
+					createInternetDisabledAlert();
+				}
 			}
 		});
 
@@ -120,4 +129,28 @@ public class LoginActivity extends BaseActivity {
 			}
 		}
 	}
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
+	
+	
+	protected void createInternetDisabledAlert() {
+	    	AlertDialog builder = new AlertDialog.Builder(this).create();
+	    	builder.setMessage("Your Internet is disabled! Please enable it.");
+
+	    	builder.setButton("OK", new DialogInterface.OnClickListener() {
+
+	    		public void onClick(DialogInterface dialog, int id) {
+	    			return;
+	    		}
+	    	});
+	    	builder.show();
+	    }
+	
 }
