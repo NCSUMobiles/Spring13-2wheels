@@ -16,6 +16,7 @@ import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class CreateRideActivity extends BaseActivity {
 
@@ -103,6 +105,12 @@ public class CreateRideActivity extends BaseActivity {
 		
 //			textViewCreateError.append("\nEnter "+missing+"\n");
 			textViewCreateError.setVisibility(View.VISIBLE);
+			Context context = getApplicationContext();
+			CharSequence text = "Enter mandatory fields!";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
 			 //System.out.println("Enter "+missing);
 		}
 	}
