@@ -26,6 +26,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 	Bundle Caller;
 	LinearLayout progressBar;
 
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,20 +39,27 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		
 		tabProvider = new MyTabHostProvider(ViewRideDetailsActivity.this);
 		if(Caller.getString("Caller").equals("JoinRide"))
+		{
 			tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
-		else
-			tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+			tabView.setCurrentView(R.layout.view_ride_details_activity);
 		
-		tabView.setCurrentView(R.layout.view_ride_details_activity);
+		}
+		else
+		{
+			tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+			tabView.setCurrentView(R.layout.view_past_ride_details_activity);
+		}
+		
 		setContentView(tabView.render());
 
 		progressBar = (LinearLayout) findViewById(R.id.rideDetailsSpinner);
 		progressBar.setVisibility(View.VISIBLE);
-
+		
 		addListenerOnButton();
 
 		fillRideDetails();
-	//	fillRideStats();
+		if(Caller.getString("Caller").equals("PastRide"))
+			fillRideStats();
 
 		progressBar = (LinearLayout) findViewById(R.id.rideDetailsSpinner);
 		progressBar.setVisibility(View.INVISIBLE);
@@ -74,6 +82,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 
 	void fillRideDetails() {
 
+		
 		((TextView) findViewById(R.id.textViewRideDetailsRideName)).setText(ride.getName());
 		((TextView) findViewById(R.id.textViewRideDetailsSource)).setText(ride.getSource());
 		((TextView) findViewById(R.id.textViewRideDetailsDestination)).setText(ride.getDest());
@@ -90,13 +99,21 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		((TextView) findViewById(R.id.textViewRideDetailsTime)).setText(dfForRideTime.format(rideDate));
 	}
 
-//	public void fillRideStats(){
-//		
-//		((TextView) findViewById(R.id.textViewRideDetailsRideName)).setText(ride.getName());
-//		((TextView) findViewById(R.id.textViewRideDetailsSource)).setText(ride.getSource());
-//		
-//		
-//	}
+	void fillRideStats(){
+		
+		String format = "HH:mm";
+		SimpleDateFormat RideDuration = new SimpleDateFormat(format, Locale.US);
+		
+		//Need to add appropriate data
+		((TextView) findViewById(R.id.textViewDistanceCovered)).setText(ride.getName());
+		((TextView) findViewById(R.id.textViewAverageSpeed)).setText(ride.getSource());
+		((TextView) findViewById(R.id.textViewTime)).setText(ride.getSource());
+		((TextView) findViewById(R.id.textViewCalories)).setText(ride.getSource());
+		((TextView) findViewById(R.id.textViewCadence)).setText(ride.getSource());
+		((TextView) findViewById(R.id.textViewHeartRate)).setText(ride.getSource());		
+		
+	}
+	
 	public void addListenerOnButton() {
 
 		final Context context = this;
