@@ -186,141 +186,30 @@
                         android:textColor="#000"
                         android:text="Personal Stats:" />
                 </LinearLayout>
-                    
-               <!-- Distance -->
-               <LinearLayout
-                    android:id="@+id/personalstatsdistance"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" 
-                    android:layout_marginTop="7sp">
-
-                    <TextView
-                        style="@style/TextViewForLabels"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50"
-                        android:text="Distance" />
-
-                    <TextView
-                        android:id="@+id/textViewDistanceCovered"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>
-
-               <!-- Avg Speed -->
-               <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        style="@style/TextViewForLabels"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50"
-                        android:text="Avg Speed" />
-
-                    <TextView
-                        android:id="@+id/textViewAverageSpeed"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>    
-
-               <!-- Time taken -->
-               <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        style="@style/TextViewForLabels"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50"
-                        android:text="Time taken" />
-
-                    <TextView
-                        android:id="@+id/textViewTime"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>
                 
-               <!-- Calories -->
-               <LinearLayout
+                <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                     android:layout_marginTop="10sp" >
 
                     <TextView
+                        android:id="@+id/txtViewPastError"
                         style="@style/TextViewForLabels"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".50"
-                        android:text="Calories burnt" />
-
-                    <TextView
-                        android:id="@+id/textViewCalories"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>
-               
-               <!-- Cadence -->
-               <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        style="@style/TextViewForLabels"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50"
-                        android:text="Cadence" />
-
-                    <TextView
-                        android:id="@+id/textViewCadence"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>
-
-               <!-- HeartRate -->
-               <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        style="@style/TextViewForLabels"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50"
-                        android:text="HeartRate" />
-
-                    <TextView
-                        android:id="@+id/textViewHeartRate"
-                        style="@style/EditTextViewFont"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight=".50" />
-                </LinearLayout>
-                
+                        android:gravity="center"
+                        android:text="Oops! Looks like you missed this ride!" />
+                 </LinearLayout>  
+                                
                <Button
                     android:id="@+id/btnViewParticipants"
                     style="@style/Button"
                     android:text="Participants" 
                     android:layout_margin="25dp"/>
                 
-				</LinearLayout>
-                
+		</LinearLayout>
             </LinearLayout>
-               
-              
-
         </ScrollView>
 
         <LinearLayout
