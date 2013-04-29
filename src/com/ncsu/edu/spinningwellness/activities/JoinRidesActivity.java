@@ -172,6 +172,13 @@ public class JoinRidesActivity extends BaseActivity {
 			if (custom != null) {
 				holder.item1.setText(custom.getTextVal());
 				holder.item2.setChecked(custom.isJoined());
+				if(custom.isJoined()){
+					holder.start.setEnabled(true);
+					holder.start.setImageResource(R.drawable.button_start);
+				}else{
+					holder.start.setEnabled(false);
+					holder.start.setImageResource(R.drawable.button_start_disabled);
+				}
 			}
 			holder.start.setOnClickListener(mStartButtonClickListener);
 			holder.item2.setOnCheckedChangeListener(mStarCheckedChangeListener);

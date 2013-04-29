@@ -48,4 +48,6 @@ public class UserCustomAdapter extends ArrayAdapter<String> {
 	public class ViewHolder {
 		public TextView userName;
 	}
+	
+	
 }
