@@ -77,6 +77,15 @@ public class UsersManager {
 		return activities;
 	}
 
+	public static UserActivity viewPastActivityForARide(String userName, String rideId) {
+		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_ACTIVITY__FOR_A_RIDE_URL 
+				+ "/" + userName
+				+ "/" + rideId);
+		String JSON = RestClientUtils.executeRequest(get);
+
+		return (UserActivity)Utils.JSONToObject(JSON, UserActivity.class);
+	}
+
 	public static void viewWorkoutDetailsForLastWeek(String userName) {
 		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_WORKOUT_DETAILS_FOR_LAST_WEEK_URL + "/" + userName);
 		String rideJSON = RestClientUtils.executeRequest(get);

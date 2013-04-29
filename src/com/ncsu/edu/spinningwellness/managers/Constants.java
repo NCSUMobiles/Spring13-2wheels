@@ -62,6 +62,8 @@ public interface Constants {
 	
 	public String VIEW_PAST_ACTIVITY_URL = USER_URL + "/viewpastactivity";
 	
+	public String VIEW_PAST_ACTIVITY__FOR_A_RIDE_URL = USER_URL + "/viewpastactivityforride";
+
 	public String VIEW_WORKOUT_DETAILS_FOR_LAST_WEEK_URL = USER_URL + "/workoutdetailsforlastweek";
 	
 	public String VIEW_WORKOUT_DETAILS_URL = USER_URL + "/workoutdetails";
