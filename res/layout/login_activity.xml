@@ -76,6 +76,16 @@
                     android:hint="******"
                     android:inputType="textPassword"
                     android:singleLine="true" />
+                
+                <CheckBox
+			        android:id="@+id/saveLoginCheckBox"
+			       
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_below="@+id/editTextPassword"
+			        android:text="Remember Me!" 
+			        style="@style/TextViewForRememberMe" />
 
                 <Button
                     android:id="@+id/btnLogin"

@@ -11,6 +11,7 @@ import net.bican.wordpress.Wordpress;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -18,6 +19,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,12 @@ public class LoginActivity extends BaseActivity {
 
 	LinearLayout progressBar;
 	TextView textViewLoginError;
+	EditText editTextUsername,editTextPassword;
+    CheckBox saveLoginCheckBox;
+    SharedPreferences loginPreferences;
+    SharedPreferences.Editor loginPrefsEditor;
+    Boolean saveLogin;
+    String username, password;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,12 +41,31 @@ public class LoginActivity extends BaseActivity {
 		setContentView(R.layout.login_activity);
 
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		
+		editTextUsername = (EditText)findViewById(R.id.textViewLoginUserName);
+        editTextPassword = (EditText)findViewById(R.id.textViewLoginPassword);
+        saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
 
 		// Listening to login button
 		Button button  = (Button) findViewById(R.id.btnLogin);
+		
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if(isOnline() == true){
+					username = editTextUsername.getText().toString();
+		            password = editTextPassword.getText().toString();
+
+		            if (saveLoginCheckBox.isChecked()) {
+		                loginPrefsEditor.putBoolean("saveLogin", true);
+		                loginPrefsEditor.putString("username", username);
+		                loginPrefsEditor.putString("password", password);
+		                loginPrefsEditor.commit();
+		            } else {
+		                loginPrefsEditor.clear();
+		                loginPrefsEditor.commit();
+		            }
 				validateUserInputAndCallAsyncTask(); 
 				}
 				else{
