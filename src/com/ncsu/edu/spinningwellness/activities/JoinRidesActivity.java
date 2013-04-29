@@ -339,7 +339,7 @@ public class JoinRidesActivity extends BaseActivity {
 		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave.getName(), selectedRideSave.getSource(), selectedRideSave.getDest(), 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
+			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave, 0, true, true,user.getName(),user.getEmail());
 			return null;
 		}
 		
@@ -357,7 +357,7 @@ public class JoinRidesActivity extends BaseActivity {
 		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave.getName(), selectedRideSave.getSource(), selectedRideSave.getDest(), 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
+			EventsCalendar.removeAppointmentsFromCalender(JoinRidesActivity.this, selectedRideSave, 0, user.getName(),user.getEmail());
 			return null;
 		}
 		

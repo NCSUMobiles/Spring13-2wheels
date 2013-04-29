@@ -62,14 +62,14 @@ public final class R {
     public static final class id {
         public static final int LoginForm=0x7f09001f;
         public static final int Spinner=0x7f09000d;
-        public static final int action_settings=0x7f090039;
+        public static final int action_settings=0x7f090040;
         public static final int btnCreateRide=0x7f09000b;
         public static final int btnLogin=0x7f090023;
         public static final int btnPause=0x7f09002a;
         public static final int btnPlay=0x7f09002b;
         public static final int btnStop=0x7f09002c;
         public static final int btnSubmit=0x7f09001d;
-        public static final int btnViewParticipants=0x7f090037;
+        public static final int btnViewParticipants=0x7f09003e;
         public static final int chronometer=0x7f090029;
         public static final int createRideDatePicker=0x7f090009;
         public static final int createRideForm=0x7f090004;
@@ -88,14 +88,20 @@ public final class R {
         public static final int myPastRidesSpinner=0x7f090025;
         public static final int myPastRidesTextVal=0x7f090026;
         public static final int myTitle=0x7f090001;
+        public static final int personalstats=0x7f090037;
+        public static final int personalstatsdistance=0x7f090038;
         public static final int relativeLayout1=0x7f090027;
-        public static final int rideDetailsSpinner=0x7f090038;
+        public static final int rideDetailsSpinner=0x7f09003f;
         public static final int textVal=0x7f09000f;
         public static final int textViewAverageSpeed=0x7f09002e;
+        public static final int textViewCadence=0x7f09003c;
+        public static final int textViewCalories=0x7f09003b;
         public static final int textViewCreateRideDestination=0x7f090008;
         public static final int textViewCreateRideRideName=0x7f090006;
         public static final int textViewCreateRideSource=0x7f090007;
         public static final int textViewDistance=0x7f09002d;
+        public static final int textViewDistanceCovered=0x7f090039;
+        public static final int textViewHeartRate=0x7f09003d;
         public static final int textViewLogRideDetailsAverageSpeed=0x7f090019;
         public static final int textViewLogRideDetailsCadence=0x7f09001b;
         public static final int textViewLogRideDetailsDistanceCovered=0x7f090017;
@@ -114,6 +120,7 @@ public final class R {
         public static final int textViewRideDetailsRideName=0x7f090031;
         public static final int textViewRideDetailsSource=0x7f090032;
         public static final int textViewRideDetailsTime=0x7f090035;
+        public static final int textViewTime=0x7f09003a;
         public static final int txtViewCreateError=0x7f090005;
         public static final int userTextVal=0x7f090002;
         public static final int viewParticipantsForARideListView=0x7f09002f;
@@ -139,7 +146,8 @@ public final class R {
         public static final int my_past_rides_list=0x7f030010;
         public static final int record_ride_stats_activity=0x7f030011;
         public static final int view_participants_for_a_ride_activity=0x7f030012;
-        public static final int view_ride_details_activity=0x7f030013;
+        public static final int view_past_ride_details_activity=0x7f030013;
+        public static final int view_ride_details_activity=0x7f030014;
     }
     public static final class menu {
         public static final int base=0x7f080000;

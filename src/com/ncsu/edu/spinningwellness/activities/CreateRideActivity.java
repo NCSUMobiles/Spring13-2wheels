@@ -198,7 +198,7 @@ public class CreateRideActivity extends BaseActivity {
 				//fidn this user.... 
 				for(User u:result){
 					if(u.getName().equalsIgnoreCase(username)){
-						new AddToCalendarTask(u).execute();
+						new AddToCalendarTask(r,u).execute();
 					}
 				}
 				
@@ -233,13 +233,15 @@ public class CreateRideActivity extends BaseActivity {
 	
 	private class AddToCalendarTask extends AsyncTask<Void, Void, Void> {
 		User user;
-		AddToCalendarTask(User user){
+		Ride ride;
+		AddToCalendarTask(Ride ride, User user){
 			this.user = user;
+			this.ride = ride;
 		}
 		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this, "ride1", "abcd", "pune", 0, new Date().getTime(), true, true,user.getName(),user.getEmail());
+			EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this,ride, 0, true, true,user.getName(),user.getEmail());
 			return null;
 		}
 		
