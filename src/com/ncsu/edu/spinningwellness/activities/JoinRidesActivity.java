@@ -10,6 +10,7 @@ import javax.swing.text.Position;
 
 import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.Utils.EventsCalendar;
+import com.ncsu.edu.spinningwellness.Utils.Utils;
 import com.ncsu.edu.spinningwellness.customadapters.CustomEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
@@ -20,7 +21,10 @@ import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -193,13 +197,26 @@ public class JoinRidesActivity extends BaseActivity {
 		private OnClickListener mStartButtonClickListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Date currentTimestamp = new Date();
+				long currTime = Utils.convertDateToString(currentTimestamp);
+				long rideTime;
+				
 				System.out.println("****start button clicked");
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(v);
 				if (position != ListView.INVALID_POSITION) {
-					Intent i = new Intent(getApplicationContext(), RecordRideStatsActivity.class);
-					i.putExtra("Ride", rideList.get(position));
-					startActivity(i);
+					rideTime = rideList.get(position).getStartTime();
+					if(currTime < rideTime )
+					{
+						earlyRide();
+					}
+					else
+					{
+						Intent i = new Intent(getApplicationContext(), RecordRideStatsActivity.class);
+						i.putExtra("Ride", rideList.get(position));
+						startActivity(i);
+					}
+					
 				}
 			}
 		};
@@ -285,6 +302,15 @@ public class JoinRidesActivity extends BaseActivity {
 		}
 	}
 
+	protected void earlyRide() {
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+		alertDialog.setMessage("You are early! Scheduled ride is yet to start!");
+		alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Ok", new DialogInterface.OnClickListener()    {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}});
+		alertDialog.show(); 
+	}
 	//AsynTask for joining the rides
 	public class JoinRideTask extends AsyncTask<Void,Void,String> {
 		Exception error;

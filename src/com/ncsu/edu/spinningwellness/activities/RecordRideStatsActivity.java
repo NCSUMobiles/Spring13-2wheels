@@ -1,28 +1,48 @@
 package com.ncsu.edu.spinningwellness.activities;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.Utils.Utils;
+import com.ncsu.edu.spinningwellness.activities.JoinRidesActivity.JoinRideTask;
+import com.ncsu.edu.spinningwellness.activities.JoinRidesActivity.UnJoinRideTask;
+import com.ncsu.edu.spinningwellness.activities.JoinRidesActivity.CustomAdapter.ViewHolder;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.entities.UserActivity;
+import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 import com.sun.org.apache.xml.internal.utils.StopParseException;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Chronometer;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class RecordRideStatsActivity extends BaseActivity {
 
@@ -34,12 +54,13 @@ public class RecordRideStatsActivity extends BaseActivity {
 	DecimalFormat tf = new DecimalFormat("#.##");
 
 	TextView textViewDistance, textViewAverageSpeed, textViewRideName;
-	ImageButton btnPlay, btnPause, btnStop;
+	ImageButton btnPlay, btnPause, btnStop,btnStopDisable;
 	Chronometer chronometer;
 
 	LocationManager locationManager;
 	String locationManagerType;
 	LocationListener myLocationListener;
+	UserActivity userDetails;
 
 	double previousLatitude = 0.0, previousLongitude = 0.0;
 	double distanceCovered_met = 0.0;
@@ -58,18 +79,52 @@ public class RecordRideStatsActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Date currentTimestamp = new Date();
+		long currTime = Utils.convertDateToString(currentTimestamp);
+		long rideTime = ride.getStartTime();
+		
+		
+		System.out.println("Current time is :" + currTime +"Ride time is :"+rideTime );
+		
 		//Draw menu
 		tabProvider = new MyTabHostProvider(RecordRideStatsActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
 		tabView.setCurrentView(R.layout.record_ride_stats_activity);
 		setContentView(tabView.render());
+		
+		btnStopDisable = (ImageButton) findViewById(R.id.btnStopDisable);
+		btnPause = (ImageButton) findViewById(R.id.btnPause);
+		btnStop = (ImageButton) findViewById(R.id.btnStop);
+		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
 
+//
+//		if(currTime < rideTime )
+//		{
+//			btnPlayDisable.setVisibility(View.VISIBLE);
+//			btnStopDisable.setVisibility(View.VISIBLE);
+//			btnPause.setVisibility(View.INVISIBLE);
+//			btnStop.setVisibility(View.INVISIBLE);
+//			System.out.println("Ride is early");
+//			earlyLateRide("Early");
+//		}
+		
+		new isRideLoggedTask().execute();
+		if(userDetails != null)
+		{
+			lateRide();
+		}
+		btnPlay.setVisibility(View.VISIBLE);
+		btnStopDisable.setVisibility(View.VISIBLE);
+		btnStop.setVisibility(View.INVISIBLE);
+		btnPause.setVisibility(View.INVISIBLE);
+		
 		locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-
+		
 		isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-		isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+		isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 		setPageElementsAndOnClickListeners();
+	
 	}
 
 	@Override
@@ -102,12 +157,18 @@ public class RecordRideStatsActivity extends BaseActivity {
 		isStarted = savedInstanceState.getBoolean("isStarted");
 		if(isStarted) {
 			btnPlay.setVisibility(View.INVISIBLE);
+			btnStopDisable.setVisibility(View.INVISIBLE);
 			btnPause.setVisibility(View.VISIBLE);
+			btnStop.setVisibility(View.VISIBLE);
+			
 			chronometer.setBase(SystemClock.elapsedRealtime() + timeOfRide);
 			chronometer.start();
 		} else {
 			btnPlay.setVisibility(View.VISIBLE);
+			btnStopDisable.setVisibility(View.VISIBLE);
+			btnStop.setVisibility(View.INVISIBLE);
 			btnPause.setVisibility(View.INVISIBLE);
+			
 
 			//Hack to make sure that chronometer shows correct reading even when 
 			//the phone's orientation is changes and chronometer not on
@@ -118,6 +179,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		}
 	}
 
+	
 	@Override
 	protected void setTitle() {
 		ride = getIntent().getParcelableExtra("Ride");
@@ -126,6 +188,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		myTitleText.setText("Record Ride");		
 	}
 
+	
 	private void registerLocationListener() {
 		myLocationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
@@ -207,7 +270,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		textViewRideName = (TextView) findViewById(R.id.textViewRecordRideDetailsRideName);
 		textViewRideName.setText(ride.getName());
 
-		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
+		
 		btnPlay.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -247,14 +310,18 @@ public class RecordRideStatsActivity extends BaseActivity {
 					locationManager.requestLocationUpdates(locationManagerType, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, myLocationListener);
 
 					btnPlay.setVisibility(View.INVISIBLE);
+					btnStopDisable.setVisibility(View.INVISIBLE);
 					btnPause.setVisibility(View.VISIBLE);
+					btnStop.setVisibility(View.VISIBLE);
 
 				}
 			}
 		});
 		btnPlay.setVisibility(View.VISIBLE);
-
-		btnPause = (ImageButton) findViewById(R.id.btnPause);
+		btnStopDisable.setVisibility(View.VISIBLE);
+		btnStop.setVisibility(View.INVISIBLE);
+		btnPause.setVisibility(View.INVISIBLE);
+		
 		btnPause.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -267,12 +334,19 @@ public class RecordRideStatsActivity extends BaseActivity {
 				locationManager.removeUpdates(myLocationListener);
 
 				btnPlay.setVisibility(View.VISIBLE);
-				btnPause.setVisibility(View.INVISIBLE);				
+				btnStopDisable.setVisibility(View.VISIBLE);
+				btnPause.setVisibility(View.INVISIBLE);		
+				btnStop.setVisibility(View.INVISIBLE);
+				
 			}
 		});
-		btnPause.setVisibility(View.INVISIBLE);
+		
+		btnPlay.setVisibility(View.VISIBLE);
+		btnStopDisable.setVisibility(View.VISIBLE);
+		btnPause.setVisibility(View.INVISIBLE);		
+		btnStop.setVisibility(View.INVISIBLE);
 
-		btnStop = (ImageButton) findViewById(R.id.btnStop);
+		
 		btnStop.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {	
@@ -296,7 +370,9 @@ public class RecordRideStatsActivity extends BaseActivity {
 		wasStopped = true;
 
 		btnPlay.setVisibility(View.VISIBLE);
-		btnPause.setVisibility(View.INVISIBLE);					
+		btnStopDisable.setVisibility(View.VISIBLE);
+		btnStop.setVisibility(View.INVISIBLE);
+		btnPause.setVisibility(View.INVISIBLE);				
 
 		//		Toast.makeText(RecordRideStatsActivity.this, "Time: " + tf.format(readChronometer()) + "mins", Toast.LENGTH_SHORT).show();
 		locationManager.removeUpdates(myLocationListener);
@@ -329,7 +405,39 @@ public class RecordRideStatsActivity extends BaseActivity {
 		alertDialog.show(); 
 	}
 
+	protected void lateRide() {
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//		if(status.equals("Early"))
+//		{
+//			alertDialog.setMessage("You are early! Scheduled ride is yet to start!");
+//			alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Ok", new DialogInterface.OnClickListener()    {
+//				public void onClick(DialogInterface dialog, int which) {
+//					Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
+//					startActivity(i);
+//				}});
+//
+//		}
 
+		alertDialog.setMessage("Are you you sure you want to overwrite your stats?");
+			
+			alertDialog.setButton( Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}});
+			
+			alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()    {
+				public void onClick(DialogInterface dialog, int which) {
+			
+					Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
+					startActivity(i);
+					
+				}});
+		
+		
+		
+		alertDialog.show(); 
+	}
+	
 	private float readChronometer(){
 		float stoppedMins = 0;
 		String chronoText = chronometer.getText().toString();
@@ -381,5 +489,25 @@ public class RecordRideStatsActivity extends BaseActivity {
 				android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 		startActivity(gpsOptionsIntent);
 	}
+
+	
+	//AsynTask for getting user details
+	public class isRideLoggedTask extends AsyncTask<Void, Void, UserActivity> {
+		Exception error;
+
+		protected UserActivity doInBackground(Void... params) {
+			return UsersManager.viewPastActivityForARide(BaseActivity.username, ride.getId());
+		}
+
+		protected void onPostExecute(UserActivity result) {
+			if(error != null){
+
+			} else {
+				userDetails = (UserActivity) result;
+				System.out.println(userDetails);
+				//fillUserActivity();
+			}
+		}
+       }
 
 }

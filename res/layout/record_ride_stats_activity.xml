@@ -67,6 +67,21 @@
             				android:layout_height="80dp"
      						android:scaleType="centerInside"
      						android:src="@drawable/btn_play_new" />
+       
+                        <!--  
+                        <ImageButton
+                            android:id="@+id/btnPlayDisable"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="40dp"
+                            android:background="@android:color/transparent"
+							android:layout_width="80dp"
+            				android:layout_height="80dp"
+     						android:scaleType="centerInside"
+     						android:src="@drawable/button_start_disabled" />
+                        -->
+                        
+                        
                     </RelativeLayout>
 
                     <ImageButton
@@ -79,6 +94,17 @@
             			android:layout_height="80dp"
      					android:scaleType="centerInside"
                         android:src="@drawable/btn_stop_new" />
+                    
+                    <ImageButton
+                        android:id="@+id/btnStopDisable"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginRight="40dp"
+                        android:background="@android:color/transparent"
+						android:layout_width="80dp"
+            			android:layout_height="80dp"
+     					android:scaleType="centerInside"
+                        android:src="@drawable/btn_stop_new_disabled" />
                 </RelativeLayout>
 
 
