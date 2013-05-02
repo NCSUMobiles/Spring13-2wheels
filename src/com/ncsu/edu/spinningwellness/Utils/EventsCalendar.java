@@ -122,7 +122,7 @@ public class EventsCalendar {
 		return eventID;
 	}
 
-	public static void removeAppointmentsFromCalender(Activity curActivity, Ride r, int status, String username, String email) {
+	public static void removeAppointmentsFromCalender(Activity curActivity, Ride r, int status, String username, String email) throws Exception{
 		String eventUriString = "content://com.android.calendar/events";
 	
 		Cursor cursors = curActivity.getApplicationContext().getContentResolver().query(Uri.parse(eventUriString), null, null, null, null);
