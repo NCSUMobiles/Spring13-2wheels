@@ -9,6 +9,7 @@ import redstone.xmlrpc.XmlRpcFault;
 import net.bican.wordpress.User;
 import net.bican.wordpress.Wordpress;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,11 +24,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends BaseActivity {
 
 	LinearLayout progressBar;
 	TextView textViewLoginError;
+	TextView textViewLoginEmptyError;
 	EditText editTextUsername,editTextPassword;
     CheckBox saveLoginCheckBox;
     SharedPreferences loginPreferences;
@@ -86,7 +89,9 @@ public class LoginActivity extends BaseActivity {
 
 		textViewLoginError = (TextView) findViewById(R.id.textViewLoginError);
 		textViewLoginError.setVisibility(View.INVISIBLE);
-
+		
+		textViewLoginEmptyError = (TextView) findViewById(R.id.textViewLoginEmptyError);
+		textViewLoginEmptyError.setVisibility(View.INVISIBLE);
 	}
 
 	@Override
@@ -96,9 +101,27 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void validateUserInputAndCallAsyncTask() {
+		
+		
+		String missing="";
+		boolean isValid = true;
+		
+		editTextUsername = (EditText)findViewById(R.id.textViewLoginUserName);
+        editTextPassword = (EditText)findViewById(R.id.textViewLoginPassword);
+        username = editTextUsername.getText().toString();
+        password = editTextPassword.getText().toString();
+		
+		
+	//		
+		if(username.equals("") || password.equals(""))
+			isValid = false;
+		
+		
+		
+		
 
 		//Add validation code here
-		boolean isValid = true;
+	
 		if(isValid) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.LoginForm);
@@ -107,6 +130,16 @@ public class LoginActivity extends BaseActivity {
 			new LoginTask().execute();
 		} else {
 			textViewLoginError.setVisibility(View.VISIBLE);
+			//Show the error message to user
+			
+//			textViewCreateError.append("\nEnter "+missing+"\n");
+			textViewLoginEmptyError.setVisibility(View.VISIBLE);
+			Context context = getApplicationContext();
+			CharSequence text = "Enter mandatory fields!";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			
 		}
 	}
 

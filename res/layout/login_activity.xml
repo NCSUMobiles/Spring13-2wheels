@@ -47,6 +47,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Login Failed..." />
+                
+                <TextView
+                    android:id="@+id/textViewLoginEmptyError"
+                    style="@style/TextViewFont"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter mandatory fields!" />
 
                 <TextView
                     style="@style/TextViewForLabels"
