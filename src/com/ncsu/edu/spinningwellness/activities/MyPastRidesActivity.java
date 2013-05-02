@@ -71,7 +71,7 @@ public class MyPastRidesActivity extends BaseActivity {
 				if (positionView != ListView.INVALID_POSITION) {
 					//start view activity
 					selectedRide = myPastRides.get(positionView);
-					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
+					Intent i = new Intent(getApplicationContext(), ViewPastRideDetailsActivity.class);
 					i.putExtra("Ride", selectedRide);
 					i.putExtra("Caller",Caller);
 					startActivity(i);

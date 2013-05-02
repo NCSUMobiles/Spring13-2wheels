@@ -16,6 +16,7 @@
     <string name="welcome_user">Welcome User!</string>
     <string name="some_text">Join Rides</string>
     <string name="title_activity_view_rides">Ride Details</string>
+    <string name="title_activity_view_past_rides">Past Ride Details</string>
     <string name="title_activity_log_ride_details">Log Ride Details</string>
     <string name="title_activity_loading">LoadingActivity</string>
     <string name="Startride">Start</string>

@@ -7,12 +7,15 @@ import java.util.Locale;
 import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.Utils.Utils;
 import com.ncsu.edu.spinningwellness.entities.Ride;
+import com.ncsu.edu.spinningwellness.entities.UserActivity;
+import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,25 +23,28 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class ViewRideDetailsActivity extends BaseActivity {
+public class ViewPastRideDetailsActivity extends BaseActivity {
 
 	Ride ride;
 	LinearLayout progressBar;
+	UserActivity userActivity;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		//Draw menu
-		tabProvider = new MyTabHostProvider(ViewRideDetailsActivity.this);
-		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
-		tabView.setCurrentView(R.layout.view_ride_details_activity);
+		tabProvider = new MyTabHostProvider(ViewPastRideDetailsActivity.this);
+		TabView tabView = tabProvider.getTabHost(MenuConstants.PAST_RIDES);
+		tabView.setCurrentView(R.layout.view_past_ride_details_activity);
 		setContentView(tabView.render());
 
 		progressBar = (LinearLayout) findViewById(R.id.rideDetailsSpinner);
 		progressBar.setVisibility(View.VISIBLE);
 
 		addListenerOnButton();
+
+		new getuserDetailsTask().execute();
 
 		fillRideDetails();
 
@@ -60,16 +66,41 @@ public class ViewRideDetailsActivity extends BaseActivity {
 		((TextView) findViewById(R.id.textViewRideDetailsSource)).setText(ride.getSource());
 		((TextView) findViewById(R.id.textViewRideDetailsDestination)).setText(ride.getDest());
 		((TextView) findViewById(R.id.textViewRideDetailsCreator)).setText(ride.getCreator());
-		
+
 		Date rideDate = Utils.convertStringToDate(ride.getStartTime());
 
 		String[] formats = new String[] {"dd-MMM-yy", "HH:mm"};
-		
+
 		SimpleDateFormat dfForRideDate = new SimpleDateFormat(formats[0], Locale.US);
 		((TextView) findViewById(R.id.textViewRideDetailsDate)).setText(dfForRideDate.format(rideDate));
 
 		SimpleDateFormat dfForRideTime = new SimpleDateFormat(formats[1], Locale.US);
 		((TextView) findViewById(R.id.textViewRideDetailsTime)).setText(dfForRideTime.format(rideDate));
+	}
+
+	void fillUserActivity() {
+
+		if(userActivity != null  && userActivity.getId() != null) {
+
+			LinearLayout userActivityDetailsForm = (LinearLayout) findViewById(R.id.userActivityDetails);
+			userActivityDetailsForm.setVisibility(View.VISIBLE);
+
+			((TextView) findViewById(R.id.textViewPastRideAverageSpeed)).setText(((Double) userActivity.getAverageSpeed()).toString());
+			((TextView) findViewById(R.id.textViewPastRideCadence)).setText(((Double) userActivity.getCadence()).toString());
+			((TextView) findViewById(R.id.textViewPastRideCalories)).setText(((Double) userActivity.getCaloriesBurned()).toString());
+			((TextView) findViewById(R.id.textViewPastRideDistanceCovered)).setText(((Double) userActivity.getDistaceCovered()).toString());
+			((TextView) findViewById(R.id.textViewPastRideHeartRate)).setText(((Double) userActivity.getHeartRate()).toString());
+			((TextView) findViewById(R.id.textViewPastRideTime)).setText(((Double) userActivity.getTimeOfRide()).toString());
+
+			LinearLayout userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
+			userActivityDetailsError.setVisibility(View.INVISIBLE);
+
+		} else {
+			LinearLayout userActivityDetailsForm = (LinearLayout) findViewById(R.id.userActivityDetails);
+			userActivityDetailsForm.setVisibility(View.INVISIBLE);			
+			LinearLayout userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
+			userActivityDetailsError.setVisibility(View.VISIBLE);
+		}
 	}
 
 	public void addListenerOnButton() {
@@ -85,5 +116,24 @@ public class ViewRideDetailsActivity extends BaseActivity {
 				startActivity(member_intent);   
 			}
 		});
-	}	
+	}
+
+	//AsynTask for getting user details
+	public class getuserDetailsTask extends AsyncTask<Void, Void, UserActivity> {
+		Exception error;
+
+		protected UserActivity doInBackground(Void... params) {
+			return UsersManager.viewPastActivityForARide(BaseActivity.username, ride.getId());
+		}
+
+		protected void onPostExecute(UserActivity result) {
+			if(error != null){
+
+			} else {
+				userActivity = (UserActivity) result;
+				System.out.println(userActivity);
+				fillUserActivity();
+			}
+		}
+	}
 }
