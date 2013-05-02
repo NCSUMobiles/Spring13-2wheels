@@ -3,21 +3,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:descendantFocusability="blocksDescendants" >
-
-     <CheckBox
-        android:id="@+id/isJoined"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:button="@android:drawable/btn_star" 
-        android:layout_weight=".15"
-        android:checked="true"
-        android:clickable="false"
-        />
-     
-     <TextView
+    
+    <TextView
         android:id="@+id/myPastRidesTextVal"
         style="@style/TextViewForList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:layout_height="fill_parent" />
      
 </LinearLayout>
