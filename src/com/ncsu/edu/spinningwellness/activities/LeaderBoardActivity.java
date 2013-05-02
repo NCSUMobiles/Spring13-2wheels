@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.spinningwellness.R;
-import com.ncsu.edu.spinningwellness.customadapters.UserCustomAdapter;
-import com.ncsu.edu.spinningwellness.entities.User;
+import com.ncsu.edu.spinningwellness.customadapters.LeaderBoardCustomEntry;
+import com.ncsu.edu.spinningwellness.customadapters.LeaderBoardEntryCustomAdapter;
+import com.ncsu.edu.spinningwellness.entities.LeaderBoardEntry;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
@@ -20,8 +21,8 @@ import android.widget.TextView;
 
 public class LeaderBoardActivity extends BaseActivity {
 
-	List<User> topRiders = new ArrayList<User>();
-	List<String> users = new ArrayList<String>();
+	List<LeaderBoardEntry> topRiders = new ArrayList<LeaderBoardEntry>();
+	List<LeaderBoardCustomEntry> users = new ArrayList<LeaderBoardCustomEntry>();
 	private LinearLayout progressBar;
 
 	@Override
@@ -51,7 +52,7 @@ public class LeaderBoardActivity extends BaseActivity {
 		progressBar.setVisibility(View.INVISIBLE);
 
 		//create an ArrayAdaptar from the String Array
-		UserCustomAdapter dataAdapter = new UserCustomAdapter(this, R.id.userTextVal, users);
+		LeaderBoardEntryCustomAdapter dataAdapter = new LeaderBoardEntryCustomAdapter(this, R.id.leaderBoardUserName, users);
 		final ListView listView = (ListView) findViewById(R.id.leaderBoardListView);
 
 		// Assign adapter to ListView
@@ -62,20 +63,20 @@ public class LeaderBoardActivity extends BaseActivity {
 	}
 
 
-	public class GetLeaderBoardTask extends AsyncTask<Void,Void,List<User>> {
+	public class GetLeaderBoardTask extends AsyncTask<Void,Void,List<LeaderBoardEntry>> {
 		Exception error;
 
-		protected List<User> doInBackground(Void... params) {
-			return UsersManager.viewTopPerformers();
+		protected List<LeaderBoardEntry> doInBackground(Void... params) {
+			return UsersManager.viewTopPerformers(BaseActivity.username);
 		}
 
-		protected void onPostExecute(List<User> result) {
+		protected void onPostExecute(List<LeaderBoardEntry> result) {
 			if(error != null){
 
 			} else {
 				topRiders = result;
-				for(User r: topRiders){
-					users.add(r.getName());
+				for(LeaderBoardEntry r: topRiders){
+					users.add(new LeaderBoardCustomEntry(r.getName(), r.getDistanceCovered(), r.getPosition()));
 				}				
 				displayListView();
 			}

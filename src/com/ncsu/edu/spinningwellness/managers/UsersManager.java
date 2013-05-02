@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 
 import com.ncsu.edu.spinningwellness.Utils.RestClientUtils;
 import com.ncsu.edu.spinningwellness.Utils.Utils;
+import com.ncsu.edu.spinningwellness.entities.LeaderBoardEntry;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.entities.UserActivity;
@@ -136,31 +137,31 @@ public class UsersManager {
 		return rides;
 	}
 
-	public static List<User> viewTopPerformersForLastWeek() {
-		List<User> users = new ArrayList<User>();
+	public static List<LeaderBoardEntry> viewTopPerformersForLastWeek() {
+		List<LeaderBoardEntry> users = new ArrayList<LeaderBoardEntry>();
 
 		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_TOP_PERFORMERS_FOR_LAST_WEEK_URL);
 		String JSON = RestClientUtils.executeRequest(get);
 
 		@SuppressWarnings("unchecked")
-		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
+		List<Object> us =  Utils.JSONToObjectList(JSON, LeaderBoardEntry.class);
 		for(Object u: us) {
-			User user = (User) u;  
+			LeaderBoardEntry user = (LeaderBoardEntry) u;  
 			users.add(user);
 		}
 		return users;
 	}
 
-	public static List<User> viewTopPerformers() {
-		List<User> users = new ArrayList<User>();
+	public static List<LeaderBoardEntry> viewTopPerformers(String username) {
+		List<LeaderBoardEntry> users = new ArrayList<LeaderBoardEntry>();
 
-		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_TOP_PERFORMERS_URL);
+		HttpGet get = RestClientUtils.createHttpGetRequest(Constants.VIEW_TOP_PERFORMERS_URL + "/" + username);
 		String JSON = RestClientUtils.executeRequest(get); 
 
 		@SuppressWarnings("unchecked")
-		List<Object> us =  Utils.JSONToObjectList(JSON, User.class);
+		List<Object> us =  Utils.JSONToObjectList(JSON, LeaderBoardEntry.class);
 		for(Object u: us) {
-			User user = (User) u;  
+			LeaderBoardEntry user = (LeaderBoardEntry) u;  
 			users.add(user);
 		}
 		return users;
