@@ -47,7 +47,8 @@
                     style="@style/TextViewFont"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter mandatory fields!" />
+                    android:text="Enter mandatory fields!"
+                    android:textColor="#ff0000" />
                  
                 <!-- Name of Ride Label -->
 
