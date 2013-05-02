@@ -2,6 +2,7 @@ package com.ncsu.edu.spinningwellness.managers;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -110,8 +111,17 @@ public class RidesManager {
 	public static List<Ride> viewUpcomingRides() {
 
 		List<Ride> rides = new ArrayList<Ride>();
+		
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.HOUR, -1);
+		today = cal.getTime();
 
-		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_URL);
+		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_URL + 
+				"/" +
+				Utils.convertDateToString(today)
+				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 		if(ridesJSON != null){
 			@SuppressWarnings("unchecked")
@@ -204,10 +214,18 @@ public class RidesManager {
 
 		List<Ride> rides = new ArrayList<Ride>();
 
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.HOUR, -1);
+		today = cal.getTime();
+
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(
 				Constants.VIEW_MY_UPCOMING_RIDES_URL + 
 				"/" + 
-				userName
+				userName +
+				"/" +
+				Utils.convertDateToString(today)
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 		if(ridesJSON != null){
