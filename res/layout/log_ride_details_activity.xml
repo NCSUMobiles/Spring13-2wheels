@@ -147,6 +147,21 @@
                     android:inputType="numberDecimal"
                     android:singleLine="true" />
 
+                <!-- Calories Burned -->
+
+                <TextView
+                    style="@style/TextViewForLabels"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Calories Burned: " />
+
+                <EditText
+                    android:id="@+id/textViewLogRideDetailsCaloriesBurned"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true" />
+
                 <!-- Post to blog -->
 
                 <TextView

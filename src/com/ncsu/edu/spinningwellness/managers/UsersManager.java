@@ -28,7 +28,7 @@ public class UsersManager {
 	}
 
 	public static String logActivity(String rideId, String userName, double distaceCovered,
-			double cadence, double averageSpeed, double caloriesBurned, double heartRate, Date activityDate) {
+			double cadence, double averageSpeed, double caloriesBurned, double timeOfRide, double heartRate, Date activityDate) {
 
 		Date currentTimestamp = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("MMddyyHHmmssSSS");
@@ -36,9 +36,11 @@ public class UsersManager {
 				df.format(currentTimestamp), 
 				rideId, 
 				userName, 
-				distaceCovered,cadence, 
+				distaceCovered,
+				cadence, 
 				averageSpeed, 
 				caloriesBurned, 
+				timeOfRide,
 				heartRate,
 				Utils.convertDateToString(activityDate)
 				);
