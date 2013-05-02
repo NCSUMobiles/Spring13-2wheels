@@ -2,6 +2,7 @@ package com.ncsu.edu.spinningwellness.activities;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -198,6 +199,11 @@ public class JoinRidesActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				Date currentTimestamp = new Date();
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(currentTimestamp);
+				cal.add(Calendar.HOUR, 1);
+				currentTimestamp = cal.getTime();
+				
 				long currTime = Utils.convertDateToString(currentTimestamp);
 				long rideTime;
 				

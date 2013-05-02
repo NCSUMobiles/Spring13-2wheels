@@ -2,6 +2,7 @@ package com.ncsu.edu.spinningwellness.activities;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.example.spinningwellness.R;
@@ -80,9 +81,10 @@ public class RecordRideStatsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		Date currentTimestamp = new Date();
+		
+		
 		long currTime = Utils.convertDateToString(currentTimestamp);
 		long rideTime = ride.getStartTime();
-		
 		
 		System.out.println("Current time is :" + currTime +"Ride time is :"+rideTime );
 		
@@ -109,10 +111,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 //		}
 		
 		new isRideLoggedTask().execute();
-		if(userDetails != null)
-		{
-			lateRide();
-		}
+		
 		btnPlay.setVisibility(View.VISIBLE);
 		btnStopDisable.setVisibility(View.VISIBLE);
 		btnStop.setVisibility(View.INVISIBLE);
@@ -318,8 +317,8 @@ public class RecordRideStatsActivity extends BaseActivity {
 			}
 		});
 		btnPlay.setVisibility(View.VISIBLE);
-		btnStopDisable.setVisibility(View.VISIBLE);
-		btnStop.setVisibility(View.INVISIBLE);
+		//btnStopDisable.setVisibility(View.VISIBLE);
+		btnStop.setVisibility(View.VISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);
 		
 		btnPause.setOnClickListener(new View.OnClickListener() {
@@ -334,17 +333,17 @@ public class RecordRideStatsActivity extends BaseActivity {
 				locationManager.removeUpdates(myLocationListener);
 
 				btnPlay.setVisibility(View.VISIBLE);
-				btnStopDisable.setVisibility(View.VISIBLE);
+				//btnStopDisable.setVisibility(View.VISIBLE);
 				btnPause.setVisibility(View.INVISIBLE);		
-				btnStop.setVisibility(View.INVISIBLE);
+				btnStop.setVisibility(View.VISIBLE);
 				
 			}
 		});
 		
 		btnPlay.setVisibility(View.VISIBLE);
-		btnStopDisable.setVisibility(View.VISIBLE);
+		//btnStopDisable.setVisibility(View.VISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);		
-		btnStop.setVisibility(View.INVISIBLE);
+		btnStop.setVisibility(View.VISIBLE);
 
 		
 		btnStop.setOnClickListener(new View.OnClickListener() {
@@ -370,8 +369,8 @@ public class RecordRideStatsActivity extends BaseActivity {
 		wasStopped = true;
 
 		btnPlay.setVisibility(View.VISIBLE);
-		btnStopDisable.setVisibility(View.VISIBLE);
-		btnStop.setVisibility(View.INVISIBLE);
+		//btnStopDisable.setVisibility(View.VISIBLE);
+		btnStop.setVisibility(View.VISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);				
 
 		//		Toast.makeText(RecordRideStatsActivity.this, "Time: " + tf.format(readChronometer()) + "mins", Toast.LENGTH_SHORT).show();
@@ -501,10 +500,15 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 		protected void onPostExecute(UserActivity result) {
 			if(error != null){
+				System.out.println("Some error in isRideLoggedTask");
 
 			} else {
 				userDetails = (UserActivity) result;
+				//System.out.println("Printing cadence logged"+userDetails.getCadence());
 				System.out.println(userDetails);
+				System.out.println("Ride was already logged!");
+				lateRide();
+				
 				//fillUserActivity();
 			}
 		}
