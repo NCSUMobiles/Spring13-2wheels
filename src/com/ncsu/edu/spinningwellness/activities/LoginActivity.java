@@ -3,7 +3,6 @@ package com.ncsu.edu.spinningwellness.activities;
 import java.net.MalformedURLException;
 
 import com.example.spinningwellness.R;
-import com.example.spinningwellness.RegisterActivity;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
 
 import redstone.xmlrpc.XmlRpcFault;
