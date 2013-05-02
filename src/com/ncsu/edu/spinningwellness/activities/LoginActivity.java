@@ -190,9 +190,11 @@ public class LoginActivity extends BaseActivity {
 			//Redirect to join rides page
 			if(error == null) {
 				//Set variable values in base activity
-				BaseActivity.username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
-				BaseActivity.password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
+//				BaseActivity.username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
+//				BaseActivity.password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
 
+				BaseActivity.username = editTextUsername.getText().toString();
+				BaseActivity.password = editTextPassword.getText().toString();
 				moveToJoinRidesPage();
 			} else {
 				progressBar.setVisibility(View.INVISIBLE);
