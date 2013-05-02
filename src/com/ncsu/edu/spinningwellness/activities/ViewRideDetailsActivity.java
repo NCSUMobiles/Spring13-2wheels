@@ -82,6 +82,7 @@ public class ViewRideDetailsActivity extends BaseActivity {
 			public void onClick(View v) {
 				Intent member_intent = new Intent(context, ViewParticipantsForARideActivity.class);
 				member_intent.putExtra("Ride", ride);
+				member_intent.putExtra("Caller", "JoinRide");
 				startActivity(member_intent);   
 			}
 		});
