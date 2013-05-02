@@ -47,6 +47,13 @@ public class LoginActivity extends BaseActivity {
         saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
+        
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            editTextUsername.setText(loginPreferences.getString("username", ""));
+            editTextPassword.setText(loginPreferences.getString("password", ""));
+            saveLoginCheckBox.setChecked(true);
+        }
 
 		// Listening to login button
 		Button button  = (Button) findViewById(R.id.btnLogin);
@@ -128,9 +135,12 @@ public class LoginActivity extends BaseActivity {
 			Wordpress wp;
 			try {
 
-				String username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
-				String password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
+//				String username = "spinningwellness";//findViewById(R.id.login_username).toString();//;
+//				String password = "ncsuspr2013";//findViewById(R.id.login_username).toString();
 
+				username = editTextUsername.getText().toString();
+	            password = editTextPassword.getText().toString();
+				
 				wp = new Wordpress(username, password, xmlRpcUrl);
 				User u = wp.getUserInfo();
 				return u;
