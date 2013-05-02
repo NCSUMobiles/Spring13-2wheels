@@ -19,12 +19,15 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:theme="@style/CustomTheme" >
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.BaseActivity"
             android:background="@drawable/background1"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:fillViewport="true"
-            android:label="@string/title_activity_base" >
+            android:label="@string/title_activity_base"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.CoverPageActivity"
@@ -37,44 +40,63 @@
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.CreateRideActivity"
-            android:label="@string/title_activity_create_new_ride" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_create_new_ride"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.JoinRidesActivity"
-            android:label="@string/title_activity_join" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_join"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.LeaderBoardActivity"
-            android:label="@string/title_activity_base" >
-        </activity>
-        <activity
-            android:name="com.ncsu.edu.spinningwellness.activities.LogRideDetailsActivity"
-            android:label="@string/title_activity_log_ride_details" >
-        </activity>
-        <activity
-            android:name="com.ncsu.edu.spinningwellness.activities.LoginActivity"
-            android:label="Spinning Wellness" >
-        </activity>
-        <activity
-            android:name="com.ncsu.edu.spinningwellness.activities.MyPastRidesActivity"
-            android:label="@string/title_activity_my_past_rides" >
-        </activity>
-        <activity
-            android:name="com.ncsu.edu.spinningwellness.activities.RecordRideStatsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_base"
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.ncsu.edu.spinningwellness.activities.LogRideDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_log_ride_details"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ncsu.edu.spinningwellness.activities.LoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="Spinning Wellness"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ncsu.edu.spinningwellness.activities.MyPastRidesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_my_past_rides"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ncsu.edu.spinningwellness.activities.RecordRideStatsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_base"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="com.ncsu.edu.spinningwellness.activities.ViewParticipantsForARideActivity"
-            android:label="@string/title_activity_view_member" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_view_member"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.ViewRideDetailsActivity"
-            android:label="@string/title_activity_view_rides" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_view_rides"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.ViewPastRideDetailsActivity"
-            android:label="@string/title_activity_view_past_rides" >
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_view_past_rides"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
