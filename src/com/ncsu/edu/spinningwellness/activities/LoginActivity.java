@@ -32,7 +32,6 @@ public class LoginActivity extends BaseActivity {
 
 	LinearLayout progressBar;
 	TextView textViewLoginError;
-	TextView textViewLoginEmptyError;
 	EditText editTextUsername,editTextPassword;
     CheckBox saveLoginCheckBox;
     SharedPreferences loginPreferences;
@@ -92,10 +91,8 @@ public class LoginActivity extends BaseActivity {
 
 		textViewLoginError = (TextView) findViewById(R.id.textViewLoginError);
 		textViewLoginError.setVisibility(View.INVISIBLE);
-		
-		textViewLoginEmptyError = (TextView) findViewById(R.id.textViewLoginEmptyError);
-		textViewLoginEmptyError.setVisibility(View.INVISIBLE);
-	}
+
+}
 
 	@Override
 	protected void setTitle() {
@@ -132,13 +129,11 @@ public class LoginActivity extends BaseActivity {
 
 			new LoginTask().execute();
 		} else {
-			textViewLoginError.setVisibility(View.VISIBLE);
 			//Show the error message to user
-			
-//			textViewCreateError.append("\nEnter "+missing+"\n");
-			textViewLoginEmptyError.setVisibility(View.VISIBLE);
+			textViewLoginError.setText("Login Failed...\nEnter all fields!");
+			textViewLoginError.setVisibility(View.VISIBLE);
 			Context context = getApplicationContext();
-			CharSequence text = "Enter mandatory fields!";
+			CharSequence text = "Enter all fields!";
 			int duration = Toast.LENGTH_SHORT;
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
@@ -203,7 +198,24 @@ public class LoginActivity extends BaseActivity {
 				
 			} else {
 				progressBar.setVisibility(View.INVISIBLE);
-				LoginActivity.this.textViewLoginError.setVisibility(View.VISIBLE);
+				
+				LinearLayout createRideForm = (LinearLayout) findViewById(R.id.LoginForm);
+				createRideForm.setVisibility(View.VISIBLE);
+				
+				//clear the text boxes
+				TextView textViewUserName = (TextView) findViewById(R.id.textViewLoginUserName);
+				textViewUserName.setHint("username");
+				
+				TextView textViewPassword = (TextView) findViewById(R.id.textViewLoginPassword);
+				textViewPassword.setHint("username");
+				
+				textViewLoginError.setText("Login Failed...\nInvalid Username or Password!");
+				textViewLoginError.setVisibility(View.VISIBLE);
+				Context context = getApplicationContext();
+				CharSequence text = "Invalid username or password!";
+				int duration = Toast.LENGTH_SHORT;
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();
 			}
 		}
 	}
