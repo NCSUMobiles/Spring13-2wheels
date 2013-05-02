@@ -29,7 +29,7 @@ public class EventsCalendar {
 	 * @param needMailService
 	 * @return
 	 */
-	public static long pushAppointmentsToCalender(Activity curActivity, Ride r, int status, boolean needReminder, boolean needMailService, String username, String email) {
+	public static long pushAppointmentsToCalender(Activity curActivity, Ride r, int status, boolean needReminder, boolean needMailService, String username, String email) throws Exception{
 		String eventUriString = "content://com.android.calendar/events";
 		ContentValues eventValues = new ContentValues();
 

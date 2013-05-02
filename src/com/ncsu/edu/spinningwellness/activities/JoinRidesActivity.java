@@ -378,7 +378,12 @@ public class JoinRidesActivity extends BaseActivity {
 		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave, 0, true, true,user.getName(),user.getEmail());
+			try{
+				EventsCalendar.pushAppointmentsToCalender(JoinRidesActivity.this, selectedRideSave, 0, true, true,user.getName(),user.getEmail());
+				Toast.makeText(getApplicationContext(), "Event added to Calendar.", Toast.LENGTH_SHORT).show();
+			}catch(Exception e){
+				Toast.makeText(getApplicationContext(), "Please configure your Calendar to get ride notifications.", Toast.LENGTH_SHORT).show();
+			}
 			return null;
 		}
 		
@@ -396,7 +401,12 @@ public class JoinRidesActivity extends BaseActivity {
 		
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			EventsCalendar.removeAppointmentsFromCalender(JoinRidesActivity.this, selectedRideSave, 0, user.getName(),user.getEmail());
+			try{
+				EventsCalendar.removeAppointmentsFromCalender(JoinRidesActivity.this, selectedRideSave, 0, user.getName(),user.getEmail());
+				Toast.makeText(getApplicationContext(), "Event removed from Calendar.", Toast.LENGTH_SHORT).show();
+			}catch(Exception e){
+				//Toast.makeText(getApplicationContext(), "Event added to Calendar.", Toast.LENGTH_SHORT).show();
+			}
 			return null;
 		}
 		
