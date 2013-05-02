@@ -91,11 +91,20 @@ public class RidesManager {
 	public static List<Ride> viewMyPastRides(String userName) {
 		List<Ride> rides = new ArrayList<Ride>();
 
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.HOUR, 1);
+		today = cal.getTime();
+
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(
 				Constants.VIEW_MY_PAST_RIDES_URL + 
 				"/" + 
-				userName
+				userName +
+				"/" +
+				Utils.convertDateToString(today)
 				);
+
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 		if(ridesJSON != null){
 			@SuppressWarnings("unchecked")
