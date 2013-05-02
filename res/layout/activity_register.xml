@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background1"
+    android:fillViewport="true" >
+
+    <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
+		
+         <LinearLayout
+            android:id="@+id/registerSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/TextViewFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please wait..." >
+            </TextView>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" >
+            </ProgressBar>
+        </LinearLayout>
+        
+         <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:id="@+id/logRideDetailsForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+				
+                <TextView
+                    style="@style/TextViewForLabels"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/textViewusername"
+                     />
+
+               
+                <TextView
+                    style="@style/TextViewForLabels"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email: " />
+
+                <EditText
+                    android:id="@+id/textViewLogRideDetailsRideName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:background="#CCCCCC" />
+                
+                <Button
+                    android:id="@+id/btnSave"
+                    style="@style/Button"
+                    android:text="Save" 
+                    android:layout_margin="25dp"/>
+         </LinearLayout>
+         </ScrollView>
+        
+    </RelativeLayout>
+
+</RelativeLayout>

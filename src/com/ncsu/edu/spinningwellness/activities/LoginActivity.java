@@ -3,6 +3,8 @@ package com.ncsu.edu.spinningwellness.activities;
 import java.net.MalformedURLException;
 
 import com.example.spinningwellness.R;
+import com.example.spinningwellness.RegisterActivity;
+import com.ncsu.edu.spinningwellness.managers.UsersManager;
 
 import redstone.xmlrpc.XmlRpcFault;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends BaseActivity {
     SharedPreferences.Editor loginPrefsEditor;
     Boolean saveLogin;
     String username, password;
+    boolean userExists;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -195,12 +198,55 @@ public class LoginActivity extends BaseActivity {
 
 				BaseActivity.username = editTextUsername.getText().toString();
 				BaseActivity.password = editTextPassword.getText().toString();
-				moveToJoinRidesPage();
+				//check if this user already exists
+				new CheckUserExistsTask().execute();
+				
 			} else {
 				progressBar.setVisibility(View.INVISIBLE);
 				LoginActivity.this.textViewLoginError.setVisibility(View.VISIBLE);
 			}
 		}
+	}
+	
+	private class CheckUserExistsTask extends AsyncTask<Void, Void, com.ncsu.edu.spinningwellness.entities.User> {
+		Exception error;
+
+		@Override
+		protected com.ncsu.edu.spinningwellness.entities.User doInBackground(Void... arg0) {
+			com.ncsu.edu.spinningwellness.entities.User u = UsersManager.getUser(username);
+			return u;
+		}
+		
+		protected void onPostExecute(com.ncsu.edu.spinningwellness.entities.User result) {
+			if(result == null){
+				userExists = false;
+			}else{
+				userExists = true;
+			}
+			if(!userExists){
+				moveToRegisterPage();
+			}else{
+				moveToJoinRidesPage();
+			}
+		}
+	}
+	
+	private void moveToRegisterPage() {
+
+		progressBar.setVisibility(View.INVISIBLE);
+
+//		LinearLayout createRideForm = (LinearLayout) findViewById(R.id.LoginForm);
+//		createRideForm.setVisibility(View.VISIBLE);
+
+		//clear the text boxes
+		TextView textViewUserName = (TextView) findViewById(R.id.textViewLoginUserName);
+		textViewUserName.setText("username");
+
+		TextView textViewPassword = (TextView) findViewById(R.id.textViewLoginPassword);
+		textViewPassword.setText("******");
+
+		Intent loadingIntent = new Intent(LoginActivity.this, RegisterActivity.class); 
+		LoginActivity.this.startActivity(loadingIntent);
 	}
 	
 	public boolean isOnline() {
