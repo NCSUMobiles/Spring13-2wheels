@@ -41,23 +41,23 @@
                 android:gravity="center"
                 android:orientation="vertical" >
 
-                 
-                 <TextView
+                <TextView
                     android:id="@+id/txtViewCreateError"
                     style="@style/TextViewFont"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Enter all fields!"
                     android:textColor="#ff0000" />
-                 
+
                 <!-- Name of Ride Label -->
 
                 <TextView
+                    android:id="@+id/textViewCreateRideNameLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ride Name*" 
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lbl_ride_name" />
 
                 <EditText
                     android:id="@+id/textViewCreateRideRideName"
@@ -69,11 +69,12 @@
                 <!-- Source Label -->
 
                 <TextView
+                    android:id="@+id/textViewCreateSourceLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Source*" 
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lbl_source" />
 
                 <EditText
                     android:id="@+id/textViewCreateRideSource"
@@ -85,11 +86,12 @@
                 <!-- Destination Label -->
 
                 <TextView
+                    android:id="@+id/textViewCreateDestinationLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Destination*" 
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lbl_destination" />
 
                 <EditText
                     android:id="@+id/textViewCreateRideDestination"
@@ -100,11 +102,12 @@
                 <!-- Date Label -->
 
                 <TextView
+                    android:id="@+id/textViewCreateDateOfRideLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date of Ride*" 
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lbl_date_of_ride" />
 
                 <DatePicker
                     android:id="@+id/createRideDatePicker"
@@ -114,11 +117,12 @@
                 <!-- Time Label -->
 
                 <TextView
+                    android:id="@+id/textViewCreateStartTimeOfRideLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Start time of Ride*" 
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lbl_start_time_of_ride" />
 
                 <TimePicker
                     android:id="@+id/createRideTimePicker"
@@ -130,8 +134,8 @@
                 <Button
                     android:id="@+id/btnCreateRide"
                     style="@style/Button"
-                    android:text="Create New Ride!!" 
-                    android:layout_margin="25dp"/>
+                    android:layout_margin="25dp"
+                    android:text="Create New Ride!!" />
             </LinearLayout>
             <!-- Create New Ride Form Ends -->
         </ScrollView>

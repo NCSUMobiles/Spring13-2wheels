@@ -8,6 +8,7 @@ import java.util.List;
 import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.Utils.EmailDispatcher;
 import com.ncsu.edu.spinningwellness.Utils.EventsCalendar;
+import com.ncsu.edu.spinningwellness.Utils.UIUtils;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
@@ -50,9 +51,11 @@ public class CreateRideActivity extends BaseActivity {
 
 		progressBar = (LinearLayout) findViewById(R.id.createRideSpinner);
 		progressBar.setVisibility(View.INVISIBLE);
-		
+
 		textViewCreateError = (TextView) findViewById(R.id.txtViewCreateError);
 		textViewCreateError.setVisibility(View.INVISIBLE);
+
+		setAsteriskLabels();
 	}
 
 	@Override
@@ -75,25 +78,24 @@ public class CreateRideActivity extends BaseActivity {
 
 	private void validateUserInputAndCallAsyncTask() {
 
-		String missing="";
 		boolean isValid = true;
-		
-		
+
+
 		//Add validation code here
 		String rideName = ((TextView) findViewById(R.id.textViewCreateRideRideName)).getText().toString().trim();
 		String source = ((TextView) findViewById(R.id.textViewCreateRideSource)).getText().toString().trim();
 		String destination = ((TextView) findViewById(R.id.textViewCreateRideDestination)).getText().toString().trim();
-		
-//		if(rideName.equals(""))
-//			missing= missing + "Ride Name, ";
-//		if(source.equals(""))
-//			missing= missing + "Source, ";
-//		if(destination.equals(""))
-//			missing= missing + "Destination! ";
-//		
+
+		//		if(rideName.equals(""))
+		//			missing= missing + "Ride Name, ";
+		//		if(source.equals(""))
+		//			missing= missing + "Source, ";
+		//		if(destination.equals(""))
+		//			missing= missing + "Destination! ";
+		//		
 		if(rideName.equals("") || source.equals("")||destination.equals(""))
 			isValid = false;
-		
+
 		if(isValid) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
@@ -102,8 +104,8 @@ public class CreateRideActivity extends BaseActivity {
 			new CreateRideTask().execute();
 		} else {
 			//Show the error message to user
-		
-//			textViewCreateError.append("\nEnter "+missing+"\n");
+
+			//			textViewCreateError.append("\nEnter "+missing+"\n");
 			textViewCreateError.setVisibility(View.VISIBLE);
 			Context context = getApplicationContext();
 			CharSequence text = "Enter all fields!";
@@ -177,17 +179,17 @@ public class CreateRideActivity extends BaseActivity {
 				moveToJoinRidesPage();
 			} else {
 				//Display the error to user
-					textViewCreateError.setVisibility(View.VISIBLE);
+				textViewCreateError.setVisibility(View.VISIBLE);
 			}
 		}
 	}
-	
+
 	private class GetAllUsersTask extends AsyncTask<Void, Void, List<User>> {
-		
+
 		Exception error;
 		Ride r;
-//		List<User> list = new ArrayList<User>();
-		
+		//		List<User> list = new ArrayList<User>();
+
 		GetAllUsersTask(Ride ride){
 			r = ride;
 		}
@@ -208,35 +210,35 @@ public class CreateRideActivity extends BaseActivity {
 						new AddToCalendarTask(r,u).execute();
 					}
 				}
-				
+
 			}
 		}
 	}
-	
+
 	private class SendEmailTask extends AsyncTask<Void, Void, Void> {
 		Exception error;
 		Ride r;
 		List<User> list;
-		
-		
+
+
 		SendEmailTask(Ride ride,List<User> list){
 			r = ride;
 			this.list = list;
 		}
 
 		protected Void doInBackground(Void... params) {
-			
+
 			//TODO: get from the webservice 
 			new EmailDispatcher().sendEmailToAll(list, r);
 			return null;
 			//send email
-			
+
 		}
 
 		protected void onPostExecute(Ride result) {
 		}
 	}
-	
+
 	private class AddToCalendarTask extends AsyncTask<Void, Void, Void> {
 		User user;
 		Ride ride;
@@ -244,20 +246,49 @@ public class CreateRideActivity extends BaseActivity {
 			this.user = user;
 			this.ride = ride;
 		}
-		
+
 		@Override
 		protected Void doInBackground(Void... arg0) {
 			try{
 				EventsCalendar.pushAppointmentsToCalender(CreateRideActivity.this,ride, 0, true, true,user.getName(),user.getEmail());
-//				Toast.makeText(getApplicationContext(), "Event added to Calendar.", Toast.LENGTH_SHORT).show();
+				//				Toast.makeText(getApplicationContext(), "Event added to Calendar.", Toast.LENGTH_SHORT).show();
 			}catch(Exception e){
-//				Toast.makeText(getApplicationContext(), "Please configure your Calendar to get ride notifications.", Toast.LENGTH_SHORT).show();
+				//				Toast.makeText(getApplicationContext(), "Please configure your Calendar to get ride notifications.", Toast.LENGTH_SHORT).show();
 			}
 			return null;
 		}
-		
+
 		protected void onPostExecute(Void result) {
 		}
-		
+
+	}
+
+	private void setAsteriskLabels() {
+
+		TextView textViewCreateRideNameLabel = (TextView) findViewById(R.id.textViewCreateRideNameLabel);
+		textViewCreateRideNameLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_ride_name))
+				);
+
+		TextView textViewCreateSourceLabel = (TextView) findViewById(R.id.textViewCreateSourceLabel);
+		textViewCreateSourceLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_source))
+				);
+
+		TextView textViewCreateDestinationLabel = (TextView) findViewById(R.id.textViewCreateDestinationLabel);
+		textViewCreateDestinationLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_destination))
+				);
+
+		TextView textViewCreateDateOfRideLabel = (TextView) findViewById(R.id.textViewCreateDateOfRideLabel);
+		textViewCreateDateOfRideLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_date_of_ride))
+				);
+
+		TextView textViewCreateStartTimeOfRideLabel = (TextView) findViewById(R.id.textViewCreateStartTimeOfRideLabel);
+		textViewCreateStartTimeOfRideLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_start_time_of_ride))
+				);
+
 	}
 }

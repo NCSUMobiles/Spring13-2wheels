@@ -6,8 +6,8 @@
     android:fillViewport="true" >
 
     <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
-		
-         <LinearLayout
+
+        <LinearLayout
             android:id="@+id/registerSpinner"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -29,8 +29,8 @@
                 android:indeterminate="true" >
             </ProgressBar>
         </LinearLayout>
-        
-         <ScrollView
+
+        <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
@@ -39,42 +39,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-				<TextView
-                    style="@style/TextViewForLabels"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Username" />
-				
-                 <EditText
-                    android:id="@+id/textViewusername"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:singleLine="true"
-                   
-                    />
-               
+
                 <TextView
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email*" />
+                    android:text="Username" />
 
-                 <EditText
+                <EditText
+                    android:id="@+id/textViewusername"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/textViewRegisterEmailLabel"
+                    style="@style/TextViewForLabels"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_email" />
+
+                <EditText
                     android:id="@+id/textViewEmail"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:singleLine="true" />
-                
+
                 <Button
                     android:id="@+id/btnSave"
                     style="@style/Button"
-                    android:text="Save" 
-                    android:layout_margin="25dp"/>
-         </LinearLayout>
-         </ScrollView>
-        
+                    android:layout_margin="25dp"
+                    android:text="Save" />
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </RelativeLayout>

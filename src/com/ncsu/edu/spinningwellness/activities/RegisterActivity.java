@@ -3,6 +3,7 @@ package com.ncsu.edu.spinningwellness.activities;
 import com.example.spinningwellness.R;
 import com.example.spinningwellness.R.layout;
 import com.example.spinningwellness.R.menu;
+import com.ncsu.edu.spinningwellness.Utils.UIUtils;
 import com.ncsu.edu.spinningwellness.activities.JoinRidesActivity.GetUpcomingRidesTask;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
@@ -46,8 +47,7 @@ public class RegisterActivity extends BaseActivity {
 				new CreateUserTask().execute();
 			}
 		});
-
-
+		setAsteriskLabels();
 	}
 
 	@Override
@@ -89,4 +89,13 @@ public class RegisterActivity extends BaseActivity {
 		myTitleText.setText("Register");
 		
 	}
+	
+	private void setAsteriskLabels() {
+
+		TextView textViewRegisterEmailLabel = (TextView) findViewById(R.id.textViewRegisterEmailLabel);
+		textViewRegisterEmailLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_email))
+				);
+	}
+
 }

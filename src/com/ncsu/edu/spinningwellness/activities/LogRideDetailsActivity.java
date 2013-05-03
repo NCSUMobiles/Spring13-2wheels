@@ -10,6 +10,7 @@ import net.bican.wordpress.Wordpress;
 import redstone.xmlrpc.XmlRpcFault;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.Utils.UIUtils;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
@@ -64,6 +65,8 @@ public class LogRideDetailsActivity extends BaseActivity {
 		setFormFields();
 		textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
 		textViewLoginError.setVisibility(View.INVISIBLE);
+		
+		setAsteriskLabels();
 	}
 
 	@Override
@@ -80,16 +83,16 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		//Add validation code herer
 		boolean isValid = true;
-		
+
 		String cadenceString = ((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim();
 		String heartrateString = ((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim();
 		String caloriesBurnedString = ((TextView) findViewById(R.id.textViewLogRideDetailsCaloriesBurned)).getText().toString().trim();
 		blogText = ((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString();
-		
+
 		if(cadenceString.equals("")|| heartrateString.equals("")||caloriesBurnedString.equals("") || blogText.equals(""))
 			isValid = false;
-		
-		
+
+
 		if(isValid) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.logRideDetailsForm);
@@ -186,16 +189,16 @@ public class LogRideDetailsActivity extends BaseActivity {
 			//Log activity to backend
 			Date activityDate = new Date();
 			String result = "";
-	
+
 			try {
-				
+
 				cadence = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim());
 				heartRate = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim());
 				caloriesBurned = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCaloriesBurned)).getText().toString().trim());
-				
 
-				
-					result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, caloriesBurned, timeOfRide, heartRate, activityDate);
+
+
+				result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, caloriesBurned, timeOfRide, heartRate, activityDate);
 
 			} catch (NumberFormatException e) {
 				//set the error message on the page
@@ -203,7 +206,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			if(!result.equalsIgnoreCase("Success")) {
 
-				
+
 				if(blogText != null && !blogText.equals("")){
 					//Post to blog
 					System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
@@ -248,4 +251,29 @@ public class LogRideDetailsActivity extends BaseActivity {
 			//			textViewLoginError.setVisibility(View.VISIBLE);
 		}
 	}
+
+	private void setAsteriskLabels() {
+
+		TextView textViewLogRideEnterHeartRateLabel = (TextView) findViewById(R.id.textViewLogRideEnterHeartRateLabel);
+		textViewLogRideEnterHeartRateLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_enter_heart_rate))
+				);
+
+		TextView textViewLogRideEnterCadenceLabel = (TextView) findViewById(R.id.textViewLogRideEnterCadenceLabel);
+		textViewLogRideEnterCadenceLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_enter_cadence))
+				);
+
+		TextView textViewLogRideEnterCaloriesBurnedLabel = (TextView) findViewById(R.id.textViewLogRideEnterCaloriesBurnedLabel);
+		textViewLogRideEnterCaloriesBurnedLabel.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_enter_calories_burned))
+				);
+		
+		TextView textViewLogRidePostYourExperienceToBlog = (TextView) findViewById(R.id.textViewLogRidePostYourExperienceToBlog);
+		textViewLogRidePostYourExperienceToBlog.setText(
+				UIUtils.buildSpannableStringWithAsterisk(getResources().getString(R.string.lbl_post_your_experience_to_blog))
+				);
+
+	}
+
 }

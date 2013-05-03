@@ -50,6 +50,7 @@
                     android:textColor="#ff0000" />
                 
                 <TextView
+                    android:id="@+id/textViewLoginUserNameLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -64,6 +65,7 @@
                     android:singleLine="true" />
 
                 <TextView
+                    android:id="@+id/textViewLoginPasswordLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

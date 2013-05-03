@@ -38,15 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-				
-                 <TextView
+
+                <TextView
                     android:id="@+id/textViewLogRideError"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="An error occured."
                     android:textColor="#ff0000" />
-                 
+
                 <TextView
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
@@ -67,8 +67,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:singleLine="true"
-                   />
+                    android:singleLine="true" />
 
                 <!-- Distance Covered -->
 
@@ -83,8 +82,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:singleLine="true"
-                     />
+                    android:singleLine="true" />
 
                 <!-- Time of ride -->
 
@@ -99,8 +97,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:singleLine="true"
-                    />
+                    android:singleLine="true" />
 
                 <!-- Average Speed -->
 
@@ -115,16 +112,16 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:singleLine="true"
-                    />
+                    android:singleLine="true" />
 
                 <!-- Heart Rate -->
 
                 <TextView
+                    android:id="@+id/textViewLogRideEnterHeartRateLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Heart Rate*"  />
+                    android:text="@string/lbl_enter_heart_rate" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsHeartRate"
@@ -136,10 +133,11 @@
                 <!-- Cadence -->
 
                 <TextView
+                    android:id="@+id/textViewLogRideEnterCadenceLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Cadence*" />
+                    android:text="@string/lbl_enter_cadence" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsCadence"
@@ -151,10 +149,11 @@
                 <!-- Calories Burned -->
 
                 <TextView
+                    android:id="@+id/textViewLogRideEnterCaloriesBurnedLabel"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Calories Burned*" />
+                    android:text="@string/lbl_enter_calories_burned" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsCaloriesBurned"
@@ -166,24 +165,25 @@
                 <!-- Post to blog -->
 
                 <TextView
+                    android:id="@+id/textViewLogRidePostYourExperienceToBlog"
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter your experience*" />
+                    android:text="@string/lbl_post_your_experience_to_blog" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsExperience"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:gravity="top|left"
                     android:inputType="text"
-                    android:singleLine="false"
-                    android:gravity="top|left" />
+                    android:singleLine="false" />
 
                 <Button
                     android:id="@+id/btnSubmit"
                     style="@style/Button"
-                    android:text="Submit!!" 
-                    android:layout_margin="25dp"/>
+                    android:layout_margin="25dp"
+                    android:text="Submit!!" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

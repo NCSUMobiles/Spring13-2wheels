@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, LoginActivity!</string>
+    <string name="action_settings">Settings</string>
+    
     <string name="app_name">Spinning Wellness</string>
-    <string name="_17">17</string>
     <string name="title_activity_join">JoinRides</string>
     <string name="title_activity_my_past_rides">My Past Rides</string>
     <string name="title_activity_upcoming_rides">My Upcoming Rides</string>
     <string name="title_activity_create_new_ride">Create New Ride</string>
     <string name="title_activity_welcome">Welcome Screen</string>
     <string name="title_activity_view_member">View Members</string>
-    <string name="title_activity_challenge_friend">Challenge Friend</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="welcome_user">Welcome User!</string>
-    <string name="some_text">Join Rides</string>
     <string name="title_activity_view_rides">Ride Details</string>
     <string name="title_activity_view_past_rides">Past Ride Details</string>
     <string name="title_activity_log_ride_details">Log Ride Details</string>
-    <string name="title_activity_loading">LoadingActivity</string>
-    <string name="Startride">Start</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name="title_activity_cover_page">CoverPageActivity</string>
-
+    
+    <string name="lbl_ride_name">Ride Name</string>
+    <string name="lbl_source">Source</string>
+    <string name="lbl_destination">Destination</string>
+	<string name="lbl_date_of_ride">Date of Ride</string>
+	<string name="lbl_start_time_of_ride">Start time of Ride</string>
+	<string name="lbl_enter_heart_rate">Enter Heart Rate</string>
+	<string name="lbl_enter_cadence">Enter Cadence</string>
+	<string name="lbl_enter_calories_burned">Enter Calories Burned</string>
+	<string name="lbl_post_your_experience_to_blog">Post Your Experience to Blog</string>
+	<string name="lbl_email">Email</string>
+	
 </resources>

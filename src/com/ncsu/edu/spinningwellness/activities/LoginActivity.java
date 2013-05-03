@@ -3,6 +3,7 @@ package com.ncsu.edu.spinningwellness.activities;
 import java.net.MalformedURLException;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.Utils.UIUtils;
 import com.ncsu.edu.spinningwellness.managers.UsersManager;
 
 import redstone.xmlrpc.XmlRpcFault;
@@ -45,6 +46,8 @@ public class LoginActivity extends BaseActivity {
 		setContentView(R.layout.login_activity);
 
 		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		
+		setAsteriskLabels();
 		
 		editTextUsername = (EditText)findViewById(R.id.textViewLoginUserName);
         editTextPassword = (EditText)findViewById(R.id.textViewLoginPassword);
@@ -283,5 +286,14 @@ public class LoginActivity extends BaseActivity {
 	    	});
 	    	builder.show();
 	    }
+	
+	private void setAsteriskLabels() {
+		
+		TextView tvLoginUsername = (TextView) findViewById(R.id.textViewLoginUserNameLabel);
+		tvLoginUsername.setText(UIUtils.buildSpannableStringWithAsterisk("Username"));
+		
+		TextView tvLoginPassword = (TextView) findViewById(R.id.textViewLoginPasswordLabel);
+		tvLoginPassword.setText(UIUtils.buildSpannableStringWithAsterisk("Password"));
+	}
 	
 }
