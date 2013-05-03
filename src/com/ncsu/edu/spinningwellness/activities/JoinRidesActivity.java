@@ -76,6 +76,10 @@ public class JoinRidesActivity extends BaseActivity {
 	private void displayListView() {
 
 		progressBar.setVisibility(View.INVISIBLE);
+		
+		ListView listView1 = (ListView) findViewById(R.id.listView1);
+		listView1.setVisibility(View.VISIBLE);
+		
 		//sort by date
 		List<CustomEntry> tempJoined = new ArrayList<CustomEntry>();
 		List<CustomEntry> tempNotJoined = new ArrayList<CustomEntry>();
@@ -236,6 +240,8 @@ public class JoinRidesActivity extends BaseActivity {
 					selectedRidePosition = position;
 					progressBar = (LinearLayout) findViewById(R.id.Spinner);
 					progressBar.setVisibility(View.VISIBLE);
+					
+					listView.setVisibility(View.INVISIBLE);
 					if(isChecked){
 						new JoinRideTask().execute();
 					}else{
@@ -420,7 +426,7 @@ public class JoinRidesActivity extends BaseActivity {
 
 		protected void onPostExecute(String result) {
 			if(result.equalsIgnoreCase("Success")){
-				Toast.makeText(getApplicationContext(), "UnJoined the ride successfully." , Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Unjoined the ride successfully." , Toast.LENGTH_SHORT).show();
 				//							selectedStar.setSelected(true);
 			}else{
 				Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
