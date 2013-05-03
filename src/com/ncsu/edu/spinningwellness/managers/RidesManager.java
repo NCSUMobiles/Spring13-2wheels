@@ -61,7 +61,6 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		
 		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
