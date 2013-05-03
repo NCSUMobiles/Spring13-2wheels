@@ -28,7 +28,8 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 	Ride ride;
 	LinearLayout progressBar;
 	UserActivity userActivity;
-
+	LinearLayout userActivityDetailsForm; 
+	LinearLayout userActivityDetailsError;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,6 +43,11 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 		progressBar = (LinearLayout) findViewById(R.id.rideDetailsSpinner);
 		progressBar.setVisibility(View.VISIBLE);
 
+		userActivityDetailsForm = (LinearLayout) findViewById(R.id.userActivityDetails);
+		userActivityDetailsForm.setVisibility(View.INVISIBLE);
+
+		userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
+		userActivityDetailsError.setVisibility(View.INVISIBLE);
 		addListenerOnButton();
 
 		new getuserDetailsTask().execute();
@@ -82,7 +88,6 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 
 		if(userActivity != null  && userActivity.getId() != null) {
 
-			LinearLayout userActivityDetailsForm = (LinearLayout) findViewById(R.id.userActivityDetails);
 			userActivityDetailsForm.setVisibility(View.VISIBLE);
 
 			((TextView) findViewById(R.id.textViewPastRideAverageSpeed)).setText(((Double) userActivity.getAverageSpeed()).toString());
@@ -92,15 +97,8 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 			((TextView) findViewById(R.id.textViewPastRideHeartRate)).setText(((Double) userActivity.getHeartRate()).toString());
 			((TextView) findViewById(R.id.textViewPastRideTime)).setText(((Double) userActivity.getTimeOfRide()).toString());
 
-			LinearLayout userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
-			userActivityDetailsError.setVisibility(View.INVISIBLE);
-
-		} else {
-			LinearLayout userActivityDetailsForm = (LinearLayout) findViewById(R.id.userActivityDetails);
-			userActivityDetailsForm.setVisibility(View.INVISIBLE);			
-			LinearLayout userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
-			userActivityDetailsError.setVisibility(View.VISIBLE);
-		}
+			
+		} 
 	}
 
 	public void addListenerOnButton() {
@@ -130,10 +128,22 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 		protected void onPostExecute(UserActivity result) {
 			if(error != null){
 
-			} else {
+			} 
+			else
+			{
 				userActivity = (UserActivity) result;
 				System.out.println(userActivity);
-				fillUserActivity();
+				if(userActivity != null  && userActivity.getId() != null)
+				{
+					userActivityDetailsError.setVisibility(View.INVISIBLE);
+					fillUserActivity();
+				}
+				else 
+				{
+					userActivityDetailsForm.setVisibility(View.INVISIBLE);			
+					LinearLayout userActivityDetailsError = (LinearLayout) findViewById(R.id.textViewPastRideDetailsError);
+					userActivityDetailsError.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}
