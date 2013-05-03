@@ -381,8 +381,8 @@ public class RecordRideStatsActivity extends BaseActivity {
 		i.putExtra("Ride", ride);
 
 		Bundle b = new Bundle();
-		b.putDouble("DistanceCovered", distanceCovered);
-		b.putDouble("AverageSpeed", averageSpeed);
+		b.putDouble("DistanceCovered", Double.parseDouble(df.format(distanceCovered)));
+		b.putDouble("AverageSpeed", Double.parseDouble(df.format(averageSpeed)));
 		b.putDouble("TimeOfRide", Double.parseDouble(df.format(readChronometer())));
 		i.putExtras(b);
 
