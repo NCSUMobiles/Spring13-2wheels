@@ -64,7 +64,7 @@ public class RegisterActivity extends BaseActivity {
 		protected String doInBackground(Void... arg0) {
 			
 			EditText textViewEmail = (EditText)findViewById(R.id.textViewEmail);
-			return UsersManager.createUser(username,textViewEmail.toString());
+			return UsersManager.createUser(username, textViewEmail.getText().toString().trim());
 		}
 		
 		protected void onPostExecute(String result) {
