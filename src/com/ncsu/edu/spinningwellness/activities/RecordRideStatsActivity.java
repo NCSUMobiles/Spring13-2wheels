@@ -86,8 +86,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 		long currTime = Utils.convertDateToString(currentTimestamp);
 		long rideTime = ride.getStartTime();
 
-		System.out.println("Current time is :" + currTime +"Ride time is :"+rideTime );
-
 		//Draw menu
 		tabProvider = new MyTabHostProvider(RecordRideStatsActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
@@ -106,7 +104,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 		//			btnStopDisable.setVisibility(View.VISIBLE);
 		//			btnPause.setVisibility(View.INVISIBLE);
 		//			btnStop.setVisibility(View.INVISIBLE);
-		//			System.out.println("Ride is early");
 		//			earlyLateRide("Early");
 		//		}
 
@@ -192,34 +189,21 @@ public class RecordRideStatsActivity extends BaseActivity {
 		myLocationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
 
-				System.out.println("in on location changed");
-
-				System.out.println("isStarted = " + isStarted);
-
 				if(isStarted) {
-
-					System.out.println("inside activity started");
 
 					if(previousLatitude == 0.0 && previousLongitude == 0.0) {
 						previousLatitude = location.getLatitude();
 						previousLongitude = location.getLongitude();
 						distanceCovered = 0.0;
 
-						System.out.println("previois latitude 0");
-
 					} else { 
-
-						System.out.println("has some value");
 
 						float[] dist = {0};
 
 						try {
 							Location.distanceBetween(previousLatitude, previousLongitude, location.getLatitude(), location.getLongitude(), dist);
 
-							System.out.println("dis = " + dist[0]);
-
 						} catch(IllegalArgumentException e) {
-							System.out.println("inside catch");
 
 							dist[0] = 0;
 						}
@@ -229,8 +213,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 						distanceCovered_met += (float) dist[0];  //distance in meters
 						distanceCovered = (float) ((distanceCovered_met/1000) * 0.62137);   //distance in miles
-
-						System.out.println("dc = " + distanceCovered);
 
 						timeRead_mins = readChronometer();  //time read in mins
 						
@@ -508,7 +490,6 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 		protected void onPostExecute(UserActivity result) {
 			if(error != null) {
-				System.out.println("Some error in isRideLoggedTask");
 
 			} else {
 				userDetails = (UserActivity) result;

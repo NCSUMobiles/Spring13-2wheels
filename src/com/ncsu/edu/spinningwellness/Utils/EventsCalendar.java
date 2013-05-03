@@ -45,8 +45,6 @@ public class EventsCalendar {
 
 		Calendar c1 = Calendar.getInstance();
 		c1.setTime(new Date(endDate));
-		System.out.println("start at: "+c.get(Calendar.DATE) + " " + c.get(Calendar.MONTH) + " " + c.get(Calendar.YEAR) + " " + c.get(Calendar.HOUR) + " " + c.get(Calendar.MINUTE));
-		System.out.println("ends at: "+c1.get(Calendar.DATE) + " " + c1.get(Calendar.MONTH) + " " + c1.get(Calendar.YEAR) + " " + c1.get(Calendar.HOUR) + " " + c1.get(Calendar.MINUTE));
 
 		eventValues.put("dtstart", r.getStartTime());
 		eventValues.put("dtend", endDate);
@@ -71,9 +69,7 @@ public class EventsCalendar {
 
 		// Uri eventUri = curActivity.getApplicationContext().getContentResolver().insert(Uri.parse(eventUriString), eventValues);
 		Uri url = curActivity.getApplicationContext().getContentResolver().insert(Uri.parse(eventUriString), eventValues);
-		System.out.println(url.getLastPathSegment());
 		long eventID = Long.parseLong(url.getLastPathSegment());
-		System.out.println("event: " + eventID);
 
 		if (needReminder) {
 			String reminderUriString = "content://com.android.calendar/reminders";

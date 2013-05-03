@@ -132,7 +132,6 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 			else
 			{
 				userActivity = (UserActivity) result;
-				System.out.println(userActivity);
 				if(userActivity != null  && userActivity.getId() != null)
 				{
 					userActivityDetailsError.setVisibility(View.INVISIBLE);

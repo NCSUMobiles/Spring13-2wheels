@@ -25,7 +25,6 @@ public class SWCommon {
 		String result;
 		try {  
 			result = httpclient.execute(request, handler);  
-			System.out.println("result" + result);
 		} catch (ClientProtocolException e) {  
 			e.printStackTrace();  
 		} catch (IOException e) {  
@@ -42,7 +41,6 @@ public class SWCommon {
 		String result;
 		try {  
 			result = httpclient.execute(request, handler);  
-			System.out.println("result" + result);
 		} catch (ClientProtocolException e) {  
 			e.printStackTrace();  
 		} catch (IOException e) {  

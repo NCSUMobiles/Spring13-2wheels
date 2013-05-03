@@ -111,7 +111,6 @@ public class CreateRideActivity extends BaseActivity {
 
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
-			 //System.out.println("Enter "+missing);
 		}
 	}
 
@@ -235,7 +234,6 @@ public class CreateRideActivity extends BaseActivity {
 		}
 
 		protected void onPostExecute(Ride result) {
-			System.out.println("email sent!");
 		}
 	}
 	
@@ -259,7 +257,6 @@ public class CreateRideActivity extends BaseActivity {
 		}
 		
 		protected void onPostExecute(Void result) {
-			System.out.println("added to calendar.");
 		}
 		
 	}

@@ -15,7 +15,6 @@ public class SimpleProtector {
 
 //	public static void main(String[] args) throws Exception {
 //		String s = SimpleProtector.encrypt("prajakta");
-//		System.out.println(SimpleProtector.decrypt(s));
 //	}
 	
 	public static String encrypt(String valueToEnc) throws Exception {

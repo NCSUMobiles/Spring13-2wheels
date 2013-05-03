@@ -54,7 +54,6 @@ public class EmailDispatcher extends Authenticator{
 				if(user.getEmail() != null){
 //					msg.addRecipient(Message.RecipientType.TO,
 //							new InternetAddress(user.getEmail(), user.getName()));
-					System.out.println(user.getEmail());
 					addressTo[i++] = new InternetAddress(user.getEmail());
 					canSend = true;
 				} 

@@ -128,14 +128,12 @@ public class JoinRidesActivity extends BaseActivity {
 				String Caller = "JoinRide";
 				int positionView = listView.getPositionForView(view);
 				if (positionView != ListView.INVALID_POSITION) {
-					//System.out.println( rideList.get(positionView).getName());
 					//start view activity
 					selectedRide = rideList.get(positionView);
 					Intent i = new Intent(getApplicationContext(), ViewRideDetailsActivity.class);
 					i.putExtra("Caller", Caller);
 					i.putExtra("Ride", selectedRide);
 					
-					//System.out.println("Sending caller as :"+Caller);
 					startActivity(i);
 				}else{
 					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
@@ -207,7 +205,6 @@ public class JoinRidesActivity extends BaseActivity {
 				long currTime = Utils.convertDateToString(currentTimestamp);
 				long rideTime;
 				
-				System.out.println("****start button clicked");
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(v);
 				if (position != ListView.INVALID_POSITION) {
@@ -230,7 +227,6 @@ public class JoinRidesActivity extends BaseActivity {
 		private OnCheckedChangeListener mStarCheckedChangeListener = new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				System.out.println("checked isjoined" + isChecked); 
 				final ListView listView = (ListView) findViewById(R.id.listView1);
 				final int position = listView.getPositionForView(buttonView);
 				if (position != ListView.INVALID_POSITION) {
@@ -388,7 +384,6 @@ public class JoinRidesActivity extends BaseActivity {
 		}
 		
 		protected void onPostExecute(Void result) {
-			System.out.println("added to calendar.");
 		}
 		
 	}
@@ -411,7 +406,6 @@ public class JoinRidesActivity extends BaseActivity {
 		}
 		
 		protected void onPostExecute(Void result) {
-			System.out.println("added to calendar.");
 		}
 		
 	}

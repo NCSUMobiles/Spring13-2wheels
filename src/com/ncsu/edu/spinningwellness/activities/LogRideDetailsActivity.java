@@ -106,8 +106,6 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
-			//Show the error message to user
-			System.out.println("Error in user input");
 		}
 	}
 
