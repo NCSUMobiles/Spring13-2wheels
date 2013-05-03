@@ -61,7 +61,7 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -77,7 +77,7 @@ public class RidesManager {
 
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_PAST_RIDES_FROM_LAST_WEEK_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")){
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -106,7 +106,7 @@ public class RidesManager {
 				);
 
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -120,7 +120,7 @@ public class RidesManager {
 	public static List<Ride> viewUpcomingRides() {
 
 		List<Ride> rides = new ArrayList<Ride>();
-		
+
 		Date today = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(today);
@@ -132,7 +132,7 @@ public class RidesManager {
 				Utils.convertDateToString(today)
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -149,7 +149,7 @@ public class RidesManager {
 		HttpGet viewRide = RestClientUtils.createHttpGetRequest(Constants.VIEW_UPCOMING_RIDES_FROM_LAST_WEEK_URL);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
 
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -187,7 +187,7 @@ public class RidesManager {
 				"/" + rideId
 				);
 		String JSON = RestClientUtils.executeRequest(viewParticipantsForRide);
-		if(JSON != null){
+		if(!JSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> ps =  Utils.JSONToObjectList(JSON, Participant.class);
 			for(Object p: ps) {
@@ -208,7 +208,7 @@ public class RidesManager {
 				userName
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
+		if(!ridesJSON.equalsIgnoreCase("null")){
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
@@ -237,8 +237,8 @@ public class RidesManager {
 				Utils.convertDateToString(today)
 				);
 		String ridesJSON = RestClientUtils.executeRequest(viewRide);
-		if(ridesJSON != null){
-		
+
+		if(!ridesJSON.equalsIgnoreCase("null")) {
 			@SuppressWarnings("unchecked")
 			List<Object> rs =  Utils.JSONToObjectList(ridesJSON, Ride.class);
 			for(Object r: rs) {
