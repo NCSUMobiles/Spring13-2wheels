@@ -133,10 +133,10 @@ public class LoginActivity extends BaseActivity {
 			textViewLoginError.setVisibility(View.VISIBLE);
 			Context context = getApplicationContext();
 			CharSequence text = "Enter all fields!";
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast = Toast.makeText(context, text, duration);
-			toast.show();
-			
+			Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
+			toast.show();			
 		}
 	}
 
@@ -212,8 +212,9 @@ public class LoginActivity extends BaseActivity {
 				textViewLoginError.setVisibility(View.VISIBLE);
 				Context context = getApplicationContext();
 				CharSequence text = "Invalid username or password!";
-				int duration = Toast.LENGTH_SHORT;
-				Toast toast = Toast.makeText(context, text, duration);
+				Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
 				toast.show();
 			}
 		}

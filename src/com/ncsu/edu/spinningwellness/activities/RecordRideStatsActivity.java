@@ -264,7 +264,10 @@ public class RecordRideStatsActivity extends BaseActivity {
 				isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
 				if (!isGPSEnabled && !isNetworkEnabled) {
-					Toast.makeText(RecordRideStatsActivity.this, "No Network/GPS", Toast.LENGTH_SHORT).show();
+					Toast toast = Toast.makeText(getApplicationContext(), "No Network/GPS", Toast.LENGTH_SHORT);
+					TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+					tv.setTextColor(getResources().getColor(R.color.red));
+					toast.show();	
 					flag_cancel = true;
 					createGpsDisabledAlert();
 				}

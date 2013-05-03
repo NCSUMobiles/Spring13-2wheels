@@ -140,7 +140,10 @@ public class JoinRidesActivity extends BaseActivity {
 					
 					startActivity(i);
 				}else{
-					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+					Toast toast = Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT);
+					TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+					v.setTextColor(getResources().getColor(R.color.red));
+					toast.show();
 				}
 			}
 		});
@@ -332,7 +335,10 @@ public class JoinRidesActivity extends BaseActivity {
 				Toast.makeText(getApplicationContext(), "Joined the ride successfully." , Toast.LENGTH_SHORT).show();
 				//					selectedStar.setSelected(true);
 			}else{
-				Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+				Toast toast = Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
+				toast.show();
 			}
 			//change order in rideEntry
 			ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();
@@ -429,7 +435,10 @@ public class JoinRidesActivity extends BaseActivity {
 				Toast.makeText(getApplicationContext(), "Unjoined the ride successfully." , Toast.LENGTH_SHORT).show();
 				//							selectedStar.setSelected(true);
 			}else{
-				Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+				Toast toast = Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
+				toast.show();
 			}
 			//change order in rideEntry
 			ArrayList<CustomEntry> temp = new ArrayList<CustomEntry>();

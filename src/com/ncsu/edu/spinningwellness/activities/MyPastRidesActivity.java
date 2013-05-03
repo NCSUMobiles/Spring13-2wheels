@@ -76,7 +76,10 @@ public class MyPastRidesActivity extends BaseActivity {
 					i.putExtra("Caller",Caller);
 					startActivity(i);
 				} else {
-					Toast.makeText(getApplicationContext(), "An error occured." , Toast.LENGTH_SHORT).show();
+					Toast toast = Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT);
+					TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+					v.setTextColor(getResources().getColor(R.color.red));
+					toast.show();
 				}
 			}
 		});	}

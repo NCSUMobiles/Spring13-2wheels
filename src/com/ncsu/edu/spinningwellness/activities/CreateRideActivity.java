@@ -106,10 +106,10 @@ public class CreateRideActivity extends BaseActivity {
 //			textViewCreateError.append("\nEnter "+missing+"\n");
 			textViewCreateError.setVisibility(View.VISIBLE);
 			Context context = getApplicationContext();
-			CharSequence text = "Enter mandatory fields!";
-			int duration = Toast.LENGTH_SHORT;
-
-			Toast toast = Toast.makeText(context, text, duration);
+			CharSequence text = "Enter all fields!";
+			Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
 			toast.show();
 		}
 	}

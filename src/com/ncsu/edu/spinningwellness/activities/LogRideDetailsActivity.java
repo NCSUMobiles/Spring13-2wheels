@@ -104,7 +104,9 @@ public class LogRideDetailsActivity extends BaseActivity {
 			CharSequence text = "Enter all fields!";
 			int duration = Toast.LENGTH_SHORT;
 
-			Toast toast = Toast.makeText(context, text, duration);
+			Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
 			toast.show();
 		}
 	}
@@ -226,11 +228,20 @@ public class LogRideDetailsActivity extends BaseActivity {
 		protected void onPostExecute(User result) {
 			//Redirect to join rides page
 			if(errorPostBlog != null && errorLogDetails != null){
-				Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT).show();
+				Toast toast = Toast.makeText(getApplicationContext(), "An error occured.", Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
+				toast.show();
 			}else if(errorPostBlog != null){
-				Toast.makeText(getApplicationContext(), "An error occured while posting to blog.", Toast.LENGTH_SHORT).show();
+				Toast toast = Toast.makeText(getApplicationContext(), "An error occured while posting to blog.", Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
+				toast.show();
 			} else if (errorLogDetails != null){
-				Toast.makeText(getApplicationContext(), "An error occured while logging the details.", Toast.LENGTH_SHORT).show();
+				Toast toast = Toast.makeText(getApplicationContext(), "An error occured while logging the details.", Toast.LENGTH_SHORT);
+				TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+				v.setTextColor(getResources().getColor(R.color.red));
+				toast.show();
 			}
 			moveToJoinRidesPage();
 			//		    textViewLoginError = (TextView) findViewById(R.id.textViewLogRideError);
