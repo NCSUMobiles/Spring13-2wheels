@@ -103,7 +103,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date" 
+                    android:text="Date of Ride" 
                     android:layout_marginTop="10dp"/>
 
                 <DatePicker
@@ -117,7 +117,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time" 
+                    android:text="Start time of Ride" 
                     android:layout_marginTop="10dp"/>
 
                 <TimePicker
