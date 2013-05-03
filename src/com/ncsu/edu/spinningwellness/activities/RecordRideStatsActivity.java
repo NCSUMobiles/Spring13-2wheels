@@ -67,7 +67,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 	double distanceCovered_met = 0.0;
 	double distanceCovered = 0.0;
 	long timeOfRide = 0;
-	float timeRead_mins = 0;
+	double timeRead_mins = 0;
 	double averageSpeed = 0.0;
 
 	boolean isGPSEnabled = false, isNetworkEnabled = false;
@@ -381,9 +381,9 @@ public class RecordRideStatsActivity extends BaseActivity {
 		i.putExtra("Ride", ride);
 
 		Bundle b = new Bundle();
-		b.putDouble("DistanceCovered", distanceCovered);
-		b.putDouble("AverageSpeed", averageSpeed);
-		b.putDouble("TimeOfRide", readChronometer());
+		b.putDouble("DistanceCovered", Double.parseDouble(df.format(distanceCovered)));
+		b.putDouble("AverageSpeed", Double.parseDouble(df.format(averageSpeed)));
+		b.putDouble("TimeOfRide", Double.parseDouble(df.format(readChronometer())));
 		i.putExtras(b);
 
 		startActivity(i);
@@ -437,8 +437,8 @@ public class RecordRideStatsActivity extends BaseActivity {
 		alertDialog.show(); 
 	}
 
-	private float readChronometer(){
-		float stoppedMins = 0;
+	private double readChronometer(){
+		double stoppedMins = 0;
 		String chronoText = chronometer.getText().toString();
 		String array[] = chronoText.split(":");
 
