@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:singleLine="true"
-                    android:background="#CCCCCC" />
+                   />
 
                 <!-- Distance Covered -->
 
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:background="#CCCCCC" />
+                     />
 
                 <!-- Time of ride -->
 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:background="#CCCCCC" />
+                    />
 
                 <!-- Average Speed -->
 
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:background="#CCCCCC" />
+                    />
 
                 <!-- Heart Rate -->
 
@@ -123,7 +123,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Heart Rate: " />
+                    android:text="Enter Heart Rate: "  />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsHeartRate"
