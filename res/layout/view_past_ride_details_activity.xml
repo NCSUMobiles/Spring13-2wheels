@@ -155,7 +155,8 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10sp" >
 
                         <TextView
                             style="@style/TextViewForLabels"
@@ -175,8 +176,7 @@
                     <Button
                         android:id="@+id/btnViewParticipants"
                         style="@style/Button"
-                        android:text="Participants" 
-                        android:layout_margin="25dp"/>
+                        android:text="Participants" />
                 </LinearLayout>
 
                 <!-- Personal Statistics -->
@@ -206,7 +206,8 @@
 
                     <RelativeLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent" >
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="10sp" >
 
                         <LinearLayout
                             android:id="@+id/userActivityDetails"

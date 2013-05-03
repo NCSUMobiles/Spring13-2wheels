@@ -18,6 +18,7 @@ import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -136,8 +137,11 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		//Set the parameters which are recorded automatically
 		textViewRideName.setText(ride.getName());
+		//textViewDistanceCovered.setBackgroundResource(Color.parseColor("#C0C0C0"));
 		textViewDistanceCovered.setText(df.format(distanceCovered) + " mi");
+		//textViewAverageSpeed.setBackgroundResource(Color.parseColor("#C0C0C0"));
 		textViewAverageSpeed.setText(tf.format(averageSpeed) + " mi/hr");
+		//textViewTimeOfRide.setBackgroundResource(Color.parseColor("#C0C0C0"));
 		textViewTimeOfRide.setText(tf.format(timeOfRide) + " mins");
 
 		//Set onClickListener for the submit button

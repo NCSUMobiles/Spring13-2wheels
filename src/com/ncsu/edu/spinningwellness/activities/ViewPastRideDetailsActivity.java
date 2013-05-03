@@ -91,10 +91,10 @@ public class ViewPastRideDetailsActivity extends BaseActivity {
 			userActivityDetailsForm.setVisibility(View.VISIBLE);
 
 			((TextView) findViewById(R.id.textViewPastRideAverageSpeed)).setText(((Double) userActivity.getAverageSpeed()).toString() + " mi/hr");
-			((TextView) findViewById(R.id.textViewPastRideCadence)).setText(((Double) userActivity.getCadence()).toString());
-			((TextView) findViewById(R.id.textViewPastRideCalories)).setText(((Double) userActivity.getCaloriesBurned()).toString());
+			((TextView) findViewById(R.id.textViewPastRideCadence)).setText(((Double) userActivity.getCadence()).toString() + " rpm");
+			((TextView) findViewById(R.id.textViewPastRideCalories)).setText(((Double) userActivity.getCaloriesBurned()).toString() + " Cal.");
 			((TextView) findViewById(R.id.textViewPastRideDistanceCovered)).setText(((Double) userActivity.getDistaceCovered()).toString() + " mi");
-			((TextView) findViewById(R.id.textViewPastRideHeartRate)).setText(((Double) userActivity.getHeartRate()).toString());
+			((TextView) findViewById(R.id.textViewPastRideHeartRate)).setText(((Double) userActivity.getHeartRate()).toString()+ " bpm");
 			((TextView) findViewById(R.id.textViewPastRideTime)).setText(((Double) userActivity.getTimeOfRide()).toString() + " mins");
 
 			
