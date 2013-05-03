@@ -7,16 +7,29 @@
 
     <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
 
-        <ListView
+        <LinearLayout
+            android:id="@+id/leaderBoardForm"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/congratulation"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:src="@drawable/congratulation" />
+
+            <ListView
             android:id="@+id/leaderBoardListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30sp"
-            android:layout_marginTop="30sp"
-            android:cacheColorHint="#00000000"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true" >
-        </ListView>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30sp"
+                android:layout_marginTop="30sp"
+                android:cacheColorHint="#00000000"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true" >
+            </ListView>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/leaderBoardSpinner"

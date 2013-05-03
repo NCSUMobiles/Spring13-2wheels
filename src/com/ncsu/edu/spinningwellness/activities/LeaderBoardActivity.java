@@ -24,6 +24,7 @@ public class LeaderBoardActivity extends BaseActivity {
 	List<LeaderBoardEntry> topRiders = new ArrayList<LeaderBoardEntry>();
 	List<LeaderBoardCustomEntry> users = new ArrayList<LeaderBoardCustomEntry>();
 	private LinearLayout progressBar;
+	private LinearLayout leaderBoardForm;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,9 @@ public class LeaderBoardActivity extends BaseActivity {
 		
 		progressBar = (LinearLayout) findViewById(R.id.leaderBoardSpinner);
 		progressBar.setVisibility(View.VISIBLE);
+		
+		leaderBoardForm = (LinearLayout) findViewById(R.id.leaderBoardForm);
+		leaderBoardForm.setVisibility(View.INVISIBLE);
 
 		new GetLeaderBoardTask().execute();
 	}
@@ -44,12 +48,13 @@ public class LeaderBoardActivity extends BaseActivity {
 	@Override
 	protected void setTitle() {
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText("Leader Board");		
+		myTitleText.setText("Leaderboard");		
 	}
 
 	private void displayListView() {
 
 		progressBar.setVisibility(View.INVISIBLE);
+		leaderBoardForm.setVisibility(View.VISIBLE);
 
 		//create an ArrayAdaptar from the String Array
 		LeaderBoardEntryCustomAdapter dataAdapter = new LeaderBoardEntryCustomAdapter(this, R.id.leaderBoardUserName, users);

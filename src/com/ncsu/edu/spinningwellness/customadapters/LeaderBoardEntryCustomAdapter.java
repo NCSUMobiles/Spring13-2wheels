@@ -45,7 +45,7 @@ public class LeaderBoardEntryCustomAdapter extends ArrayAdapter<LeaderBoardCusto
 		final LeaderBoardCustomEntry custom = users.get(position);
 		if (custom != null) {
 			holder.userName.setText(custom.getUserName());
-			holder.distanceCovered.setText(((Double) custom.getDistanceCovered()).toString());
+			holder.distanceCovered.setText(((Double) custom.getDistanceCovered()).toString() + " mi");
 			if(custom.getPosition() == -1)
 				holder.medal.setText("-");
 			else
