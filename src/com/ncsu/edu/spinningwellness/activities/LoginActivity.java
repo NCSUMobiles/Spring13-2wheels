@@ -144,8 +144,8 @@ public class LoginActivity extends BaseActivity {
 		
 		progressBar.setVisibility(View.INVISIBLE);
 
-		LinearLayout createRideForm = (LinearLayout) findViewById(R.id.LoginForm);
-		createRideForm.setVisibility(View.VISIBLE);
+//		LinearLayout createRideForm = (LinearLayout) findViewById(R.id.LoginForm);
+//		createRideForm.setVisibility(View.VISIBLE);
 		
 		//clear the text boxes
 		TextView textViewUserName = (TextView) findViewById(R.id.textViewLoginUserName);
