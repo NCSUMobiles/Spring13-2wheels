@@ -43,7 +43,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Username: " />
+                    android:text="Username" />
 				
                  <EditText
                     android:id="@+id/textViewusername"
@@ -58,7 +58,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email: " />
+                    android:text="Email*" />
 
                  <EditText
                     android:id="@+id/textViewEmail"

@@ -53,7 +53,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Username" />
+                    android:text="Username*" />
 
                 <EditText
                     android:id="@+id/textViewLoginUserName"
@@ -67,7 +67,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Password" />
+                    android:text="Password*" />
 
                 <EditText
                     android:id="@+id/textViewLoginPassword"

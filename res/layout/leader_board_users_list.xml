@@ -15,13 +15,13 @@
         style="@style/TextViewForList"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight=".65" />
+        android:layout_weight=".55" />
 
     <TextView
         android:id="@+id/leaderBoardDistanceCovered"
         style="@style/TextViewForList"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight=".25" />
+        android:layout_weight=".35" />
 
 </LinearLayout>

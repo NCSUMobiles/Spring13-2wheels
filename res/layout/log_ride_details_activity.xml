@@ -76,7 +76,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Distance Covered: " />
+                    android:text="Distance Covered" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsDistanceCovered"
@@ -92,7 +92,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time of Ride: " />
+                    android:text="Time of Ride" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsRideTime"
@@ -108,7 +108,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Average Speed: " />
+                    android:text="Average Speed" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsAverageSpeed"
@@ -124,7 +124,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Heart Rate: "  />
+                    android:text="Enter Heart Rate*"  />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsHeartRate"
@@ -139,7 +139,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Cadence: " />
+                    android:text="Enter Cadence*" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsCadence"
@@ -154,7 +154,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Calories Burned: " />
+                    android:text="Enter Calories Burned*" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsCaloriesBurned"
@@ -169,7 +169,7 @@
                     style="@style/TextViewForLabels"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter your experience: " />
+                    android:text="Enter your experience*" />
 
                 <EditText
                     android:id="@+id/textViewLogRideDetailsExperience"
