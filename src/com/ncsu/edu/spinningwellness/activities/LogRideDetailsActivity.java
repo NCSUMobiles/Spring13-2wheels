@@ -17,6 +17,7 @@ import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
 import com.sun.org.apache.bcel.internal.generic.CALOAD;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	TextView textViewRideName, textViewDistanceCovered, textViewTimeOfRide, textViewAverageSpeed, textViewHeartRate, textViewCadence, textViewExperience, textViewCaloriesBurned;
 	Button btnSubmit;
+	String blogText = "";
 
 	LinearLayout progressBar;
 	static TextView textViewLoginError;
@@ -79,6 +81,16 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 		//Add validation code herer
 		boolean isValid = true;
+		
+		String cadenceString = ((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim();
+		String heartrateString = ((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim();
+		String caloriesBurnedString = ((TextView) findViewById(R.id.textViewLogRideDetailsCaloriesBurned)).getText().toString().trim();
+		blogText = ((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString();
+		
+		if(cadenceString.equals("")|| heartrateString.equals("")||caloriesBurnedString.equals("") || blogText.equals(""))
+			isValid = false;
+		
+		
 		if(isValid) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.logRideDetailsForm);
@@ -87,6 +99,14 @@ public class LogRideDetailsActivity extends BaseActivity {
 			new LogRideDetailsTask().execute();
 
 		} else {
+			textViewLoginError.setText("Enter all fields!");
+			textViewLoginError.setVisibility(View.VISIBLE);
+			Context context = getApplicationContext();
+			CharSequence text = "Enter all fields!";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
 			//Show the error message to user
 			System.out.println("Error in user input");
 		}
@@ -163,15 +183,17 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			//Log activity to backend
 			Date activityDate = new Date();
-
 			String result = "";
+	
 			try {
-
+				
 				cadence = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim());
 				heartRate = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim());
 				caloriesBurned = com.ncsu.edu.spinningwellness.Utils.Validator.isDouble(((TextView) findViewById(R.id.textViewLogRideDetailsCaloriesBurned)).getText().toString().trim());
+				
 
-				result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, caloriesBurned, timeOfRide, heartRate, activityDate);
+				
+					result = UsersManager.logActivity(ride.getId(), BaseActivity.username, distanceCovered, cadence, averageSpeed, caloriesBurned, timeOfRide, heartRate, activityDate);
 
 			} catch (NumberFormatException e) {
 				//set the error message on the page
@@ -179,7 +201,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 			if(!result.equalsIgnoreCase("Success")) {
 
-				String blogText = ((TextView) findViewById(R.id.textViewLogRideDetailsExperience)).getText().toString();
+				
 				if(blogText != null && !blogText.equals("")){
 					//Post to blog
 					System.setProperty("org.xml.sax.driver", "org.xmlpull.v1.sax2.Driver");
