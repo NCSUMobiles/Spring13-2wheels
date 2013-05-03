@@ -127,7 +127,7 @@ public class Tab {
 		btn.setTextSize(btnTextSize);
 		btn.setBackgroundDrawable(btnBackGrad);
 		btn.setMinimumHeight(preferedHeight);
-		btn.setPadding(0, 15, 0, 40);
+		btn.setPadding(0, 25, 0, 25);
 
 		bindListeners();
 		view = btn;
