@@ -48,9 +48,9 @@ public class CustomEntry implements Comparable<CustomEntry> {
 	@Override
 	public int compareTo(CustomEntry another) {
 		if(this.startDate < another.startDate){
-			return 1;
+			return -1;
 		} else if(this.startDate > another.startDate) {
-			return -1;	
+			return 1;	
 		} else{
 			return 0;
 		}
