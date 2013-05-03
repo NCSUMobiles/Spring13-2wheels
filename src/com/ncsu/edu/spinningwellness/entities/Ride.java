@@ -155,9 +155,9 @@ public class Ride extends BaseEntity implements Parcelable,Comparable<Ride>{
 	@Override
 	public int compareTo(Ride another) {
 		if(this.startTime < another.startTime){
-			return 1;
+			return -1;
 		} else if(this.startTime > another.startTime) {
-			return -1;	
+			return 1;	
 		} else{
 			return 0;
 		}
