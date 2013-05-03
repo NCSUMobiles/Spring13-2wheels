@@ -499,7 +499,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		}
 
 		protected void onPostExecute(UserActivity result) {
-			if(error != null){
+			if(error != null) {
 				System.out.println("Some error in isRideLoggedTask");
 
 			} else {
