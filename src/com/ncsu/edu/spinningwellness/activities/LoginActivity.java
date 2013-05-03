@@ -206,7 +206,7 @@ public class LoginActivity extends BaseActivity {
 				textViewUserName.setHint("username");
 				
 				TextView textViewPassword = (TextView) findViewById(R.id.textViewLoginPassword);
-				textViewPassword.setHint("username");
+				textViewPassword.setHint("******");
 				
 				textViewLoginError.setText("Login Failed...\nInvalid Username or Password!");
 				textViewLoginError.setVisibility(View.VISIBLE);
