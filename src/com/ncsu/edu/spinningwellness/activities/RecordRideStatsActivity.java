@@ -81,49 +81,49 @@ public class RecordRideStatsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		Date currentTimestamp = new Date();
-		
-		
+
+
 		long currTime = Utils.convertDateToString(currentTimestamp);
 		long rideTime = ride.getStartTime();
-		
+
 		System.out.println("Current time is :" + currTime +"Ride time is :"+rideTime );
-		
+
 		//Draw menu
 		tabProvider = new MyTabHostProvider(RecordRideStatsActivity.this);
 		TabView tabView = tabProvider.getTabHost(MenuConstants.JOIN_RIDES);
 		tabView.setCurrentView(R.layout.record_ride_stats_activity);
 		setContentView(tabView.render());
-		
+
 		btnStopDisable = (ImageButton) findViewById(R.id.btnStopDisable);
 		btnPause = (ImageButton) findViewById(R.id.btnPause);
 		btnStop = (ImageButton) findViewById(R.id.btnStop);
 		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
 
-//
-//		if(currTime < rideTime )
-//		{
-//			btnPlayDisable.setVisibility(View.VISIBLE);
-//			btnStopDisable.setVisibility(View.VISIBLE);
-//			btnPause.setVisibility(View.INVISIBLE);
-//			btnStop.setVisibility(View.INVISIBLE);
-//			System.out.println("Ride is early");
-//			earlyLateRide("Early");
-//		}
-		
+		//
+		//		if(currTime < rideTime )
+		//		{
+		//			btnPlayDisable.setVisibility(View.VISIBLE);
+		//			btnStopDisable.setVisibility(View.VISIBLE);
+		//			btnPause.setVisibility(View.INVISIBLE);
+		//			btnStop.setVisibility(View.INVISIBLE);
+		//			System.out.println("Ride is early");
+		//			earlyLateRide("Early");
+		//		}
+
 		new isRideLoggedTask().execute();
-		
+
 		btnPlay.setVisibility(View.VISIBLE);
 		btnStopDisable.setVisibility(View.VISIBLE);
 		btnStop.setVisibility(View.INVISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);
-		
+
 		locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-		
+
 		isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
 		isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 		setPageElementsAndOnClickListeners();
-	
+
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 			btnStopDisable.setVisibility(View.INVISIBLE);
 			btnPause.setVisibility(View.VISIBLE);
 			btnStop.setVisibility(View.VISIBLE);
-			
+
 			chronometer.setBase(SystemClock.elapsedRealtime() + timeOfRide);
 			chronometer.start();
 		} else {
@@ -167,7 +167,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 			btnStopDisable.setVisibility(View.VISIBLE);
 			btnStop.setVisibility(View.INVISIBLE);
 			btnPause.setVisibility(View.INVISIBLE);
-			
+
 
 			//Hack to make sure that chronometer shows correct reading even when 
 			//the phone's orientation is changes and chronometer not on
@@ -178,7 +178,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		}
 	}
 
-	
+
 	@Override
 	protected void setTitle() {
 		ride = getIntent().getParcelableExtra("Ride");
@@ -187,7 +187,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		myTitleText.setText("Record Ride");		
 	}
 
-	
+
 	private void registerLocationListener() {
 		myLocationListener = new LocationListener() {
 			public void onLocationChanged(Location location) {
@@ -269,7 +269,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		textViewRideName = (TextView) findViewById(R.id.textViewRecordRideDetailsRideName);
 		textViewRideName.setText(ride.getName());
 
-		
+
 		btnPlay.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -320,7 +320,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		//btnStopDisable.setVisibility(View.VISIBLE);
 		btnStop.setVisibility(View.VISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);
-		
+
 		btnPause.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -336,16 +336,16 @@ public class RecordRideStatsActivity extends BaseActivity {
 				//btnStopDisable.setVisibility(View.VISIBLE);
 				btnPause.setVisibility(View.INVISIBLE);		
 				btnStop.setVisibility(View.VISIBLE);
-				
+
 			}
 		});
-		
+
 		btnPlay.setVisibility(View.VISIBLE);
 		//btnStopDisable.setVisibility(View.VISIBLE);
 		btnPause.setVisibility(View.INVISIBLE);		
 		btnStop.setVisibility(View.VISIBLE);
 
-		
+
 		btnStop.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {	
@@ -406,37 +406,37 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 	protected void lateRide() {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-//		if(status.equals("Early"))
-//		{
-//			alertDialog.setMessage("You are early! Scheduled ride is yet to start!");
-//			alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Ok", new DialogInterface.OnClickListener()    {
-//				public void onClick(DialogInterface dialog, int which) {
-//					Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
-//					startActivity(i);
-//				}});
-//
-//		}
+		//		if(status.equals("Early"))
+		//		{
+		//			alertDialog.setMessage("You are early! Scheduled ride is yet to start!");
+		//			alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Ok", new DialogInterface.OnClickListener()    {
+		//				public void onClick(DialogInterface dialog, int which) {
+		//					Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
+		//					startActivity(i);
+		//				}});
+		//
+		//		}
 
 		alertDialog.setMessage("Are you you sure you want to overwrite your stats?");
-			
-			alertDialog.setButton( Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+
+		alertDialog.setButton( Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
 			}});
-			
-			alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()    {
-				public void onClick(DialogInterface dialog, int which) {
-			
-					Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
-					startActivity(i);
-					
-				}});
-		
-		
-		
+
+		alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()    {
+			public void onClick(DialogInterface dialog, int which) {
+
+				Intent i = new Intent(getApplicationContext(), JoinRidesActivity.class);
+				startActivity(i);
+
+			}});
+
+
+
 		alertDialog.show(); 
 	}
-	
+
 	private float readChronometer(){
 		float stoppedMins = 0;
 		String chronoText = chronometer.getText().toString();
@@ -489,7 +489,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		startActivity(gpsOptionsIntent);
 	}
 
-	
+
 	//AsynTask for getting user details
 	public class isRideLoggedTask extends AsyncTask<Void, Void, UserActivity> {
 		Exception error;
@@ -504,14 +504,10 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 			} else {
 				userDetails = (UserActivity) result;
-				//System.out.println("Printing cadence logged"+userDetails.getCadence());
-				System.out.println(userDetails);
-				System.out.println("Ride was already logged!");
-				lateRide();
-				
-				//fillUserActivity();
+				if(userDetails != null && userDetails.getId() != null) {
+					lateRide();					
+				}
 			}
 		}
-       }
-
+	}
 }
