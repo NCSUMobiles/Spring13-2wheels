@@ -1,5 +1,6 @@
 package com.ncsu.edu.spinningwellness.customadapters;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import com.example.spinningwellness.R;
@@ -45,7 +46,8 @@ public class LeaderBoardEntryCustomAdapter extends ArrayAdapter<LeaderBoardCusto
 		final LeaderBoardCustomEntry custom = users.get(position);
 		if (custom != null) {
 			holder.userName.setText(custom.getUserName());
-			holder.distanceCovered.setText(((Double) custom.getDistanceCovered()).toString() + " mi");
+			DecimalFormat tf = new DecimalFormat("#.##");
+			holder.distanceCovered.setText(tf.format(custom.getDistanceCovered()) + " mi");
 			if(custom.getPosition() == -1)
 				holder.medal.setText("-");
 			else
