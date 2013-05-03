@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.CoverPageActivity"
-            android:label="Spinning Wellness" >
+            android:label="Spinning Wellness"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,12 +61,14 @@
             android:name="com.ncsu.edu.spinningwellness.activities.LogRideDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_log_ride_details"
+            android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Spinning Wellness"
+            android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -78,7 +81,7 @@
             android:name="com.ncsu.edu.spinningwellness.activities.RecordRideStatsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_base"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ncsu.edu.spinningwellness.activities.ViewParticipantsForARideActivity"
@@ -104,7 +107,7 @@
             android:label="@string/title_activity_view_past_rides"
             android:screenOrientation="portrait" >
         </activity>
-        </application>
+    </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />

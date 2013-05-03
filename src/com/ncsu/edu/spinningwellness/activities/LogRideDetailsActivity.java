@@ -15,7 +15,6 @@ import com.ncsu.edu.spinningwellness.managers.UsersManager;
 import com.ncsu.edu.spinningwellness.tabpanel.MenuConstants;
 import com.ncsu.edu.spinningwellness.tabpanel.MyTabHostProvider;
 import com.ncsu.edu.spinningwellness.tabpanel.TabView;
-import com.sun.org.apache.bcel.internal.generic.CALOAD;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AutoCompleteTextView.Validator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -169,7 +167,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 		textViewCaloriesBurned.setText("");
 		textViewExperience.setText("");
 
-		Intent joinRidesIntent = new Intent(LogRideDetailsActivity.this, JoinRidesActivity.class); 
+		Intent joinRidesIntent = new Intent(LogRideDetailsActivity.this, MyPastRidesActivity.class); 
 		LogRideDetailsActivity.this.startActivity(joinRidesIntent);
 
 	}

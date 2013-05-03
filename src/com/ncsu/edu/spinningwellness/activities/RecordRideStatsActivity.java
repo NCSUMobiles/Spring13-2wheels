@@ -233,7 +233,12 @@ public class RecordRideStatsActivity extends BaseActivity {
 						System.out.println("dc = " + distanceCovered);
 
 						timeRead_mins = readChronometer();  //time read in mins
+						
+						try {
 						averageSpeed = distanceCovered/(timeRead_mins/60); //Avg speed in miles/hr
+						} catch (NumberFormatException e) {
+							averageSpeed = 0.0;
+						}
 
 						setDistanceCovered();
 						setAvgSpeed();
@@ -382,7 +387,10 @@ public class RecordRideStatsActivity extends BaseActivity {
 
 		Bundle b = new Bundle();
 		b.putDouble("DistanceCovered", Double.parseDouble(df.format(distanceCovered)));
-		b.putDouble("AverageSpeed", Double.parseDouble(df.format(averageSpeed)));
+		if(Double.isInfinite(averageSpeed))
+			b.putDouble("AverageSpeed", Double.parseDouble(df.format(0.0)));
+		else 
+			b.putDouble("AverageSpeed", Double.parseDouble(df.format(averageSpeed)));
 		b.putDouble("TimeOfRide", Double.parseDouble(df.format(readChronometer())));
 		i.putExtras(b);
 
