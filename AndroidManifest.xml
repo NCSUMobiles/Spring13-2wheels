@@ -98,7 +98,13 @@
             android:label="@string/title_activity_view_past_rides"
             android:screenOrientation="portrait" >
         </activity>
-    </application>
+        <activity
+            android:name="com.ncsu.edu.spinningwellness.activities.RegisterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_view_past_rides"
+            android:screenOrientation="portrait" >
+        </activity>
+        </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
