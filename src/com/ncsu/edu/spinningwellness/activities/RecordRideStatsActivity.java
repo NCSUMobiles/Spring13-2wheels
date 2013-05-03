@@ -47,8 +47,8 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class RecordRideStatsActivity extends BaseActivity {
 
-	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 14 meters
-	private static final long MIN_TIME_BW_UPDATES = 5000; // 5 sec
+	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 50; // 50 meters
+	private static final long MIN_TIME_BW_UPDATES = 30000; // 30 sec
 
 	Ride ride;
 	DecimalFormat df = new DecimalFormat("#.###");
