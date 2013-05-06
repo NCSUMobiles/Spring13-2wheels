@@ -7,6 +7,13 @@
 
     <RelativeLayout style="@style/basicRelativeLayoutOverBackground" >
 
+         <TextView
+                style="@style/TextViewFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorite a ride to join!" >
+         </TextView>
+            
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"

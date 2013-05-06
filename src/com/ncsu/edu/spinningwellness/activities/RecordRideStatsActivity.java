@@ -181,7 +181,7 @@ public class RecordRideStatsActivity extends BaseActivity {
 		ride = getIntent().getParcelableExtra("Ride");
 
 		final TextView myTitleText = (TextView)findViewById(R.id.myTitle);
-		myTitleText.setText("Record Ride");		
+		myTitleText.setText("Start Ride");		
 	}
 
 
