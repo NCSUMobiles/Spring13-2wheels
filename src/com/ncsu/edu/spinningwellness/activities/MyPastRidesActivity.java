@@ -1,6 +1,7 @@
 package com.ncsu.edu.spinningwellness.activities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.example.spinningwellness.R;
@@ -102,6 +103,7 @@ public class MyPastRidesActivity extends BaseActivity {
 
 			} else {
 				myPastRides = result;
+				Collections.sort(myPastRides);
 				for(Ride r: myPastRides){
 					myPastRideNames.add(r.getName());
 				}				
