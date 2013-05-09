@@ -1,9 +1,12 @@
 package com.ncsu.edu.spinningwellness.tabpanel;
 
 import com.example.spinningwellness.R;
+import com.ncsu.edu.spinningwellness.activities.RecordRideStatsActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
@@ -150,10 +153,27 @@ public class Tab {
 					if (intent != null) {
 						if (requestCode != -1) {
 							// This will start activity for result
-						} else {
-							context.startActivity(intent);
-							context.overridePendingTransition(0, 0);
-							context.finish();
+						} else {	
+							if(context.getClass().getSimpleName().equalsIgnoreCase(RecordRideStatsActivity.class.getSimpleName())) {
+								AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+								alertDialog.setMessage("Do you want to stop recording the ride?");
+								alertDialog.setButton( Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										context.startActivity(intent);
+										context.overridePendingTransition(0, 0);
+										context.finish();								
+									}});
+
+								alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()    {
+									public void onClick(DialogInterface dialog, int which) {
+										dialog.cancel();
+									}});
+								alertDialog.show();								
+							} else {
+								context.startActivity(intent);
+								context.overridePendingTransition(0, 0);
+								context.finish();								
+							}
 						}
 					} else if (dialog != null) {
 						dialog.show();

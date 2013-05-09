@@ -215,9 +215,9 @@ public class RecordRideStatsActivity extends BaseActivity {
 						distanceCovered = (float) ((distanceCovered_met/1000) * 0.62137);   //distance in miles
 
 						timeRead_mins = readChronometer();  //time read in mins
-						
+
 						try {
-						averageSpeed = distanceCovered/(timeRead_mins/60); //Avg speed in miles/hr
+							averageSpeed = distanceCovered/(timeRead_mins/60); //Avg speed in miles/hr
 						} catch (NumberFormatException e) {
 							averageSpeed = 0.0;
 						}
@@ -501,5 +501,25 @@ public class RecordRideStatsActivity extends BaseActivity {
 				}
 			}
 		}
+	}
+
+	private void executeNormalBackPressed() {
+		super.onBackPressed();
+	}
+
+	@Override
+	public void onBackPressed() {
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+		alertDialog.setMessage("Do you want to stop recording the ride?");
+		alertDialog.setButton( Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				executeNormalBackPressed();
+			}});
+
+		alertDialog.setButton( Dialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()    {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}});
+		alertDialog.show();								
 	}
 }
