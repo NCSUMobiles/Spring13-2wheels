@@ -12,7 +12,7 @@ import android.view.Window;
 public abstract class BaseActivity extends Activity {
 
 	protected final String SPINNING_WELLNESS = "SPINNING WELLNESS";
-	protected final String xmlRpcUrl = "http://spinningwellness.wordpress.com/xmlrpc.php";
+	protected final String xmlRpcUrl = "http://lifeontwowheelsspring2013.wordpress.com/xmlrpc.php";
 	protected TabHostProvider tabProvider;
 
 	protected static String username;
