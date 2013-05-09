@@ -245,6 +245,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 						wp = new Wordpress(BaseActivity.username, BaseActivity.password, xmlRpcUrl);
 						Page recentPost = new Page();
 						recentPost.setDescription(blogText);
+						recentPost.setTitle("Ride Experience: " + ride.getName() + " (posted from Spinning Wellness)");
 						wp.newPost(recentPost, true);
 					} catch (MalformedURLException e) {
 						errorPostBlog = e;
