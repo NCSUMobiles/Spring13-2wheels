@@ -1,11 +1,13 @@
 package com.ncsu.edu.spinningwellness.activities;
 
 import java.awt.Image;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.text.Position;
 
@@ -27,6 +29,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.UserManager;
@@ -162,6 +165,7 @@ public class JoinRidesActivity extends BaseActivity {
 		public class ViewHolder{
 			public TextView item1;
 			public CheckBox item2;
+			public TextView textFieldDateTime;
 			public ImageButton start;
 		}
 
@@ -175,14 +179,26 @@ public class JoinRidesActivity extends BaseActivity {
 			v = vi.inflate(R.layout.join_rides_list, null);
 			holder = new ViewHolder();
 			holder.item1 = (TextView) v.findViewById(R.id.textVal);
+			holder.textFieldDateTime = (TextView) v.findViewById(R.id.textValDateTime);
 			holder.item2 = (CheckBox) v.findViewById(R.id.isJoined);
 
 			holder.start = (ImageButton) v.findViewById(R.id.img_start);
 			final CustomEntry custom = entries.get(position);
 			if (custom != null) {
+				
+				Date rideDate = Utils.convertStringToDate(custom.getStartDate());
+
+				String[] formats = new String[] {"dd-MMM-yy", "HH:mm"};
+				SimpleDateFormat dfForRideDate = new SimpleDateFormat(formats[0], Locale.US);
+				SimpleDateFormat dfForRideTime = new SimpleDateFormat(formats[1], Locale.US);
+
+				
 				holder.item1.setText(custom.getTextVal());
+				holder.textFieldDateTime.setText(dfForRideDate.format(rideDate) + "   " + dfForRideTime.format(rideDate));
+						
 				holder.item2.setChecked(custom.isJoined());
 				if(custom.isJoined()){
+					holder.item1.setTypeface(null, Typeface.BOLD);
 					holder.start.setEnabled(true);
 					holder.start.setImageResource(R.drawable.button_start);
 				}else{
