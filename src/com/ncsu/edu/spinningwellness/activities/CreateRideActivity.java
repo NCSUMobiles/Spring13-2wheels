@@ -1,5 +1,7 @@
 package com.ncsu.edu.spinningwellness.activities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +11,7 @@ import com.example.spinningwellness.R;
 import com.ncsu.edu.spinningwellness.Utils.EmailDispatcher;
 import com.ncsu.edu.spinningwellness.Utils.EventsCalendar;
 import com.ncsu.edu.spinningwellness.Utils.UIUtils;
+import com.ncsu.edu.spinningwellness.Utils.Utils;
 import com.ncsu.edu.spinningwellness.entities.Ride;
 import com.ncsu.edu.spinningwellness.entities.User;
 import com.ncsu.edu.spinningwellness.managers.RidesManager;
@@ -93,19 +96,12 @@ public class CreateRideActivity extends BaseActivity {
 		//		if(destination.equals(""))
 		//			missing= missing + "Destination! ";
 		//		
-		if(rideName.equals("") || source.equals("")||destination.equals(""))
-			isValid = false;
-
-		if(isValid) {
-			progressBar.setVisibility(View.VISIBLE);
-			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
-			createRideForm.setVisibility(View.INVISIBLE);
-
-			new CreateRideTask().execute();
-		} else {
+		if(rideName.equals("") || source.equals("")||destination.equals("")){
+			
 			//Show the error message to user
 
 			//			textViewCreateError.append("\nEnter "+missing+"\n");
+			isValid = false;
 			textViewCreateError.setVisibility(View.VISIBLE);
 			Context context = getApplicationContext();
 			CharSequence text = "Enter all fields!";
@@ -113,6 +109,50 @@ public class CreateRideActivity extends BaseActivity {
 			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
 			v.setTextColor(getResources().getColor(R.color.red));
 			toast.show();
+		} else if(dateInPast()){
+			isValid = false;
+			textViewCreateError.setVisibility(View.VISIBLE);
+			Context context = getApplicationContext();
+			CharSequence text = "Start date and time is past!";
+			Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
+			toast.show();
+		}
+		
+		if(isValid) {
+			progressBar.setVisibility(View.VISIBLE);
+			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.createRideForm);
+			createRideForm.setVisibility(View.INVISIBLE);
+
+			new CreateRideTask().execute();
+		}
+	}
+	
+	private boolean dateInPast(){
+		int day = ((DatePicker) findViewById(R.id.createRideDatePicker)).getDayOfMonth();
+		int month = ((DatePicker) findViewById(R.id.createRideDatePicker)).getMonth();
+		int year = ((DatePicker) findViewById(R.id.createRideDatePicker)).getYear();
+
+		int hour = ((TimePicker) findViewById(R.id.createRideTimePicker)).getCurrentHour();
+		int minute = ((TimePicker) findViewById(R.id.createRideTimePicker)).getCurrentMinute();
+
+		Calendar calendar = Calendar.getInstance();
+		System.out.println(day + " " + month + " " + year + " " + hour + " : " + minute);  //6 4 2013
+		calendar.set(year, month, day, hour, minute);   
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String formattedDate = formatter.format(calendar.getTime());
+		System.out.println("entered:" + formattedDate);
+				
+		Calendar now = Calendar.getInstance();
+		formattedDate = formatter.format(now.getTime());
+		System.out.println("now:" + formattedDate);
+		
+		if(calendar.before(now)){
+			return true;
+		}else{
+			return false;
 		}
 	}
 
