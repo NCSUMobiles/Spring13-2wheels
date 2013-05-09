@@ -81,9 +81,11 @@ public class LogRideDetailsActivity extends BaseActivity {
 
 	private void validateUserInputAndCallAsyncTask() {
 
-		//Add validation code herer
+		//Add validation code here
 		boolean isValid = true;
-
+		boolean isValidCadence = true;
+		boolean isValidHeartrate = true;
+		
 		String cadenceString = ((TextView) findViewById(R.id.textViewLogRideDetailsCadence)).getText().toString().trim();
 		String heartrateString = ((TextView) findViewById(R.id.textViewLogRideDetailsHeartRate)).getText().toString().trim();
 		String caloriesBurnedString = ((TextView) findViewById(R.id.textViewLogRideDetailsCaloriesBurned)).getText().toString().trim();
@@ -92,27 +94,55 @@ public class LogRideDetailsActivity extends BaseActivity {
 		if(cadenceString.equals("")|| heartrateString.equals("")||caloriesBurnedString.equals("") || blogText.equals(""))
 			isValid = false;
 
-
-		if(isValid) {
+		if(isValid && Integer.parseInt(cadenceString) > 150)
+			isValidCadence = false;
+	
+		if(isValid && (Integer.parseInt(heartrateString) > 150 || Integer.parseInt(cadenceString) < 40))
+			isValidHeartrate = false;
+		
+		
+		//Validations for the textboxes
+		
+		if(isValid && isValidCadence && isValidHeartrate) {
 			progressBar.setVisibility(View.VISIBLE);
 			LinearLayout createRideForm = (LinearLayout) findViewById(R.id.logRideDetailsForm);
 			createRideForm.setVisibility(View.INVISIBLE);
 
 			new LogRideDetailsTask().execute();
 
-		} else {
-			textViewLoginError.setText("Enter all fields!");
-			textViewLoginError.setVisibility(View.VISIBLE);
-			Context context = getApplicationContext();
-			CharSequence text = "Enter all fields!";
-			int duration = Toast.LENGTH_SHORT;
-
+		} 
+		else if(!isValidCadence)
+		{
+			CharSequence text = "Cadence rate cannot be more than 150! Please enter again.";
+			
 			Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
 			v.setTextColor(getResources().getColor(R.color.red));
 			toast.show();
 		}
-	}
+		else if(!isValidHeartrate)
+		{
+			CharSequence text = "Invalid Heartrate! Please enter again.";
+			
+			Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
+			toast.show();
+		}
+		else
+		{
+			textViewLoginError.setText("Enter all fields!");
+			textViewLoginError.setVisibility(View.VISIBLE);
+			Context context = getApplicationContext();
+			CharSequence text = "Enter all fields!";
+			int duration = Toast.LENGTH_SHORT;
+			
+			Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+			TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(getResources().getColor(R.color.red));
+			toast.show();
+		}
+}
 
 	private void setFormFields() {
 
