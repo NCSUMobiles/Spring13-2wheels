@@ -105,6 +105,7 @@
             android:name="com.ncsu.edu.spinningwellness.activities.RegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_view_past_rides"
+            android:noHistory="true"
             android:screenOrientation="portrait" >
         </activity>
     </application>
