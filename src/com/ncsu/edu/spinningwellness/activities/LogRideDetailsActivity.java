@@ -204,7 +204,7 @@ public class LogRideDetailsActivity extends BaseActivity {
 				//set the error message on the page
 			}
 
-			if(!result.equalsIgnoreCase("Success")) {
+			if(result.equalsIgnoreCase("Success")) {
 
 
 				if(blogText != null && !blogText.equals("")){
