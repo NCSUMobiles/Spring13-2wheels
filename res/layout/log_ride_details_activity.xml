@@ -176,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:gravity="top|left"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:singleLine="false" />
 
                 <Button

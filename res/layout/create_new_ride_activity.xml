@@ -64,6 +64,7 @@
                     style="@style/EditTextViewFont"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
                     android:singleLine="true" />
 
                 <!-- Source Label -->
@@ -81,6 +82,7 @@
                     style="@style/EditTextViewFont"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
                     android:singleLine="true" />
 
                 <!-- Destination Label -->
@@ -97,6 +99,7 @@
                     android:id="@+id/textViewCreateRideDestination"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
                     android:singleLine="true" />
 
                 <!-- Date Label -->
